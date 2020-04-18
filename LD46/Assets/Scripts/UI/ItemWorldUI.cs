@@ -41,12 +41,22 @@ public class ItemWorldUI : MonoBehaviour
         _healthBar.fillAmount = v;
     }
 
-    public void AmountChanged(int amount)
+    public void AmountChanged(int amount, bool showHealthBar = false)
     {
-        _amountText.text = amount.ToString();
+        string amountString = amount > 0 ? "+" : "";
+        amountString += amount.ToString();
+
+        _amountText.text = amountString;
         _amountText.color = amount > 0 ? Color.green : Color.red;
 
-        _animator.SetTrigger("AmountChanged");
+        if (showHealthBar)
+        {
+            _animator.SetTrigger("AmountChangedWithHealthBar");
+        }
+        else
+        {
+            _animator.SetTrigger("AmountChanged");
+        }
     }
 
     private void Update()
