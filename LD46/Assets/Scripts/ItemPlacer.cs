@@ -23,9 +23,11 @@ public class ItemPlacer : MonoBehaviour
     private LayerMask _ghostLayer = 0;
 
     private Item _currentItem = null;
-    private GameObject _ghostItem = null;
+    private GameObject _ghostItemGameObject = null;
+    private MeshRenderer[] _ghostMeshRenderers;
 
     private bool _isEnabled = false;
+    private bool _canPlace = true;
 
     public void Enable(bool enable)
     {
@@ -44,7 +46,7 @@ public class ItemPlacer : MonoBehaviour
             // Rotate the mesh
             if (Input.GetKeyDown(KeyCode.R))
             {
-                _ghostItem.transform.Rotate(Vector3.up, 90f);
+                _ghostItemGameObject.transform.Rotate(Vector3.up, 90f);
             }
 
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -52,15 +54,15 @@ public class ItemPlacer : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _groundLayer, QueryTriggerInteraction.Ignore))
             {
-                _ghostItem.transform.position = hit.point;
+                _ghostItemGameObject.transform.position = hit.point;
                 isOnGround = true;
             }
 
-            _ghostItem.SetActive(isOnGround);
+            _ghostItemGameObject.SetActive(isOnGround);
 
-            if (isOnGround && Input.GetKeyDown(KeyCode.Mouse0))
+            if (isOnGround && _canPlace && Input.GetKeyDown(KeyCode.Mouse0))
             {
-                Item item = Instantiate(_currentItem, _ghostItem.transform.position, _ghostItem.transform.rotation);
+                Item item = Instantiate(_currentItem, _ghostItemGameObject.transform.position, _ghostItemGameObject.transform.rotation);
                 OnItemPlaced?.Invoke(item);
             }
 
@@ -73,9 +75,9 @@ public class ItemPlacer : MonoBehaviour
 
     public void SetItem(Item item)
     {
-        if (_ghostItem != null)
+        if (_ghostItemGameObject != null)
         {
-            Destroy(_ghostItem);
+            Destroy(_ghostItemGameObject);
         }
 
         _currentItem = item;
@@ -90,20 +92,21 @@ public class ItemPlacer : MonoBehaviour
 
     private void CreateGhost(Item item)
     {
-        _ghostItem = Instantiate(item).gameObject;
-        _ghostItem.name = "Ghost";
-        _ghostItem.gameObject.layer = _ghostLayer;
+        var ghostItem = Instantiate(item);
+        _ghostItemGameObject = ghostItem.gameObject;
+        _ghostItemGameObject.name = "Ghost";
+        //_ghostItemGameObject.gameObject.layer = _ghostLayer;
 
         // Set ghost material on all meshes
-        MeshRenderer[] meshRenderers = _ghostItem.GetComponentsInChildren<MeshRenderer>();
+        _ghostMeshRenderers = _ghostItemGameObject.GetComponentsInChildren<MeshRenderer>();
 
-        foreach (var meshRenderer in meshRenderers)
+        foreach (var meshRenderer in _ghostMeshRenderers)
         {
             meshRenderer.material = _ghostMaterial;
         }
 
         // Remove all colliders (not triggers)
-        Collider[] colliders = _ghostItem.GetComponentsInChildren<Collider>();
+        Collider[] colliders = _ghostItemGameObject.GetComponentsInChildren<Collider>();
 
         foreach (var collider in colliders)
         {
@@ -113,9 +116,40 @@ public class ItemPlacer : MonoBehaviour
             }
         }
 
-        Rigidbody rb = _ghostItem.GetComponent<Rigidbody>();
+        Rigidbody rb = _ghostItemGameObject.GetComponent<Rigidbody>();
         Destroy(rb);
 
-        _ghostItem.SetActive(false);
+        ghostItem.OnCollisionTriggerEnter += OnGhostCollisionTriggerEnter;
+        ghostItem.OnCollisionTriggerExit += OnGhostCollisionTriggerExit;
+
+        _ghostItemGameObject.SetActive(false);
+    }
+
+    private void OnGhostCollisionTriggerEnter(Item item, int collisionCount)
+    {
+        if (_canPlace && collisionCount > 0)
+        {
+            foreach (var meshRenderer in _ghostMeshRenderers)
+            {
+                meshRenderer.material = _ghostMaterialDisabled;
+            }
+        }
+
+        _canPlace = false;
+    }
+
+    private void OnGhostCollisionTriggerExit(Item item, int collisionCount)
+    {
+        bool canPlace = collisionCount == 0;
+
+        if (!_canPlace && canPlace)
+        {
+            foreach (var meshRenderer in _ghostMeshRenderers)
+            {
+                meshRenderer.material = _ghostMaterial;
+            }
+        }
+
+        _canPlace = canPlace;
     }
 }

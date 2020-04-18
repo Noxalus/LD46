@@ -11,10 +11,15 @@ public class Item : MonoBehaviour
     private int _baseHealth = 1;
 
     public delegate void ItemEventHandler(Item item);
+    public delegate void ItemCollisionEventHandler(Item item, int collisionCount);
+
     public event ItemEventHandler OnDied;
+    public event ItemCollisionEventHandler OnCollisionTriggerEnter;
+    public event ItemCollisionEventHandler OnCollisionTriggerExit;
 
     protected GameManager _gameManager;
     protected int _health;
+    private int _collisionCount = 0;
 
     private List<string> _allowedItemTags = new List<string>()
     {
@@ -74,6 +79,8 @@ public class Item : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        _collisionCount++;
+
         Debug.Log($"Enter into {other.name}");
 
         Item item = other.gameObject.GetComponent<Item>();
@@ -82,10 +89,14 @@ public class Item : MonoBehaviour
         {
             OnItemEnter(item);
         }
+
+        OnCollisionTriggerEnter?.Invoke(this, _collisionCount);
     }
 
     public void OnTriggerExit(Collider other)
     {
+        _collisionCount--;
+
         Debug.Log($"Exit from {other.name}");
 
         Item item = other.gameObject.GetComponent<Item>();
@@ -94,6 +105,8 @@ public class Item : MonoBehaviour
         {
             OnItemExit(item);
         }
+
+        OnCollisionTriggerExit?.Invoke(this, _collisionCount);
     }
 
     protected virtual void OnItemEnter(Item item)

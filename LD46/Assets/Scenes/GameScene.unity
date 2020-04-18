@@ -204,7 +204,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!114 &6080290
 MonoBehaviour:
@@ -254,7 +254,7 @@ MonoBehaviour:
   panBorderThickness: 0.5
   panLimitBottomLeft: {x: -30, y: -30}
   panLimitTopRight: {x: 30, y: 30}
-  scrollSpeed: 500
+  scrollSpeed: 1000
   zoomMin: 1
   zoomMax: 20
   showPanBorder: 0
@@ -1441,7 +1441,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &2088771823 stripped
 MonoBehaviour:

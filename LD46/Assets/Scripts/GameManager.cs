@@ -46,11 +46,13 @@ public class GameManager : Singleton<GameManager>
     {
         item.OnDied -= OnBuildingDied;
         NavMeshSurface.BuildNavMesh();
+        _buildings.Remove(item as Building);
     }
 
     private void OnUnitDied(Item item)
     {
         item.OnDied -= OnUnitDied;
+        _units.Remove(item as Unit);
     }
 
     private void OnItemChanged(Item item)
