@@ -17,7 +17,7 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
-        if (Input.GetKeyDown(0))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
 

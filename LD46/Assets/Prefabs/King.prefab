@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4027349382513996150}
   - component: {fileID: 5585593933638480627}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: King
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   - component: {fileID: 4027349382679844844}
   - component: {fileID: 4027349382679844847}
   - component: {fileID: 4027349382679844846}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
