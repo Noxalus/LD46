@@ -40,6 +40,9 @@ public class GameManager : Singleton<GameManager>
 
     private King _king;
 
+    private float _timer;
+    private bool _isGameOver;
+
     private Coroutine _worldBuilderCoroutine;
 
     public King King => _king;
@@ -58,12 +61,19 @@ public class GameManager : Singleton<GameManager>
         Initialize();
     }
 
+    public void Retry()
+    {
+        Initialize();
+    }
+
     private void Initialize()
     {
         _wood = 5;
         _rock = 5;
         _gold = 5;
 
+        _timer = 0;
+        _isGameOver = false;
         UIRefreshCurrencies();
 
         if (_worldBuilderCoroutine != null)
@@ -72,16 +82,30 @@ public class GameManager : Singleton<GameManager>
             _worldBuilderCoroutine = null;
         }
 
+        _uiManager.Initialize();
         WorldBuilder.Initialize();
 
         // Instantiate first units
         _king = Instantiate(_kingPrefab, Vector3.zero, Quaternion.identity) as King;
+        _king.OnDied += OnKingDied;
 
         _units.Add(_king);
         _units.Add(Instantiate(_firstSoldierPrefab, Vector3.forward, Quaternion.identity));
         _units.Add(Instantiate(_firstWorkerPrefab, Vector3.right, Quaternion.identity));
 
         _worldBuilderCoroutine = StartCoroutine(WorldBuilderCoroutine());
+    }
+
+    private void OnKingDied(Item item)
+    {
+        GameOver();
+    }
+
+    private void GameOver()
+    {
+        _isGameOver = true;
+        _uiManager.ShowGameOver(_timer);
+
     }
 
     // Add chunk regularly
@@ -138,6 +162,14 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
+        if (_isGameOver)
+        {
+            return;
+        }
+
+        _timer += Time.deltaTime;
+        UpdateUITimer();
+
         // Attack enemies using mouse click
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
@@ -205,6 +237,11 @@ public class GameManager : Singleton<GameManager>
         _uiManager.SetWoodAmount(_wood);
         _uiManager.SetRockAmount(_rock);
         _uiManager.SetGoldAmount(_gold);
+    }
+
+    private void UpdateUITimer()
+    {
+        _uiManager.UpdateTimer(_timer);
     }
 
     public void BuyItem(Item item)
