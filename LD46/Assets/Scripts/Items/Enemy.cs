@@ -1,43 +1,86 @@
 ﻿
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : Unit
 {
-    private Unit _currentTarget;
+    [SerializeField]
+    private Item _currentAttackTarget;
+
+    [SerializeField]
+    private List<Item> _surroundingTargets = new List<Item>();
+
+    private Item _currentLocationTarget;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _currentLocationTarget = _gameManager.King;
     }
 
     protected override void InternalUpdate()
     {
         base.InternalUpdate();
 
-        Agent.SetDestination(_gameManager.King.transform.position);
+        if (_currentLocationTarget != null)
+        {
+            Agent.SetDestination(_currentLocationTarget.transform.position);
+        }
     }
 
     protected override void ExecuteAction()
     {
         base.ExecuteAction();
 
-        if (_currentTarget != null)
+        if (_currentAttackTarget != null)
         {
-            _currentTarget.TakeDamage(_attack);
+            _currentAttackTarget.TakeDamage(_attack);
+        }
+        else
+        {
+            // Search for new target
+            FindNewTarget();
         }
     }
 
     protected override void OnItemEnter(Item item)
     {
-        if (item is Unit unit)
+        Debug.Log("Found item, start to attack it!");
+        _currentAttackTarget = item;
+
+        if (!_surroundingTargets.Contains(item))
         {
-            Debug.Log("Found unity, start to attack it!");
-            _currentTarget = unit;
+            _surroundingTargets.Add(item);
         }
     }
 
     protected override void OnItemExit(Item item)
     {
+        _surroundingTargets.Remove(item);
 
+        if (item == _currentAttackTarget)
+        {
+            FindNewTarget();
+        }
+    }
+
+    private void FindNewTarget()
+    {
+        foreach (var target in _surroundingTargets)
+        {
+            if (target != null)
+            {
+                _currentAttackTarget = target;
+            }
+        }
+
+        // Still no target?
+        if (_currentAttackTarget == null)
+        {
+            _surroundingTargets.Clear();
+
+            // Ask GameManager a new target to move at
+        }
     }
 }

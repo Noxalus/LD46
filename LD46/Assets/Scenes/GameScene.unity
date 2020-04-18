@@ -1225,9 +1225,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   King: {fileID: 2088771823}
   _camera: {fileID: 6080288}
-  _test:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &1896540855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1409,7 +1406,7 @@ PrefabInstance:
     - target: {fileID: 4027349382513996150, guid: 94f83c9971871ed4d8ded27a81169184,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: 4027349382513996150, guid: 94f83c9971871ed4d8ded27a81169184,
         type: 3}
@@ -1451,11 +1448,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4027349382679844847, guid: 94f83c9971871ed4d8ded27a81169184,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 0478b7b23dfe91747a8ea457e1b7fb61, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94f83c9971871ed4d8ded27a81169184, type: 3}
 --- !u!1001 &6700476750431468099

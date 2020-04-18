@@ -13,8 +13,9 @@ public class Item : MonoBehaviour
 
     private void Start()
     {
-        Initialize();
         _gameManager = GameManager.Instance;
+
+        Initialize();
     }
 
     public virtual void Initialize()

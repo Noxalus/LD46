@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5585593933638480627}
   - component: {fileID: 1996259223099850414}
   - component: {fileID: 8655993747050069142}
+  - component: {fileID: 7983681451762014101}
   m_Layer: 8
   m_Name: King
   m_TagString: Untagged
@@ -102,6 +103,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!136 &7983681451762014101
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4027349382513996041}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &4027349382679844832
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +128,6 @@ GameObject:
   - component: {fileID: 4027349382679844833}
   - component: {fileID: 4027349382679844844}
   - component: {fileID: 4027349382679844847}
-  - component: {fileID: 4027349382679844846}
   m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
@@ -182,17 +196,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &4027349382679844846
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4027349382679844832}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
