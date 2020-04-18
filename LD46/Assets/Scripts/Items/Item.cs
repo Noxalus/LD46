@@ -4,6 +4,9 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     [SerializeField]
+    private ItemWorldUI _ui = null;
+
+    [SerializeField]
     private int _baseHealth = 1;
 
     public delegate void ItemEventHandler();
@@ -27,6 +30,7 @@ public class Item : MonoBehaviour
     public virtual void Initialize()
     {
         _health = _baseHealth;
+        _ui.Initialize(_gameManager.Camera);
     }
 
     private void Update()
@@ -41,6 +45,8 @@ public class Item : MonoBehaviour
     public void TakeDamage(int amount)
     {
         _health -= amount;
+
+        _ui.UpdateHealthBar((float)_health / _baseHealth);
 
         if (_health <= 0)
         {

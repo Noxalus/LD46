@@ -4,9 +4,7 @@ using UnityEngine.AI;
 public class GameManager : Singleton<GameManager>
 {
     public King King = null;
-
-    [SerializeField]
-    private Camera _camera = null;
+    public Camera Camera = null;
 
     void Start()
     {
@@ -16,7 +14,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (Input.GetKeyDown(KeyCode.Mouse2))
         {
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
             {
@@ -33,7 +31,7 @@ public class GameManager : Singleton<GameManager>
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Enemy"), QueryTriggerInteraction.Ignore))
             {
