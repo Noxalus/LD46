@@ -3,6 +3,10 @@ using UnityEngine.AI;
 
 public class ItemPlacer : MonoBehaviour
 {
+    public delegate void ItemPlacerEventHandler(Item item);
+    public event ItemPlacerEventHandler OnItemChanged;
+    public event ItemPlacerEventHandler OnItemPlaced;
+
     [SerializeField]
     private Camera _camera = null;
 
@@ -21,16 +25,23 @@ public class ItemPlacer : MonoBehaviour
     [SerializeField]
     private LayerMask _ghostLayer = 0;
 
-    private GameObject _currentItem = null;
+    private Item _currentItem = null;
     private GameObject _ghostItem = null;
 
-    void Start()
+    private bool _isEnabled = false;
+
+    public void Enable(bool enable)
     {
-        
+        _isEnabled = enable;
     }
 
     void Update()
     {
+        if (!_isEnabled)
+        {
+            return;
+        }
+
         if (_currentItem != null)
         {
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -46,8 +57,9 @@ public class ItemPlacer : MonoBehaviour
 
             if (isOnGround && Input.GetKeyDown(KeyCode.Mouse0))
             {
-                Instantiate(_currentItem, _ghostItem.transform.position, Quaternion.identity);
+                Item item = Instantiate(_currentItem, _ghostItem.transform.position, Quaternion.identity);
                 _navMesh.BuildNavMesh();
+                OnItemPlaced?.Invoke(item);
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -57,7 +69,7 @@ public class ItemPlacer : MonoBehaviour
         }
     }
 
-    public void SetItem(GameObject item)
+    public void SetItem(Item item)
     {
         if (_ghostItem != null)
         {
@@ -70,13 +82,15 @@ public class ItemPlacer : MonoBehaviour
         {
             CreateGhost(item);
         }
+
+        OnItemChanged?.Invoke(_currentItem);
     }
 
-    private void CreateGhost(GameObject item)
+    private void CreateGhost(Item item)
     {
-        _ghostItem = Instantiate(item);
+        _ghostItem = Instantiate(item).gameObject;
         _ghostItem.name = "Ghost";
-        _ghostItem.layer = _ghostLayer;
+        _ghostItem.gameObject.layer = _ghostLayer;
 
         // Set ghost material on all meshes
         MeshRenderer[] meshRenderers = _ghostItem.GetComponentsInChildren<MeshRenderer>();

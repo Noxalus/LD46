@@ -22,19 +22,18 @@ public class ItemWorldUI : MonoBehaviour
     private Image _healthBar = null;
 
     private Quaternion _initialHealthBarRotation;
+    private Quaternion _initialAmountTextRotation;
 
     private void Start()
     {
         _initialHealthBarRotation = _healthBar.transform.rotation;
+        _initialAmountTextRotation = _amountText.transform.rotation;
+        Unselect();
     }
 
     public void Initialize(Camera camera)
     {
         _worldSpaceCanvas.worldCamera = camera;
-
-        //_amountText.enabled = false;
-        //_selectionCircle.enabled = false;
-        //_healthBar.enabled = false;
     }
 
     public void UpdateHealthBar(float v)
@@ -53,5 +52,16 @@ public class ItemWorldUI : MonoBehaviour
     private void Update()
     {
         _healthBar.transform.rotation = _initialHealthBarRotation * _worldSpaceCanvas.worldCamera.transform.rotation;
+        _amountText.transform.rotation = _initialAmountTextRotation * _worldSpaceCanvas.worldCamera.transform.rotation;
+    }
+
+    public void Select()
+    {
+        _selectionCircle.enabled = true;
+    }
+
+    public void Unselect()
+    {
+        _selectionCircle.enabled = false;
     }
 }

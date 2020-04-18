@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -54,6 +55,16 @@ public class Item : MonoBehaviour
             Destroy(gameObject);
             OnDied?.Invoke();
         }
+    }
+
+    public void Select()
+    {
+        _ui.Select();
+    }
+
+    public void Unselect()
+    {
+        _ui.Unselect();
     }
 
     public void OnTriggerEnter(Collider other)

@@ -6,8 +6,44 @@ public class GameManager : Singleton<GameManager>
     public King King = null;
     public Camera Camera = null;
 
+    [SerializeField]
+    private ItemPlacer _itemPlacer = null;
+
+    [SerializeField]
+    private ItemSelector _itemSelector = null;
+
+    private Item _currentSelection;
+
     void Start()
     {
+        _itemPlacer.OnItemChanged += OnItemChanged;
+        _itemPlacer.OnItemPlaced += OnItemPlaced;
+        _itemSelector.OnItemSelected += OnItemSelected;
+    }
+
+    private void OnItemPlaced(Item item)
+    {
+        Debug.Log($"Placed an item: {item.name}");
+    }
+
+    private void OnItemChanged(Item item)
+    {
+        bool itemPlacerClosed = item == null;
+
+        _itemPlacer.Enable(!itemPlacerClosed);
+        _itemSelector.Enable(itemPlacerClosed);
+    }
+
+    private void OnItemSelected(Item item)
+    {
+        if (_currentSelection != null)
+        {
+            _currentSelection.Unselect();
+        }
+
+        _currentSelection = item;
+
+        _currentSelection.Select();
     }
 
     void Update()
