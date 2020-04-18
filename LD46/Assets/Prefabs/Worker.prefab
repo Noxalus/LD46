@@ -130,9 +130,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 2970798447998707982}
   _baseHealth: 1
+  Price: {fileID: 11400000, guid: d1829d6bd9a29014bafd27aa3a5636ad, type: 2}
+  _actionFrequency: 1
   Agent: {fileID: 6916204293797004881}
   _attack: 1
-  _actionFrequency: 1
   _itemsToWatchTags:
   - Resource
   _currentActiveTarget: {fileID: 0}

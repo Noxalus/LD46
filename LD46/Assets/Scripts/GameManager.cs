@@ -43,7 +43,9 @@ public class GameManager : Singleton<GameManager>
     private Coroutine _worldBuilderCoroutine;
 
     public King King => _king;
-
+    public int Wood => _wood;
+    public int Rock => _rock;
+    public int Gold => _gold;
 
     void Start()
     {
@@ -56,11 +58,13 @@ public class GameManager : Singleton<GameManager>
 
     private void Initialize()
     {
-        _wood = 0;
-        _rock = 0;
-        _gold = 0;
+        _wood = 5;
+        _rock = 5;
+        _gold = 5;
 
-        if(_worldBuilderCoroutine != null)
+        UIRefreshCurrencies();
+
+        if (_worldBuilderCoroutine != null)
         {
             StopCoroutine(_worldBuilderCoroutine);
             _worldBuilderCoroutine = null;
@@ -199,6 +203,21 @@ public class GameManager : Singleton<GameManager>
         _uiManager.SetWoodAmount(_wood);
         _uiManager.SetRockAmount(_rock);
         _uiManager.SetGoldAmount(_gold);
+    }
+
+    public void BuyItem(Item item)
+    {
+        if (item.Price == null)
+        {
+            Debug.LogError($"This item has no price: {item.name}");
+            return;
+        }
+
+        _wood -= item.Price.Wood;
+        _rock -= item.Price.Rock;
+        _gold -= item.Price.Gold;
+
+        UIRefreshCurrencies();
     }
 
     public void AddResources(Resource resource)

@@ -62,8 +62,10 @@ public class ItemPlacer : MonoBehaviour
 
             if (isOnGround && _canPlace && Input.GetKeyDown(KeyCode.Mouse0))
             {
-                Item item = Instantiate(_currentItem, _ghostItemGameObject.transform.position, _ghostItemGameObject.transform.rotation);
-                OnItemPlaced?.Invoke(item);
+                if (CanBuy(_currentItem))
+                {
+                    Buy(_currentItem);
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -164,5 +166,40 @@ public class ItemPlacer : MonoBehaviour
         }
 
         _canPlace = canPlace;
+    }
+
+    private bool CanBuy(Item item)
+    {
+        if (item.Price == null)
+        {
+            Debug.LogError($"This item has no price: {item.name}");
+            return false;
+        }
+
+        GameManager gameManager = GameManager.Instance;
+
+        if (item.Price.Wood > gameManager.Wood)
+        {
+            return false;
+        }
+
+        if (item.Price.Rock > gameManager.Rock)
+        {
+            return false;
+        }
+
+        if (item.Price.Gold > gameManager.Gold)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private void Buy(Item item)
+    {
+        GameManager.Instance.BuyItem(item);
+        Item itemInstance = Instantiate(item, _ghostItemGameObject.transform.position, _ghostItemGameObject.transform.rotation);
+        OnItemPlaced?.Invoke(itemInstance);
     }
 }

@@ -9,6 +9,8 @@ public class Item : MonoBehaviour
     [SerializeField]
     private int _baseHealth = 1;
 
+    public Price Price;
+
     [SerializeField]
     protected float _actionFrequency = 1f; // Seconds
 
