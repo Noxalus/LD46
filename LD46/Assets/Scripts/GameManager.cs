@@ -3,13 +3,10 @@ using UnityEngine.AI;
 
 public class GameManager : Singleton<GameManager>
 {
+    public King King = null;
+
     [SerializeField]
     private Camera _camera = null;
-
-
-    [SerializeField]
-    private NavMeshAgent _king = null;
-
 
     void Start()
     {
@@ -24,13 +21,13 @@ public class GameManager : Singleton<GameManager>
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
             {
                 NavMeshPath path = new NavMeshPath();
-                _king.CalculatePath(hit.point, path);
+                King.Agent.CalculatePath(hit.point, path);
                 if (path.status == NavMeshPathStatus.PathPartial)
                 {
                     Debug.Log("Can't reach the destination");
                 }
 
-                _king.SetDestination(hit.point);
+                King.Agent.SetDestination(hit.point);
             }
         }
     }
