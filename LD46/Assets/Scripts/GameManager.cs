@@ -47,6 +47,8 @@ public class GameManager : Singleton<GameManager>
     public int Rock => _rock;
     public int Gold => _gold;
 
+    public ItemPlacer ItemPlacer => _itemPlacer;
+
     void Start()
     {
         _itemPlacer.OnItemChanged += OnItemChanged;
