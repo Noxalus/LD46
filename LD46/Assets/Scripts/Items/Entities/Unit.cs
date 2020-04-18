@@ -10,9 +10,6 @@ public class Unit : Item
     protected int _attack = 1;
 
     [SerializeField]
-    protected float _actionFrequency = 1f; // Seconds
-
-    [SerializeField]
     private List<string> _itemsToWatchTags = new List<string>();
 
     [Header("Debug")]
@@ -23,27 +20,14 @@ public class Unit : Item
     [SerializeField] // To debug
     protected List<Item> _surroundingTargets = new List<Item>();
 
-    protected Item _currentLocationTarget;
-    protected float _actionTimer = 0f;
-
     public override void Initialize()
     {
         base.Initialize();
-
-        _actionTimer = _actionFrequency;
     }
 
     protected override void InternalUpdate()
     {
         base.InternalUpdate();
-
-        _actionTimer -= Time.deltaTime;
-
-        if (_actionTimer <= 0)
-        {
-            ExecuteAction();
-            _actionTimer = _actionFrequency;
-        }
 
         // Move toward affected target
         if (_currentLocationTarget != null)
@@ -58,10 +42,6 @@ public class Unit : Item
 
         // Stop movement if the unit doesn't have target
         Agent.isStopped = target == null;
-    }
-
-    protected virtual void ExecuteAction()
-    {
     }
 
     protected override void OnItemEnter(Item item)
@@ -82,6 +62,11 @@ public class Unit : Item
         {
             _surroundingTargets.Add(item);
         }
+    }
+
+    protected bool IsInterestingForMe(Item item)
+    {
+        return _itemsToWatchTags.Contains(item.tag);
     }
 
     protected override void OnItemExit(Item item)

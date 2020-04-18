@@ -53,6 +53,8 @@ MonoBehaviour:
   - {fileID: 5355485906850319262, guid: 996d2ba984a4c58448daa1ef72d438b2, type: 3}
   _goldPrefabs:
   - {fileID: 2244047412099388851, guid: 0b29d332a6b960b438a97f2a51e93bf2, type: 3}
+  _enemySpawnerPrefabs:
+  - {fileID: 1649794812747414110, guid: 3fcfcb82a1662884184cd058b0729e74, type: 3}
   _neighbors:
     m_keys: 
     m_values: []
@@ -63,7 +65,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6258378414609381026}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -74,7 +76,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 2615
+    m_Bits: 27191
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1

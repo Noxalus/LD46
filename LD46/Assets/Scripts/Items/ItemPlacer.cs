@@ -44,7 +44,7 @@ public class ItemPlacer : MonoBehaviour
         if (_currentItem != null)
         {
             // Rotate the mesh
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.RightControl) || Input.GetKeyDown(KeyCode.LeftControl))
             {
                 _ghostItemGameObject.transform.Rotate(Vector3.up, 90f);
             }

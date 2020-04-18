@@ -31,6 +31,8 @@ public class GameManager : Singleton<GameManager>
     private List<Building> _buildings = new List<Building>();
     private List<Unit> _units = new List<Unit>();
     private List<Unit> _enemies = new List<Unit>();
+    private List<Resource> _resources = new List<Resource>();
+    private List<Building> _enemyBuildings = new List<Building>();
 
     private int _wood = 0;
     private int _rock = 0;
@@ -177,5 +179,20 @@ public class GameManager : Singleton<GameManager>
         _uiManager.SetWoodAmount(_wood);
         _uiManager.SetRockAmount(_rock);
         _uiManager.SetGoldAmount(_gold);
+    }
+
+    public void AddResources(Resource resource)
+    {
+        _resources.Add(resource);
+    }
+
+    public void AddEnemy(Enemy enemy)
+    {
+        _enemies.Add(enemy);
+    }
+
+    public void AddEnemyBuilding(Building building)
+    {
+        _enemyBuildings.Add(building);
     }
 }

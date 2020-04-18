@@ -73,30 +73,30 @@ public class CameraController : MonoBehaviour
         position.x += maxPanSpeed * horizontal * Time.deltaTime;
         position.z += maxPanSpeed * vertical * Time.deltaTime;
 
-        if (mouseY >= _panBorders.yMax)
-        {
-            ratio = (Input.mousePosition.y - _panBorders.yMax) / (Screen.height - _panBorders.yMax);
-            ratio = _panSpeedCurve.Evaluate(ratio);
-            position.z += maxPanSpeed * ratio * Time.deltaTime;
-        }
-        if (mouseY <= _panBorders.yMin)
-        {
-            ratio = 1f - (Input.mousePosition.y / _panBorders.yMin);
-            ratio = _panSpeedCurve.Evaluate(ratio);
-            position.z -= maxPanSpeed * ratio * Time.deltaTime;
-        }
-        if (mouseX >= _panBorders.xMax)
-        {
-            ratio = (Input.mousePosition.x - _panBorders.xMax) / (Screen.width - _panBorders.xMax);
-            ratio = _panSpeedCurve.Evaluate(ratio);
-            position.x += maxPanSpeed * ratio * Time.deltaTime;
-        }
-        if (mouseX <= _panBorders.xMin)
-        {
-            ratio = 1f - (Input.mousePosition.x / _panBorders.xMin);
-            ratio = _panSpeedCurve.Evaluate(ratio);
-            position.x -= maxPanSpeed * ratio * Time.deltaTime;
-        }
+        //if (mouseY >= _panBorders.yMax)
+        //{
+        //    ratio = (Input.mousePosition.y - _panBorders.yMax) / (Screen.height - _panBorders.yMax);
+        //    ratio = _panSpeedCurve.Evaluate(ratio);
+        //    position.z += maxPanSpeed * ratio * Time.deltaTime;
+        //}
+        //if (mouseY <= _panBorders.yMin)
+        //{
+        //    ratio = 1f - (Input.mousePosition.y / _panBorders.yMin);
+        //    ratio = _panSpeedCurve.Evaluate(ratio);
+        //    position.z -= maxPanSpeed * ratio * Time.deltaTime;
+        //}
+        //if (mouseX >= _panBorders.xMax)
+        //{
+        //    ratio = (Input.mousePosition.x - _panBorders.xMax) / (Screen.width - _panBorders.xMax);
+        //    ratio = _panSpeedCurve.Evaluate(ratio);
+        //    position.x += maxPanSpeed * ratio * Time.deltaTime;
+        //}
+        //if (mouseX <= _panBorders.xMin)
+        //{
+        //    ratio = 1f - (Input.mousePosition.x / _panBorders.xMin);
+        //    ratio = _panSpeedCurve.Evaluate(ratio);
+        //    position.x -= maxPanSpeed * ratio * Time.deltaTime;
+        //}
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         position += transform.forward * scroll * scrollSpeed * Time.deltaTime;

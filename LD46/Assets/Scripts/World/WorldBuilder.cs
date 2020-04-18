@@ -63,7 +63,8 @@ public class WorldBuilder : MonoBehaviour
             int randomDirectionIndex = Random.Range(0, emptyNeighbors.Count);
             EDirection randomDirection = emptyNeighbors[randomDirectionIndex];
 
-            newChunk.Initialize(this, randomExpandableChunk, GetInverseDirection(randomDirection));
+            int enemySpawnerCount = Random.Range(1, 3);
+            newChunk.Initialize(this, randomExpandableChunk, GetInverseDirection(randomDirection), enemySpawnerCount);
         }
 
         _chunks.Add(newChunk);

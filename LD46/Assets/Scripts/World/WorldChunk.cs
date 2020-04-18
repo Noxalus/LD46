@@ -27,12 +27,19 @@ public class WorldChunk : MonoBehaviour
     [SerializeField]
     private List<Gold> _goldPrefabs = new List<Gold>();
 
+    [SerializeField]
+    private List<EnemySpawner> _enemySpawnerPrefabs = new List<EnemySpawner>();
+
     [SerializeField] // For debug
     private NeighborChunksDictionary _neighbors = new NeighborChunksDictionary();
 
     private WorldBuilder _worldBuilder;
 
-    public void Initialize(WorldBuilder worldBuilder, WorldChunk parent, EDirection parentDirection)
+    public void Initialize(
+        WorldBuilder worldBuilder, 
+        WorldChunk parent, 
+        EDirection parentDirection,
+        int enemySpawnerMaxCount = 0)
     {
         _worldBuilder = worldBuilder;
 
@@ -62,7 +69,7 @@ public class WorldChunk : MonoBehaviour
         transform.position = newChunkPosition;
 
         GenerateResources();
-        GenerateEnemies();
+        GenerateEnemies(enemySpawnerMaxCount);
 
         //_navMeshSurface.BuildNavMesh();
     }
@@ -89,15 +96,11 @@ public class WorldChunk : MonoBehaviour
 
     private void GenerateResources()
     {
-        Vector2 bottomLeftBound = new Vector2(
-            transform.position.x -_worldBuilder.ChunkStep / 2 + 1,
-            transform.position.z - _worldBuilder.ChunkStep / 2 + 1
-        );
+        Vector4 bounds = GetBounds();
 
-        Vector2 topRightBound = new Vector2(
-            transform.position.x + _worldBuilder.ChunkStep / 2,
-            transform.position.z + _worldBuilder.ChunkStep / 2
-        );
+        Vector2 bottomLeftBound = new Vector2(bounds.x, bounds.y);
+        Vector2 topRightBound = new Vector2(bounds.z, bounds.w);
+
 
         for (float y = bottomLeftBound.y; y < topRightBound.y; y += _spaceBetweenResources)
         {
@@ -152,12 +155,45 @@ public class WorldChunk : MonoBehaviour
                 }
 
                 resourceInstance.transform.Rotate(Vector3.up, Random.Range(0, 360));
+                GameManager.Instance.AddResources(resourceInstance);
             }
         }
     }
 
-    private void GenerateEnemies()
+    private void GenerateEnemies(int maxCount)
     {
+        int count = Random.Range(0, maxCount + 1);
 
+        for (int i = 0; i < count; i++)
+        {
+            Vector4 bounds = GetBounds();
+
+            Vector3 randomPosition = new Vector3(
+                Random.Range(bounds.x, bounds.z),
+                0,
+                Random.Range(bounds.y, bounds.w)
+            );
+
+            var instance = Instantiate(
+                _enemySpawnerPrefabs[Random.Range(0, _enemySpawnerPrefabs.Count)],
+                randomPosition,
+                Quaternion.identity
+            );
+            instance.transform.Rotate(Vector3.up, Random.Range(0, 360));
+
+            instance.Initialize(Random.Range(20, 150));
+
+            GameManager.Instance.AddEnemyBuilding(instance);
+        }
+    }
+
+    private Vector4 GetBounds()
+    {
+        return new Vector4(
+            transform.position.x - _worldBuilder.ChunkStep / 2 + 1,
+            transform.position.z - _worldBuilder.ChunkStep / 2 + 1,
+            transform.position.x + _worldBuilder.ChunkStep / 2,
+            transform.position.z + _worldBuilder.ChunkStep / 2
+        );
     }
 }

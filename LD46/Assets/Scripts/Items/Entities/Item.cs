@@ -9,6 +9,9 @@ public class Item : MonoBehaviour
     [SerializeField]
     private int _baseHealth = 1;
 
+    [SerializeField]
+    protected float _actionFrequency = 1f; // Seconds
+
     public delegate void ItemEventHandler(Item item);
     public delegate void ItemCollisionEventHandler(Item item, int collisionCount);
 
@@ -16,26 +19,28 @@ public class Item : MonoBehaviour
     public event ItemCollisionEventHandler OnCollisionTriggerEnter;
     public event ItemCollisionEventHandler OnCollisionTriggerExit;
 
-    protected GameManager _gameManager;
     protected int _health;
     private int _collisionCount = 0;
 
     private List<string> _allowedItemTags = new List<string>()
     {
-        "Building", "Unit", "Enemy", "Resource"
+        "Building", "Unit", "Enemy", "Resource", "EnemyBuilding"
     };
+
+    protected Item _currentLocationTarget;
+    protected float _actionTimer = 0f;
 
     private void Start()
     {
-        _gameManager = GameManager.Instance;
-
         Initialize();
     }
 
     public virtual void Initialize()
     {
         _health = _baseHealth;
-        UI.Initialize(_gameManager.Camera);
+        _actionTimer = _actionFrequency;
+     
+        UI.Initialize(GameManager.Instance.Camera);
     }
 
     private void Update()
@@ -44,6 +49,17 @@ public class Item : MonoBehaviour
     }
 
     protected virtual void InternalUpdate()
+    {
+        _actionTimer -= Time.deltaTime;
+
+        if (_actionTimer <= 0)
+        {
+            ExecuteAction();
+            _actionTimer = _actionFrequency;
+        }
+    }
+
+    protected virtual void ExecuteAction()
     {
     }
 

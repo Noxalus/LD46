@@ -4,7 +4,7 @@
     {
         base.Initialize();
 
-        _currentLocationTarget = _gameManager.King;
+        FindNewTarget();
     }
 
     protected override void InternalUpdate()
@@ -31,11 +31,14 @@
     {
         base.OnItemEnter(item);
 
-        // Focus unit instead of chasing the king
-        if (item is Unit)
+        if (IsInterestingForMe(item))
         {
-            _currentActiveTarget = item;
-            SetTarget(_currentActiveTarget);
+            // Focus unit instead of chasing the king
+            if (item is Unit)
+            {
+                _currentActiveTarget = item;
+                SetTarget(_currentActiveTarget);
+            }
         }
     }
 
@@ -45,7 +48,7 @@
 
         if (_currentActiveTarget == null)
         {
-            SetTarget(_gameManager.King);
+            SetTarget(GameManager.Instance.King);
         }
     }
 }

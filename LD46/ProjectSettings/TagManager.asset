@@ -8,6 +8,7 @@ TagManager:
   - Unit
   - Enemy
   - Resource
+  - EnemyBuilding
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Ground
   - Ghost
   - Resource
-  - 
+  - EnemyBuilding
   - 
   - 
   - 
