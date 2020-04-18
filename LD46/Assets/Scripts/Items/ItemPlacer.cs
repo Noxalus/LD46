@@ -116,8 +116,21 @@ public class ItemPlacer : MonoBehaviour
             }
         }
 
-        Rigidbody rb = _ghostItemGameObject.GetComponent<Rigidbody>();
-        Destroy(rb);
+        // Remove rigid body
+        Rigidbody rigidBody = _ghostItemGameObject.GetComponent<Rigidbody>();
+
+        if (rigidBody != null)
+        {
+            Destroy(rigidBody);
+        }
+
+        // Remove nav mesh agent
+        NavMeshAgent navMeshAgent = _ghostItemGameObject.GetComponent<NavMeshAgent>();
+
+        if (navMeshAgent != null)
+        {
+            Destroy(navMeshAgent);
+        }
 
         ghostItem.OnCollisionTriggerEnter += OnGhostCollisionTriggerEnter;
         ghostItem.OnCollisionTriggerExit += OnGhostCollisionTriggerExit;

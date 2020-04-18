@@ -214,5 +214,14 @@ public class GameManager : Singleton<GameManager>
     public void AddEnemyBuilding(Building building)
     {
         _enemyBuildings.Add(building);
+        building.OnDied += OnEnemyBuildingDied;
+    }
+
+    private void OnEnemyBuildingDied(Item item)
+    {
+        item.OnDied -= OnEnemyBuildingDied;
+
+        _enemyBuildings.Remove(item as Building);
+        NavMeshSurface.BuildNavMesh();
     }
 }
