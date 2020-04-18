@@ -47,6 +47,7 @@ public class Item : MonoBehaviour
         _health -= amount;
 
         _ui.UpdateHealthBar((float)_health / _baseHealth);
+        _ui.AmountChanged(-amount);
 
         if (_health <= 0)
         {

@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ui: {fileID: 4270866333172424108}
-  _baseHealth: 5
+  _baseHealth: 50
   Agent: {fileID: 5585593933638480627}
   _attack: 1
   _actionFrequency: 1

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +8,9 @@ public class ItemWorldUI : MonoBehaviour
 {
     [SerializeField]
     protected Canvas _worldSpaceCanvas = null;
+
+    [SerializeField]
+    private Animator _animator = null;
 
     [SerializeField]
     protected TextMeshProUGUI _amountText = null;
@@ -30,14 +32,22 @@ public class ItemWorldUI : MonoBehaviour
     {
         _worldSpaceCanvas.worldCamera = camera;
 
-        _amountText.enabled = false;
-        _selectionCircle.enabled = false;
+        //_amountText.enabled = false;
+        //_selectionCircle.enabled = false;
         //_healthBar.enabled = false;
     }
 
     public void UpdateHealthBar(float v)
     {
         _healthBar.fillAmount = v;
+    }
+
+    public void AmountChanged(int amount)
+    {
+        _amountText.text = amount.ToString();
+        _amountText.color = amount > 0 ? Color.green : Color.red;
+
+        _animator.SetTrigger("AmountChanged");
     }
 
     private void Update()
