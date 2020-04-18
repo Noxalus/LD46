@@ -19,6 +19,13 @@ public class ItemWorldUI : MonoBehaviour
     [SerializeField]
     private Image _healthBar = null;
 
+    private Quaternion _initialHealthBarRotation;
+
+    private void Start()
+    {
+        _initialHealthBarRotation = _healthBar.transform.rotation;
+    }
+
     public void Initialize(Camera camera)
     {
         _worldSpaceCanvas.worldCamera = camera;
@@ -31,5 +38,10 @@ public class ItemWorldUI : MonoBehaviour
     public void UpdateHealthBar(float v)
     {
         _healthBar.fillAmount = v;
+    }
+
+    private void Update()
+    {
+        _healthBar.transform.rotation = _initialHealthBarRotation * _worldSpaceCanvas.worldCamera.transform.rotation;
     }
 }
