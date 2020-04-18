@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager>
     public King King = null;
     public Camera Camera = null;
     public NavMeshSurface NavMeshSurface = null;
+    public WorldBuilder WorldBuilder = null;
 
     [SerializeField]
     private ItemPlacer _itemPlacer = null;
@@ -23,6 +24,8 @@ public class GameManager : Singleton<GameManager>
         _itemPlacer.OnItemChanged += OnItemChanged;
         _itemPlacer.OnItemPlaced += OnItemPlaced;
         _itemSelector.OnItemSelected += OnItemSelected;
+
+        WorldBuilder.Initialize();
     }
 
     private void OnItemPlaced(Item item)
