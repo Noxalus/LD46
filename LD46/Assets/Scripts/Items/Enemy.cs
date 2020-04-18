@@ -61,6 +61,7 @@ public class Enemy : Unit
 
         if (item == _currentAttackTarget)
         {
+            _currentAttackTarget = null;
             FindNewTarget();
         }
     }

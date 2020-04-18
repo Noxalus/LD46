@@ -11,9 +11,6 @@ public class ItemPlacer : MonoBehaviour
     private Camera _camera = null;
 
     [SerializeField]
-    private NavMeshSurface _navMesh = null;
-
-    [SerializeField]
     private Material _ghostMaterial = null;
 
     [SerializeField]
@@ -44,6 +41,12 @@ public class ItemPlacer : MonoBehaviour
 
         if (_currentItem != null)
         {
+            // Rotate the mesh
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                _ghostItem.transform.Rotate(Vector3.up, 90f);
+            }
+
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             bool isOnGround = false;
 
@@ -57,8 +60,7 @@ public class ItemPlacer : MonoBehaviour
 
             if (isOnGround && Input.GetKeyDown(KeyCode.Mouse0))
             {
-                Item item = Instantiate(_currentItem, _ghostItem.transform.position, Quaternion.identity);
-                _navMesh.BuildNavMesh();
+                Item item = Instantiate(_currentItem, _ghostItem.transform.position, _ghostItem.transform.rotation);
                 OnItemPlaced?.Invoke(item);
             }
 

@@ -1,16 +1,22 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class GameManager : Singleton<GameManager>
 {
     public King King = null;
     public Camera Camera = null;
+    public NavMeshSurface NavMeshSurface = null;
 
     [SerializeField]
     private ItemPlacer _itemPlacer = null;
 
     [SerializeField]
     private ItemSelector _itemSelector = null;
+
+    private List<Building> _buildings = new List<Building>();
+    private List<Unit> _units = new List<Unit>();
+    private List<Unit> _enemies = new List<Unit>();
 
     void Start()
     {
@@ -22,6 +28,29 @@ public class GameManager : Singleton<GameManager>
     private void OnItemPlaced(Item item)
     {
         Debug.Log($"Placed an item: {item.name}");
+
+        if (item is Unit unit)
+        {
+            unit.OnDied += OnUnitDied;
+            _units.Add(unit);
+        }
+        else if (item is Building building)
+        {
+            building.OnDied += OnBuildingDied;
+            _buildings.Add(building);
+            NavMeshSurface.BuildNavMesh();
+        }
+    }
+
+    private void OnBuildingDied(Item item)
+    {
+        item.OnDied -= OnBuildingDied;
+        NavMeshSurface.BuildNavMesh();
+    }
+
+    private void OnUnitDied(Item item)
+    {
+        item.OnDied -= OnUnitDied;
     }
 
     private void OnItemChanged(Item item)

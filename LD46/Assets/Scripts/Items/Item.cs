@@ -10,7 +10,7 @@ public class Item : MonoBehaviour
     [SerializeField]
     private int _baseHealth = 1;
 
-    public delegate void ItemEventHandler();
+    public delegate void ItemEventHandler(Item item);
     public event ItemEventHandler OnDied;
 
     protected GameManager _gameManager;
@@ -53,8 +53,13 @@ public class Item : MonoBehaviour
         if (_health <= 0)
         {
             Destroy(gameObject);
-            OnDied?.Invoke();
+            Kill();
+            OnDied?.Invoke(this);
         }
+    }
+
+    public virtual void Kill()
+    {
     }
 
     public void Select()
