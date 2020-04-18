@@ -72,7 +72,7 @@ public class WorldBuilder : MonoBehaviour
         Debug.Log($"Time to generate a new chunk: {time.ElapsedMilliseconds}ms");
 
         time.Restart();
-        //GameManager.Instance.NavMeshSurface.BuildNavMesh();
+        GameManager.Instance.NavMeshSurface.BuildNavMesh();
         time.Stop();
 
         Debug.Log($"Time to build navmesh: {time.ElapsedMilliseconds}ms");

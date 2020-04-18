@@ -15,6 +15,8 @@ public class Unit : Item
     [SerializeField]
     private List<string> _itemsToWatchTags = new List<string>();
 
+    [Header("Debug")]
+
     [SerializeField] // To debug
     protected Item _currentActiveTarget;
 
@@ -53,6 +55,9 @@ public class Unit : Item
     public void SetTarget(Item target)
     {
         _currentLocationTarget = target;
+
+        // Stop movement if the unit doesn't have target
+        Agent.isStopped = target == null;
     }
 
     protected virtual void ExecuteAction()
@@ -64,9 +69,9 @@ public class Unit : Item
         if (!_itemsToWatchTags.Contains(item.tag))
         {
             Debug.LogWarning($"{gameObject.name} don't need to watch {item.name}");
+            return;
         }
 
-        Debug.Log("Found item, start to attack it!");
         _currentActiveTarget = item;
 
         if (!_surroundingTargets.Contains(item))

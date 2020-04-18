@@ -8,8 +8,8 @@ public class NeighborChunksDictionary : SerializableDictionary<EDirection, World
 
 public class WorldChunk : MonoBehaviour
 {
-    [SerializeField]
-    private NavMeshSurface _navMeshSurface = null;
+    //[SerializeField]
+    //private NavMeshSurface _navMeshSurface = null;
 
     [SerializeField] // For debug
     private NeighborChunksDictionary _neighbors = new NeighborChunksDictionary();
@@ -41,7 +41,7 @@ public class WorldChunk : MonoBehaviour
 
         transform.position = newChunkPosition;
 
-        _navMeshSurface.BuildNavMesh();
+        //_navMeshSurface.BuildNavMesh();
     }
 
     public void SetNeighbor(WorldChunk newChunk, EDirection direction)

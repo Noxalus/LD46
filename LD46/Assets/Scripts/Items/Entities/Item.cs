@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
 {
     [SerializeField]
-    private ItemWorldUI _ui = null;
+    protected ItemWorldUI UI = null;
 
     [SerializeField]
     private int _baseHealth = 1;
@@ -23,7 +22,7 @@ public class Item : MonoBehaviour
 
     private List<string> _allowedItemTags = new List<string>()
     {
-        "Building", "Unit", "Enemy"
+        "Building", "Unit", "Enemy", "Resource"
     };
 
     private void Start()
@@ -36,7 +35,7 @@ public class Item : MonoBehaviour
     public virtual void Initialize()
     {
         _health = _baseHealth;
-        _ui.Initialize(_gameManager.Camera);
+        UI.Initialize(_gameManager.Camera);
     }
 
     private void Update()
@@ -52,12 +51,11 @@ public class Item : MonoBehaviour
     {
         _health -= amount;
 
-        _ui.UpdateHealthBar((float)_health / _baseHealth);
-        _ui.AmountChanged(-amount);
+        UI.UpdateHealthBar((float)_health / _baseHealth);
+        UI.AmountChanged(-amount);
 
         if (_health <= 0)
         {
-            Destroy(gameObject);
             Kill();
             OnDied?.Invoke(this);
         }
@@ -65,16 +63,17 @@ public class Item : MonoBehaviour
 
     public virtual void Kill()
     {
+        Destroy(gameObject);
     }
 
     public void Select()
     {
-        _ui.Select();
+        UI.Select();
     }
 
     public void Unselect()
     {
-        _ui.Unselect();
+        UI.Unselect();
     }
 
     public void OnTriggerEnter(Collider other)

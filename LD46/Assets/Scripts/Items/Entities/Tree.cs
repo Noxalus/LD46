@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Tree : Resource
+﻿public class Tree : Resource
 {
     public override void Initialize()
     {

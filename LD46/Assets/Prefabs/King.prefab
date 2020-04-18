@@ -49,11 +49,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 835ba8d175658834eb2960f7bbf90145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ui: {fileID: 4270866333172424108}
+  UI: {fileID: 4270866333172424108}
   _baseHealth: 50
   Agent: {fileID: 5585593933638480627}
   _attack: 1
   _actionFrequency: 1
+  _itemsToWatchTags: []
   _currentActiveTarget: {fileID: 0}
   _surroundingTargets: []
 --- !u!195 &5585593933638480627

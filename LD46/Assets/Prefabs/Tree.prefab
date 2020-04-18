@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2570097050847388542}
   - component: {fileID: 3760985608980594301}
   - component: {fileID: 7599327040796583853}
-  - component: {fileID: 511341434133342171}
   m_Layer: 13
   m_Name: Leaves
   m_TagString: Untagged
@@ -80,19 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &511341434133342171
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 775914709482361318}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5789526071865533771
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,6 +91,7 @@ GameObject:
   - component: {fileID: 5607615938896616274}
   - component: {fileID: 5789526071865533817}
   - component: {fileID: 5789526071865533818}
+  - component: {fileID: 8574026953339564891}
   m_Layer: 13
   m_Name: Tree
   m_TagString: Resource
@@ -141,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d9fbfed7329a943aad76fd00776d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ui: {fileID: 2089917242818589076}
+  UI: {fileID: 2089917242818589076}
   _baseHealth: 1
   _minQuantity: 1
   _maxQuantity: 50
@@ -156,8 +143,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.19, y: 1.87, z: 0.64}
-  m_Center: {x: 0, y: 0.96, z: 0}
+  m_Size: {x: 1.4172328, y: 3.042926, z: 1.4446193}
+  m_Center: {x: 0, y: 1.5464631, z: 0}
 --- !u!54 &5789526071865533818
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -174,6 +161,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!65 &8574026953339564891
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5789526071865533771}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7943003, y: 3.042926, z: 1.6716497}
+  m_Center: {x: 0, y: 1.5464631, z: 0}
 --- !u!1 &5789526071865533813
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +185,6 @@ GameObject:
   - component: {fileID: 5789526071865533810}
   - component: {fileID: 5789526071865533820}
   - component: {fileID: 5789526071865533822}
-  - component: {fileID: 5789526071865533816}
   m_Layer: 13
   m_Name: Trunk
   m_TagString: Untagged
@@ -254,19 +253,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5789526071865533816
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5789526071865533813}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &8526425029379859921
 PrefabInstance:
   m_ObjectHideFlags: 0

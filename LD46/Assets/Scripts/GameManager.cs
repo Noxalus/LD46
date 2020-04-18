@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -123,5 +124,33 @@ public class GameManager : Singleton<GameManager>
         }
 
         yield return null;
+    }
+
+    public void IncreaseCurrency(EResourceType type, int production)
+    {
+        switch (type)
+        {
+            case EResourceType.Wood:
+                _wood += production;
+                break;
+            case EResourceType.Rock:
+                _rock += production;
+                break;
+            case EResourceType.Gold:
+                _gold += production;
+                break;
+            default:
+                Debug.LogError($"Unknown currency: {type}");
+                break;
+        }
+
+        UIRefreshCurrencies();
+    }
+
+    private void UIRefreshCurrencies()
+    {
+        _uiManager.SetWoodAmount(_wood);
+        _uiManager.SetRockAmount(_rock);
+        _uiManager.SetGoldAmount(_gold);
     }
 }
