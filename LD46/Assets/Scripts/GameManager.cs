@@ -40,6 +40,8 @@ public class GameManager : Singleton<GameManager>
 
     private King _king;
 
+    private Coroutine _worldBuilderCoroutine;
+
     public King King => _king;
 
 
@@ -58,6 +60,12 @@ public class GameManager : Singleton<GameManager>
         _rock = 0;
         _gold = 0;
 
+        if(_worldBuilderCoroutine != null)
+        {
+            StopCoroutine(_worldBuilderCoroutine);
+            _worldBuilderCoroutine = null;
+        }
+
         WorldBuilder.Initialize();
 
         // Instantiate first units
@@ -66,6 +74,18 @@ public class GameManager : Singleton<GameManager>
         _units.Add(_king);
         _units.Add(Instantiate(_firstSoldierPrefab, Vector3.forward, Quaternion.identity));
         _units.Add(Instantiate(_firstWorkerPrefab, Vector3.right, Quaternion.identity));
+
+        _worldBuilderCoroutine = StartCoroutine(WorldBuilderCoroutine());
+    }
+
+    // Add chunk regularly
+    private IEnumerator WorldBuilderCoroutine()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(10);
+            WorldBuilder.GenerateNewChunk();
+        }
     }
 
     private void OnItemPlaced(Item item)
