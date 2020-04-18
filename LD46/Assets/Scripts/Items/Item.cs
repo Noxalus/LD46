@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Item : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class Item : MonoBehaviour
 
     protected GameManager _gameManager;
     protected int _health;
+
+    private List<string> _allowedItemTags = new List<string>()
+    {
+        "Building", "Unit", "Enemy"
+    };
 
     private void Start()
     {
@@ -49,7 +55,7 @@ public class Item : MonoBehaviour
 
         Item item = other.gameObject.GetComponent<Item>();
 
-        if (item != null)
+        if (item != null && _allowedItemTags.Contains(item.tag))
         {
             OnItemEnter(item);
         }

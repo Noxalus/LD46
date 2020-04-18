@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8365131169345729141}
   m_Layer: 10
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,6 +131,8 @@ MonoBehaviour:
   Agent: {fileID: 6531763168958651338}
   _attack: 1
   _actionFrequency: 1
+  _currentAttackTarget: {fileID: 0}
+  _surroundingTargets: []
 --- !u!195 &6531763168958651338
 NavMeshAgent:
   m_ObjectHideFlags: 0

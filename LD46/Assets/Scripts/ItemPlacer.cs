@@ -86,16 +86,19 @@ public class ItemPlacer : MonoBehaviour
             meshRenderer.material = _ghostMaterial;
         }
 
-        //// Remove all colliders (not triggers)
-        //Collider[] colliders = _ghostItem.GetComponentsInChildren<Collider>();
+        // Remove all colliders (not triggers)
+        Collider[] colliders = _ghostItem.GetComponentsInChildren<Collider>();
 
-        //foreach (var collider in colliders)
-        //{
-        //    if (!collider.isTrigger)
-        //    {
-        //        Destroy(collider);
-        //    }
-        //}
+        foreach (var collider in colliders)
+        {
+            if (!collider.isTrigger)
+            {
+                Destroy(collider);
+            }
+        }
+
+        Rigidbody rb = _ghostItem.GetComponent<Rigidbody>();
+        Destroy(rb);
 
         _ghostItem.SetActive(false);
     }
