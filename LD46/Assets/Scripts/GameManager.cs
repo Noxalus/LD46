@@ -12,8 +12,6 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private ItemSelector _itemSelector = null;
 
-    private Item _currentSelection;
-
     void Start()
     {
         _itemPlacer.OnItemChanged += OnItemChanged;
@@ -36,35 +34,11 @@ public class GameManager : Singleton<GameManager>
 
     private void OnItemSelected(Item item)
     {
-        if (_currentSelection != null)
-        {
-            _currentSelection.Unselect();
-        }
-
-        _currentSelection = item;
-
-        _currentSelection.Select();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse2))
-        {
-            Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
-            {
-                NavMeshPath path = new NavMeshPath();
-                King.Agent.CalculatePath(hit.point, path);
-                if (path.status == NavMeshPathStatus.PathPartial)
-                {
-                    Debug.Log("Can't reach the destination");
-                }
-
-                King.Agent.SetDestination(hit.point);
-            }
-        }
-
+        // Attack enemies using mouse click
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             Ray ray = Camera.ScreenPointToRay(Input.mousePosition);

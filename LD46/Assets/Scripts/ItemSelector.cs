@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class ItemSelector : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class ItemSelector : MonoBehaviour
     private LayerMask _selectionLayer = -1;
 
     private bool _isEnabled = true;
+
+    private Item _currentSelection = null;
+    private bool _isCurrentSelectionUnit = false;
 
     public void Enable(bool enable)
     {
@@ -35,9 +39,49 @@ public class ItemSelector : MonoBehaviour
 
                 if (item != null)
                 {
-                    OnItemSelected?.Invoke(item);
+                    ChangeSelection(item);
                 }
             }
+            else
+            {
+                ChangeSelection(null);
+            }
         }
+        else if (_currentSelection != null && _isCurrentSelectionUnit && Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            Unit currentSelectedUnit = _currentSelection as Unit;
+
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+            {
+                NavMeshPath path = new NavMeshPath();
+                currentSelectedUnit.Agent.CalculatePath(hit.point, path);
+                if (path.status == NavMeshPathStatus.PathPartial)
+                {
+                    Debug.Log("Can't reach the destination");
+                }
+
+                currentSelectedUnit.Agent.SetDestination(hit.point);
+            }
+        }
+    }
+
+    private void ChangeSelection(Item selection)
+    {
+        if (_currentSelection != null)
+        {
+            _currentSelection.Unselect();
+        }
+
+        _currentSelection = selection;
+
+        if (_currentSelection != null)
+        {
+            _currentSelection.Select();
+            _isCurrentSelectionUnit = _currentSelection is Unit;
+        }
+
+        OnItemSelected?.Invoke(selection);
     }
 }
