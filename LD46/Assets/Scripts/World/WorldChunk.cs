@@ -163,15 +163,17 @@ public class WorldChunk : MonoBehaviour
     private void GenerateEnemies(int maxCount)
     {
         int count = Random.Range(0, maxCount + 1);
+        // To make sure spawner are not on the edge of a chunk
+        float boundsOffset = 5f;
 
         for (int i = 0; i < count; i++)
         {
             Vector4 bounds = GetBounds();
 
             Vector3 randomPosition = new Vector3(
-                Random.Range(bounds.x, bounds.z),
+                Random.Range(bounds.x + boundsOffset, bounds.z - boundsOffset),
                 0,
-                Random.Range(bounds.y, bounds.w)
+                Random.Range(bounds.y + boundsOffset, bounds.w - boundsOffset)
             );
 
             var instance = Instantiate(
@@ -179,7 +181,8 @@ public class WorldChunk : MonoBehaviour
                 randomPosition,
                 Quaternion.identity
             );
-            instance.transform.Rotate(Vector3.up, Random.Range(0, 360));
+
+            //instance.transform.Rotate(Vector3.up, Random.Range(0, 360));
 
             instance.Initialize(Random.Range(20, 150));
 
