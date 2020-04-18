@@ -63,6 +63,13 @@ public class ItemSelector : MonoBehaviour
                 }
 
                 currentSelectedUnit.Agent.SetDestination(hit.point);
+
+                Item targetItem = hit.collider.GetComponent<Item>();
+
+                if (targetItem != null)
+                {
+                    currentSelectedUnit.SetTarget(targetItem);
+                }
             }
         }
     }

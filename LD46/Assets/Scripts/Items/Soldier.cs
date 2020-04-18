@@ -1,17 +1,5 @@
-﻿public class Enemy : Unit
+﻿public class Soldier : Unit
 {
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        _currentLocationTarget = _gameManager.King;
-    }
-
-    protected override void InternalUpdate()
-    {
-        base.InternalUpdate();
-    }
-
     protected override void ExecuteAction()
     {
         base.ExecuteAction();

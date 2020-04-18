@@ -133,7 +133,10 @@ MonoBehaviour:
   Agent: {fileID: 6531763168958651338}
   _attack: 1
   _actionFrequency: 0.1
-  _currentAttackTarget: {fileID: 0}
+  _itemsToWatchTags:
+  - Unit
+  - Building
+  _currentActiveTarget: {fileID: 0}
   _surroundingTargets: []
 --- !u!195 &6531763168958651338
 NavMeshAgent:
