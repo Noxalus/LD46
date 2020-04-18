@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using Random = UnityEngine.Random;
+using Debug = UnityEngine.Debug;
 
 public enum EDirection
 {
@@ -29,18 +33,116 @@ public class WorldBuilder : MonoBehaviour
 
     public void GenerateNewChunk()
     {
+        Stopwatch time = new Stopwatch();
+        time.Start();
+
+        WorldChunk newChunk = Instantiate(_worldChunk);
+
         if (_chunks.Count == 0)
         {
-            WorldChunk chunk = Instantiate(_worldChunk);
-            chunk.Initialize(this, null, EDirection.None);
+            newChunk.Initialize(this, null, EDirection.None);
 
-            _chunks.Add(chunk);
         }
         else
         {
             // Get the world chunks that don't have all their neighbor yet
+            List<WorldChunk> expandableChunks = new List<WorldChunk>();
+            
+            foreach (var chunk in _chunks)
+            {
+                List<EDirection> currentChunkEmptyNeighbors = chunk.GetEmptyNeighbors();
+
+                if (currentChunkEmptyNeighbors.Count > 0)
+                {
+                    expandableChunks.Add(chunk);
+                }
+            }
+
+            WorldChunk randomExpandableChunk = expandableChunks[Random.Range(0, expandableChunks.Count)];
+            List<EDirection> emptyNeighbors = randomExpandableChunk.GetEmptyNeighbors();
+            int randomDirectionIndex = Random.Range(0, emptyNeighbors.Count);
+            EDirection randomDirection = emptyNeighbors[randomDirectionIndex];
+
+            newChunk.Initialize(this, randomExpandableChunk, GetInverseDirection(randomDirection));
         }
 
-        GameManager.Instance.NavMeshSurface.BuildNavMesh();
+        _chunks.Add(newChunk);
+
+        time.Stop();
+        Debug.Log($"Time to generate a new chunk: {time.ElapsedMilliseconds}ms");
+
+        time.Restart();
+        //GameManager.Instance.NavMeshSurface.BuildNavMesh();
+        time.Stop();
+
+        Debug.Log($"Time to build navmesh: {time.ElapsedMilliseconds}ms");
+    }
+
+    public Dictionary<EDirection, WorldChunk> CheckSurroundingNeighbors(Vector3 chunkPosition, EDirection except = EDirection.None)
+    {
+        Dictionary<EDirection, WorldChunk> neighbors = new Dictionary<EDirection, WorldChunk>();
+
+        var directionsToCheck = new Dictionary<EDirection, Vector3>();
+
+        var leftPosition = chunkPosition + _chunkStep * DirectionToVector(EDirection.Left);
+        var upPosition = chunkPosition + _chunkStep * DirectionToVector(EDirection.Up);
+        var rightPosition = chunkPosition + _chunkStep * DirectionToVector(EDirection.Right);
+        var downPosition = chunkPosition + _chunkStep * DirectionToVector(EDirection.Down);
+
+        if (except != EDirection.Left)
+            directionsToCheck.Add(EDirection.Left, leftPosition);
+        if (except != EDirection.Up)
+            directionsToCheck.Add(EDirection.Up, upPosition);
+        if (except != EDirection.Right)
+            directionsToCheck.Add(EDirection.Right, rightPosition);
+        if (except != EDirection.Down)
+            directionsToCheck.Add(EDirection.Down, downPosition);
+
+        foreach (var chunk in _chunks)
+        {
+            foreach (var directionPair in directionsToCheck)
+            {
+                if (chunk.transform.position.Equals(directionPair.Value))
+                {
+                    neighbors.Add(directionPair.Key, chunk);
+                }
+            }
+        }
+
+        return neighbors;
+    }
+
+    public EDirection GetInverseDirection(EDirection direction)
+    {
+        switch (direction)
+        {
+            case EDirection.Down:
+                return EDirection.Up;
+            case EDirection.Up:
+                return EDirection.Down;
+            case EDirection.Left:
+                return EDirection.Right;
+            case EDirection.Right:
+                return EDirection.Left;
+            default:
+                throw new Exception("Unknown direction");
+        }
+    }
+
+    public Vector3 DirectionToVector(EDirection direction)
+    {
+        switch (direction)
+        {
+            case EDirection.Down:
+                return Vector3.back;
+            case EDirection.Up:
+                return Vector3.forward;
+            case EDirection.Left:
+                return Vector3.left;
+            case EDirection.Right:
+                return Vector3.right;
+            default:
+                throw new Exception("Unknown direction");
+        }
     }
 }

@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public class NeighborChunksDictionary : SerializableDictionary<EDirection, WorldChunk> { }
+
 public class WorldChunk : MonoBehaviour
 {
-    private Dictionary<EDirection, WorldChunk> _neighbors = new Dictionary<EDirection, WorldChunk>();
+    [SerializeField] // For debug
+    private NeighborChunksDictionary _neighbors = new NeighborChunksDictionary();
 
     public void Initialize(WorldBuilder worldBuilder, WorldChunk parent, EDirection parentDirection)
     {
@@ -14,9 +18,19 @@ public class WorldChunk : MonoBehaviour
         {
             _neighbors[parentDirection] = parent;
 
-            EDirection newChunkDirection = GetInverseDirection(parentDirection);
+            EDirection newChunkDirection = worldBuilder.GetInverseDirection(parentDirection);
             newChunkPosition = parent.transform.position;
-            newChunkPosition += worldBuilder.ChunkStep * DirectionToVector(newChunkDirection);
+            newChunkPosition += worldBuilder.ChunkStep * worldBuilder.DirectionToVector(newChunkDirection);
+
+            parent.SetNeighbor(this, newChunkDirection);
+
+            var surroundingNeihbors = worldBuilder.CheckSurroundingNeighbors(newChunkPosition, parentDirection);
+            foreach (var chunkPair in surroundingNeihbors)
+            {
+                SetNeighbor(chunkPair.Value, chunkPair.Key);
+                chunkPair.Value.SetNeighbor(this, worldBuilder.GetInverseDirection(chunkPair.Key));
+                //Debug.Log($"Added neighbor to the {chunkPair.Key} => {chunkPair.Value.name}");
+            }
         }
 
         gameObject.name = $"({newChunkPosition.x}, {newChunkPosition.z})";
@@ -24,37 +38,23 @@ public class WorldChunk : MonoBehaviour
         transform.position = newChunkPosition;
     }
 
-    private EDirection GetInverseDirection(EDirection direction)
+    public void SetNeighbor(WorldChunk newChunk, EDirection direction)
     {
-        switch (direction)
-        {
-            case EDirection.Down:
-                return EDirection.Up;
-            case EDirection.Up:
-                return EDirection.Down;
-            case EDirection.Left:
-                return EDirection.Right;
-            case EDirection.Right:
-                return EDirection.Left;
-            default:
-                throw new Exception("Unknown direction");
-        }
+        _neighbors[direction] = newChunk;
     }
 
-    private Vector3 DirectionToVector(EDirection direction)
+    public List<EDirection> GetEmptyNeighbors()
     {
-        switch (direction)
+        List<EDirection> emptyNeighbors = new List<EDirection>()
         {
-            case EDirection.Down:
-                return Vector3.back;
-            case EDirection.Up:
-                return Vector3.forward;
-            case EDirection.Left:
-                return Vector3.left;
-            case EDirection.Right:
-                return Vector3.right;
-            default:
-                throw new Exception("Unknown direction");
+            EDirection.Up, EDirection.Right, EDirection.Down, EDirection.Left
+        };
+
+        foreach (EDirection direction in _neighbors.Keys)
+        {
+            emptyNeighbors.Remove(direction);
         }
+
+        return emptyNeighbors;
     }
 }

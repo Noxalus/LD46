@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -89,5 +90,22 @@ public class GameManager : Singleton<GameManager>
                 }
             }
         }
+
+        // Debug
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            StartCoroutine(GenerateChunksCoroutine());
+        }
+    }
+
+    private IEnumerator GenerateChunksCoroutine()
+    {
+        for (int i = 0; i < 1000; i++)
+        {
+            WorldBuilder.GenerateNewChunk();
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        yield return null;
     }
 }
