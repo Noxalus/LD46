@@ -20,14 +20,27 @@ public class Unit : Item
     [SerializeField] // To debug
     protected List<Item> _surroundingTargets = new List<Item>();
 
+    protected Rigidbody _rigidbody;
+
     public override void Initialize()
     {
         base.Initialize();
+
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     protected override void InternalUpdate()
     {
         base.InternalUpdate();
+
+        if (_animator && _rigidbody)
+        {
+            var mag = Agent.velocity.magnitude > 0;
+
+            Debug.Log($"[{name}] => {Agent.velocity.magnitude}");
+
+            _animator.SetBool("IsMoving", Agent.velocity.magnitude > Agent.speed * 0.7f);
+        }
 
         // Move toward affected target
         if (_currentLocationTarget != null)

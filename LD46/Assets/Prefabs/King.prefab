@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1996259223099850414}
   - component: {fileID: 8655993747050069142}
   - component: {fileID: 7983681451762014101}
+  - component: {fileID: 1579111991164320131}
   m_Layer: 8
   m_Name: King
   m_TagString: Unit
@@ -51,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI: {fileID: 4270866333172424108}
+  _animator: {fileID: 1579111991164320131}
   _baseHealth: 50
   Price: {fileID: 0}
   _actionFrequency: 1
@@ -124,6 +126,25 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!95 &1579111991164320131
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4027349382513996041}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 05d9e11120a29d1429bcb1a73966c6ea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4027349382679844832
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +326,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 0792eb616a2c7764fa4612de292fc40d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0792eb616a2c7764fa4612de292fc40d,
         type: 3}
@@ -356,6 +377,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: King
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0792eb616a2c7764fa4612de292fc40d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0792eb616a2c7764fa4612de292fc40d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Unit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0792eb616a2c7764fa4612de292fc40d, type: 3}

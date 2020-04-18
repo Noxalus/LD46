@@ -7,6 +7,9 @@ public class Item : MonoBehaviour
     protected ItemWorldUI UI = null;
 
     [SerializeField]
+    protected Animator _animator = null;
+
+    [SerializeField]
     private int _baseHealth = 1;
 
     public Price Price;
