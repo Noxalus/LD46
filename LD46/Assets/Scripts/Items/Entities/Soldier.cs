@@ -14,4 +14,14 @@
             FindNewTarget();
         }
     }
+
+    protected override void OnItemEnter(Item item)
+    {
+        base.OnItemEnter(item);
+
+        if (item.tag == "Enemy")
+        {
+            _currentActiveTarget = item;
+        }
+    }
 }

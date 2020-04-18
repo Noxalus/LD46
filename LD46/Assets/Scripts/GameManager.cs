@@ -6,13 +6,21 @@ using UnityEngine.AI;
 
 public class GameManager : Singleton<GameManager>
 {
-    public King King = null;
     public Camera Camera = null;
     public NavMeshSurface NavMeshSurface = null;
     public WorldBuilder WorldBuilder = null;
 
     [SerializeField]
     private UIManager _uiManager = null;
+
+    [SerializeField]
+    private King _kingPrefab = null;
+
+    [SerializeField]
+    private Soldier _firstSoldierPrefab = null;
+
+    [SerializeField]
+    private Worker _firstWorkerPrefab = null;
 
     [SerializeField]
     private ItemPlacer _itemPlacer = null;
@@ -27,6 +35,11 @@ public class GameManager : Singleton<GameManager>
     private int _wood = 0;
     private int _rock = 0;
     private int _gold = 0;
+
+    private King _king;
+
+    public King King => _king;
+
 
     void Start()
     {
@@ -44,6 +57,13 @@ public class GameManager : Singleton<GameManager>
         _gold = 0;
 
         WorldBuilder.Initialize();
+
+        // Instantiate first units
+        _king = Instantiate(_kingPrefab, Vector3.zero, Quaternion.identity) as King;
+
+        _units.Add(_king);
+        _units.Add(Instantiate(_firstSoldierPrefab, Vector3.forward, Quaternion.identity));
+        _units.Add(Instantiate(_firstWorkerPrefab, Vector3.right, Quaternion.identity));
     }
 
     private void OnItemPlaced(Item item)
@@ -109,6 +129,11 @@ public class GameManager : Singleton<GameManager>
         }
 
         // Debug
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            WorldBuilder.GenerateNewChunk();
+        }
+
         if (Input.GetKeyDown(KeyCode.W))
         {
             StartCoroutine(GenerateChunksCoroutine());

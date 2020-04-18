@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4824529"
-     inkscape:cx="640.68225"
-     inkscape:cy="787.47628"
+     inkscape:zoom="0.18530662"
+     inkscape:cx="1297.7722"
+     inkscape:cy="1361.6312"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -52,6 +52,14 @@
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <rect
+       style="opacity:1;fill:#ec9769;fill-opacity:1;fill-rule:evenodd;stroke:#eca422;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect853"
+       width="838.12665"
+       height="842.4101"
+       x="-412.63818"
+       y="-416.90689"
+       ry="5.9062405" />
     <ellipse
        style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path815"
@@ -63,13 +71,13 @@
        style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path821"
        sodipodi:type="arc"
-       sodipodi:cx="114.52679"
-       sodipodi:cy="116.32738"
+       sodipodi:cx="85.970512"
+       sodipodi:cy="194.85713"
        sodipodi:rx="49.514877"
        sodipodi:ry="49.514877"
        sodipodi:start="0"
        sodipodi:end="6.2828112"
-       d="m 164.04166,116.32738 a 49.514877,49.514877 0 0 1 -49.51024,49.51487 49.514877,49.514877 0 0 1 -49.51951,-49.50561 49.514877,49.514877 0 0 1 49.50098,-49.524138 49.514877,49.514877 0 0 1 49.52877,49.496348"
+       d="M 135.48539,194.85713 A 49.514877,49.514877 0 0 1 85.975143,244.37201 49.514877,49.514877 0 0 1 36.455636,194.86639 49.514877,49.514877 0 0 1 85.956619,145.34226 49.514877,49.514877 0 0 1 135.48539,194.83861"
        sodipodi:open="true"
        inkscape:export-filename="E:\Projects\LD46\LD46\Assets\Sprites\SelectionCircle.png"
        inkscape:export-xdpi="100"
@@ -86,46 +94,28 @@
        sodipodi:end="6.2828188"
        sodipodi:open="true"
        d="M 136.40633,39.694027 A 16.689405,10.250187 0 0 1 119.71846,49.944214 16.689405,10.250187 0 0 1 103.02752,39.695905 16.689405,10.250187 0 0 1 119.71234,29.44384 16.689405,10.250187 0 0 1 136.40633,39.69027" />
-    <path
-       style="opacity:1;fill:#fbffff;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="path825"
-       sodipodi:type="arc"
-       sodipodi:cx="187.65726"
-       sodipodi:cy="35.751644"
-       sodipodi:rx="18.660595"
-       sodipodi:ry="12.352789"
-       sodipodi:start="0"
-       sodipodi:end="6.2828188"
-       sodipodi:open="true"
-       d="M 206.31785,35.751644 A 18.660595,12.352789 0 0 1 187.65897,48.104433 18.660595,12.352789 0 0 1 168.99666,35.753908 18.660595,12.352789 0 0 1 187.65213,23.398856 18.660595,12.352789 0 0 1 206.31785,35.747117" />
-    <path
-       style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000028;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="path827"
-       sodipodi:type="arc"
-       sodipodi:cx="128.12733"
-       sodipodi:cy="5.1324992"
-       sodipodi:rx="32.984573"
-       sodipodi:ry="26.676767"
-       sodipodi:start="0"
-       sodipodi:end="6.2828188"
-       sodipodi:open="true"
-       d="M 161.11191,5.1324992 A 32.984573,26.676767 0 0 1 128.13036,31.809266 32.984573,26.676767 0 0 1 95.142762,5.1373878 32.984573,26.676767 0 0 1 128.11827,-21.544267 32.984573,26.676767 0 0 1 161.11191,5.122722" />
-    <path
-       style="opacity:1;fill:#eec621;fill-opacity:1;fill-rule:evenodd;stroke:#eca422;stroke-width:4.32956314;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="path839"
-       sodipodi:type="arc"
-       sodipodi:cx="176.30678"
-       sodipodi:cy="88.167564"
-       sodipodi:rx="19.847473"
-       sodipodi:ry="22.570602"
-       sodipodi:start="0"
-       sodipodi:end="6.2828188"
-       sodipodi:open="true"
-       d="M 196.15425,88.167564 A 19.847473,22.570602 0 0 1 176.3086,110.73817 19.847473,22.570602 0 0 1 156.45931,88.171701 19.847473,22.570602 0 0 1 176.30132,65.596963 19.847473,22.570602 0 0 1 196.15425,88.159292" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#eca422;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       d="M 176.06728,73.547146 V 102.2819"
-       id="path847"
-       inkscape:connector-curvature="0" />
+    <g
+       id="g851"
+       inkscape:export-filename="E:\Projects\LD46\LD46\Assets\Sprites\CoinIcon.png"
+       inkscape:export-xdpi="51.343433"
+       inkscape:export-ydpi="51.343433">
+      <path
+         d="M 196.15425,88.167564 A 19.847473,22.570602 0 0 1 176.3086,110.73817 19.847473,22.570602 0 0 1 156.45931,88.171701 19.847473,22.570602 0 0 1 176.30132,65.596963 19.847473,22.570602 0 0 1 196.15425,88.159292"
+         sodipodi:open="true"
+         sodipodi:end="6.2828188"
+         sodipodi:start="0"
+         sodipodi:ry="22.570602"
+         sodipodi:rx="19.847473"
+         sodipodi:cy="88.167564"
+         sodipodi:cx="176.30678"
+         sodipodi:type="arc"
+         id="path839"
+         style="opacity:1;fill:#eec621;fill-opacity:1;fill-rule:evenodd;stroke:#eca422;stroke-width:4.32956314;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path847"
+         d="M 176.06728,73.547146 V 102.2819"
+         style="fill:none;fill-rule:evenodd;stroke:#eca422;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+    </g>
   </g>
 </svg>

@@ -34,6 +34,7 @@
         // Focus unit instead of chasing the king
         if (item is Unit)
         {
+            _currentActiveTarget = item;
             SetTarget(_currentActiveTarget);
         }
     }

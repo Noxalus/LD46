@@ -45,7 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dea39d87e34690498f353cda0843e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _navMeshSurface: {fileID: 1729200594195731213}
+  _spaceBetweenResources: 5
+  _resourcesProbability: 1
+  _treePrefabs:
+  - {fileID: 5607615938896616274, guid: db472de209b3e7f4ba926f93958bf46e, type: 3}
+  _rockPrefabs:
+  - {fileID: 5355485906850319262, guid: 996d2ba984a4c58448daa1ef72d438b2, type: 3}
+  _goldPrefabs:
+  - {fileID: 2244047412099388851, guid: 0b29d332a6b960b438a97f2a51e93bf2, type: 3}
   _neighbors:
     m_keys: 
     m_values: []

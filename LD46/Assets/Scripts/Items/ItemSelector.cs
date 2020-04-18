@@ -62,13 +62,17 @@ public class ItemSelector : MonoBehaviour
                     Debug.Log("Can't reach the destination");
                 }
 
-                currentSelectedUnit.Agent.SetDestination(hit.point);
-
                 Item targetItem = hit.collider.GetComponent<Item>();
 
                 if (targetItem != null)
                 {
                     currentSelectedUnit.SetTarget(targetItem);
+                }
+                else
+                {
+                    currentSelectedUnit.SetTarget(null);
+                    currentSelectedUnit.Agent.SetDestination(hit.point);
+                    currentSelectedUnit.Agent.isStopped = false;
                 }
             }
         }

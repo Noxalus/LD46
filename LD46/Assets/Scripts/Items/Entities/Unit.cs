@@ -72,7 +72,11 @@ public class Unit : Item
             return;
         }
 
-        _currentActiveTarget = item;
+        // We reached the target!
+        if (_currentLocationTarget == item)
+        {
+            _currentActiveTarget = item;
+        }
 
         if (!_surroundingTargets.Contains(item))
         {
