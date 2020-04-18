@@ -5,7 +5,14 @@ public class Enemy : Unit
 
     private void Start()
     {
+        Initialize();
+
         _gameManager = GameManager.Instance;
+    }
+
+    public override void Initialize()
+    {
+        base.Initialize();
     }
 
     private void Update()

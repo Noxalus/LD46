@@ -14,7 +14,7 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse2))
         {
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
 
@@ -28,6 +28,23 @@ public class GameManager : Singleton<GameManager>
                 }
 
                 King.Agent.SetDestination(hit.point);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Enemy"), QueryTriggerInteraction.Ignore))
+            {
+                Debug.Log($"Hit {hit.collider.name}");
+
+                var item = hit.collider.GetComponent<Item>();
+
+                if (item != null)
+                {
+                    item.TakeDamage(1);
+                }
             }
         }
     }
