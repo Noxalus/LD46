@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [Serializable]
 public class NeighborChunksDictionary : SerializableDictionary<EDirection, WorldChunk> { }
 
 public class WorldChunk : MonoBehaviour
 {
+    [SerializeField]
+    private NavMeshSurface _navMeshSurface = null;
+
     [SerializeField] // For debug
     private NeighborChunksDictionary _neighbors = new NeighborChunksDictionary();
 
@@ -36,6 +40,8 @@ public class WorldChunk : MonoBehaviour
         gameObject.name = $"({newChunkPosition.x}, {newChunkPosition.z})";
 
         transform.position = newChunkPosition;
+
+        _navMeshSurface.BuildNavMesh();
     }
 
     public void SetNeighbor(WorldChunk newChunk, EDirection direction)
