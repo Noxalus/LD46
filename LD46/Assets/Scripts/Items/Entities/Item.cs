@@ -42,7 +42,7 @@ public class Item : MonoBehaviour
         _health = _baseHealth;
         _actionTimer = _actionFrequency;
      
-        UI.Initialize(GameManager.Instance.Camera);
+        UI.Initialize(GameManager.Instance.MainCamera);
     }
 
     private void Update()

@@ -113,6 +113,17 @@ public class WorldBuilder : MonoBehaviour
         return neighbors;
     }
 
+    public void Clear()
+    {
+        foreach (var chunk in _chunks)
+        {
+            if (chunk != null)
+                Destroy(chunk.gameObject);
+        }
+
+        _chunks.Clear();
+    }
+
     public EDirection GetInverseDirection(EDirection direction)
     {
         switch (direction)

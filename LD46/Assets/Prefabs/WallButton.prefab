@@ -50,7 +50,7 @@ PrefabInstance:
     - target: {fileID: 2423395278910254731, guid: e6cfb005bb1ab2b44a213fae94cab6ee,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2423395278910254731, guid: e6cfb005bb1ab2b44a213fae94cab6ee,
         type: 3}
@@ -66,6 +66,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2423395278910254731, guid: e6cfb005bb1ab2b44a213fae94cab6ee,
+        type: 3}
+      propertyPath: m_text
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 2423395279476301201, guid: e6cfb005bb1ab2b44a213fae94cab6ee,
         type: 3}

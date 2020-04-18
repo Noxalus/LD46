@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class GameManager : Singleton<GameManager>
 {
-    public Camera Camera = null;
+    public Camera MainCamera = null;
     public NavMeshSurface NavMeshSurface = null;
     public WorldBuilder WorldBuilder = null;
 
@@ -45,6 +44,9 @@ public class GameManager : Singleton<GameManager>
 
     private Coroutine _worldBuilderCoroutine;
 
+    private Vector3 _initialCameraPosition;
+    private Quaternion _initialCameraRotation;
+
     public King King => _king;
     public int Wood => _wood;
     public int Rock => _rock;
@@ -58,23 +60,30 @@ public class GameManager : Singleton<GameManager>
         _itemPlacer.OnItemPlaced += OnItemPlaced;
         _itemSelector.OnItemSelected += OnItemSelected;
 
+        _initialCameraPosition = MainCamera.transform.position;
+        _initialCameraRotation = MainCamera.transform.rotation;
+
         Initialize();
     }
 
     public void Retry()
     {
+        Clear();
         Initialize();
     }
 
     private void Initialize()
     {
-        _wood = 5;
-        _rock = 5;
-        _gold = 5;
+        _wood = 99;
+        _rock = 99;
+        _gold = 99;
 
         _timer = 0;
         _isGameOver = false;
         UIRefreshCurrencies();
+
+        MainCamera.transform.position = _initialCameraPosition;
+        MainCamera.transform.rotation = _initialCameraRotation;
 
         if (_worldBuilderCoroutine != null)
         {
@@ -96,6 +105,51 @@ public class GameManager : Singleton<GameManager>
         _worldBuilderCoroutine = StartCoroutine(WorldBuilderCoroutine());
     }
 
+    private void Clear()
+    {
+        foreach (var item in _enemies)
+        {
+            if (item != null)
+                Destroy(item.gameObject);
+        }
+
+        _enemies.Clear();
+
+        foreach (var item in _units)
+        {
+            if (item != null)
+                Destroy(item.gameObject);
+        }
+
+        _units.Clear();
+
+        foreach (var item in _buildings)
+        {
+            if (item != null)
+                Destroy(item.gameObject);
+        }
+
+        _buildings.Clear();
+
+        foreach (var item in _resources)
+        {
+            if (item != null)
+                Destroy(item.gameObject);
+        }
+
+        _resources.Clear();
+
+        foreach (var item in _enemyBuildings)
+        {
+            if (item != null)
+                Destroy(item.gameObject);
+        }
+
+        _enemyBuildings.Clear();
+
+        WorldBuilder.Clear();
+    }
+
     private void OnKingDied(Item item)
     {
         GameOver();
@@ -111,7 +165,7 @@ public class GameManager : Singleton<GameManager>
     // Add chunk regularly
     private IEnumerator WorldBuilderCoroutine()
     {
-        while(true)
+        while (true)
         {
             yield return new WaitForSeconds(10);
             WorldBuilder.GenerateNewChunk();
@@ -173,7 +227,7 @@ public class GameManager : Singleton<GameManager>
         // Attack enemies using mouse click
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Enemy"), QueryTriggerInteraction.Ignore))
             {
@@ -188,7 +242,8 @@ public class GameManager : Singleton<GameManager>
             }
         }
 
-        // Debug
+        #region  Debug
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             WorldBuilder.GenerateNewChunk();
@@ -198,6 +253,18 @@ public class GameManager : Singleton<GameManager>
         {
             StartCoroutine(GenerateChunksCoroutine());
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Retry();
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            GameOver();
+        }
+
+        #endregion
     }
 
     private IEnumerator GenerateChunksCoroutine()
@@ -216,13 +283,13 @@ public class GameManager : Singleton<GameManager>
         switch (type)
         {
             case EResourceType.Wood:
-                _wood += production;
+                _wood = Mathf.Clamp(_wood + production, 0, 99);
                 break;
             case EResourceType.Rock:
-                _rock += production;
+                _rock += Mathf.Clamp(_rock + production, 0, 99);
                 break;
             case EResourceType.Gold:
-                _gold += production;
+                _gold += Mathf.Clamp(_gold + production, 0, 99);
                 break;
             default:
                 Debug.LogError($"Unknown currency: {type}");
