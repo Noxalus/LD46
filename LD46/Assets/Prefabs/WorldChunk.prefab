@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spaceBetweenResources: 5
-  _resourcesProbability: 1
+  _resourcesProbability: 0.1
   _treePrefabs:
   - {fileID: 5607615938896616274, guid: db472de209b3e7f4ba926f93958bf46e, type: 3}
   _rockPrefabs:

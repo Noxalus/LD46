@@ -108,21 +108,47 @@ public class WorldChunk : MonoBehaviour
                     continue;
                 }
 
+                Vector2 randomOffset = Vector2.zero;
+
+                if (x != bottomLeftBound.x && x != topRightBound.x)
+                {
+                    int factor = Random.value > 0.5f ? 1 : -1;
+                    randomOffset.x += factor * Random.Range(0, _spaceBetweenResources / 2f);
+                }
+
+                if (y != bottomLeftBound.y && y != topRightBound.y)
+                {
+                    int factor = Random.value > 0.5f ? 1 : -1;
+                    randomOffset.y += factor * Random.Range(0, _spaceBetweenResources / 2f);
+                }
+
                 Debug.Log($"Place item on position: {x}, {y}");
 
                 Resource resourceInstance;
 
                 if (Random.value < 0.33f)
                 {
-                    resourceInstance = Instantiate(_treePrefabs[Random.Range(0, _treePrefabs.Count)], new Vector3(x, 0, y), Quaternion.identity);
+                    resourceInstance = Instantiate(
+                        _treePrefabs[Random.Range(0, _treePrefabs.Count)], 
+                        new Vector3(x + randomOffset.x, 0, y + randomOffset.y), 
+                        Quaternion.identity
+                    );
                 }
                 else if (Random.value < 0.66f)
                 {
-                    resourceInstance = Instantiate(_rockPrefabs[Random.Range(0, _rockPrefabs.Count)], new Vector3(x, 0, y), Quaternion.identity);
+                    resourceInstance = Instantiate(
+                        _rockPrefabs[Random.Range(0, _rockPrefabs.Count)], 
+                        new Vector3(x + randomOffset.x, 0, y + randomOffset.y), 
+                        Quaternion.identity
+                    );
                 }
                 else
                 {
-                    resourceInstance = Instantiate(_goldPrefabs[Random.Range(0, _goldPrefabs.Count)], new Vector3(x, 0, y), Quaternion.identity);
+                    resourceInstance = Instantiate(
+                        _goldPrefabs[Random.Range(0, _goldPrefabs.Count)], 
+                        new Vector3(x + randomOffset.x, 0, y + randomOffset.y), 
+                        Quaternion.identity
+                    );
                 }
 
                 resourceInstance.transform.Rotate(Vector3.up, Random.Range(0, 360));
