@@ -10,6 +10,8 @@ public class Resource : Item
 
     protected int _quantity;
 
+    protected EResourceType _type = EResourceType.Unknown;
+
     public override void Initialize()
     {
         base.Initialize();

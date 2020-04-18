@@ -11,6 +11,9 @@ public class GameManager : Singleton<GameManager>
     public WorldBuilder WorldBuilder = null;
 
     [SerializeField]
+    private UIManager _uiManager = null;
+
+    [SerializeField]
     private ItemPlacer _itemPlacer = null;
 
     [SerializeField]
@@ -20,11 +23,24 @@ public class GameManager : Singleton<GameManager>
     private List<Unit> _units = new List<Unit>();
     private List<Unit> _enemies = new List<Unit>();
 
+    private int _wood = 0;
+    private int _rock = 0;
+    private int _gold = 0;
+
     void Start()
     {
         _itemPlacer.OnItemChanged += OnItemChanged;
         _itemPlacer.OnItemPlaced += OnItemPlaced;
         _itemSelector.OnItemSelected += OnItemSelected;
+
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        _wood = 0;
+        _rock = 0;
+        _gold = 0;
 
         WorldBuilder.Initialize();
     }
