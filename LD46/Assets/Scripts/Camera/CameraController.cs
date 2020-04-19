@@ -21,6 +21,8 @@ public class CameraController : MonoBehaviour
     private Rect _panBorders;
     private Vector2 _screenSize;
 
+    private Vector2 _panOriginPosition = Vector2.zero;
+
     private void Start()
     {
         _screenSize = new Vector2(Screen.width, Screen.height);
@@ -77,6 +79,25 @@ public class CameraController : MonoBehaviour
 
         position.x += maxPanSpeed * horizontal * Time.deltaTime;
         position.y += maxPanSpeed * vertical * Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Mouse2))
+        {
+            _panOriginPosition = Input.mousePosition;
+        }
+
+        if (_panOriginPosition != Vector2.zero)
+        {
+            // Move the camera according the offset (move value)
+            position.x += (_panOriginPosition.x - Input.mousePosition.x) * (maxPanSpeed / 100f) * Time.deltaTime;
+            position.y += (_panOriginPosition.y - Input.mousePosition.y) * (maxPanSpeed / 100f) * Time.deltaTime;
+
+            _panOriginPosition = Vector2.Lerp(_panOriginPosition, Input.mousePosition, 0.5f);
+        }
+
+        if (Input.GetKeyUp(KeyCode.Mouse2))
+        {
+            _panOriginPosition = Vector2.zero;
+        }
 
         //if (mouseY >= _panBorders.yMax)
         //{
