@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 [Serializable]
@@ -11,6 +10,9 @@ public class WorldChunk : MonoBehaviour
 {
     //[SerializeField]
     //private NavMeshSurface _navMeshSurface = null;
+
+    [SerializeField]
+    private Transform _root = null;
 
     [SerializeField]
     private float _spaceBetweenResources = 5f;
@@ -133,23 +135,23 @@ public class WorldChunk : MonoBehaviour
                 {
                     resourceInstance = Instantiate(
                         _treePrefabs[Random.Range(0, _treePrefabs.Count)],
-                        transform, 
+                        _root, 
                         true
                     );
                 }
                 else if (Random.value < 0.66f)
                 {
                     resourceInstance = Instantiate(
-                        _rockPrefabs[Random.Range(0, _rockPrefabs.Count)], 
-                        transform,
+                        _rockPrefabs[Random.Range(0, _rockPrefabs.Count)],
+                        _root,
                         true
                     );
                 }
                 else
                 {
                     resourceInstance = Instantiate(
-                        _goldPrefabs[Random.Range(0, _goldPrefabs.Count)], 
-                        transform,
+                        _goldPrefabs[Random.Range(0, _goldPrefabs.Count)],
+                        _root,
                         true
                     );
                 }
@@ -179,7 +181,7 @@ public class WorldChunk : MonoBehaviour
 
             var instance = Instantiate(
                 _enemySpawnerPrefabs[Random.Range(0, _enemySpawnerPrefabs.Count)],
-                transform,
+                _root,
                 true
             );
 

@@ -55,13 +55,13 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        CheckResolution();
+        //CheckResolution();
 
-        if (Input.mousePosition.x <= 0 || Input.mousePosition.x >= Screen.width ||
-            Input.mousePosition.y <= 0 || Input.mousePosition.y >= Screen.height)
-        {
-            return;
-        }
+        //if (Input.mousePosition.x <= 0 || Input.mousePosition.x >= Screen.width ||
+        //    Input.mousePosition.y <= 0 || Input.mousePosition.y >= Screen.height)
+        //{
+        //    return;
+        //}
 
         float ratio;
         Vector3 position = transform.position;
@@ -71,6 +71,8 @@ public class CameraController : MonoBehaviour
 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+
+        //maxPanSpeed *= Camera.orthographicSize / 10f;
 
         position.x += maxPanSpeed * horizontal * Time.deltaTime;
         position.z += maxPanSpeed * vertical * Time.deltaTime;
@@ -105,9 +107,9 @@ public class CameraController : MonoBehaviour
         Camera.orthographicSize -= scroll * scrollSpeed * Time.deltaTime;
         Camera.orthographicSize = Mathf.Clamp(Camera.orthographicSize, _zoomMin, _zoomMax);
 
-        position.x = Mathf.Clamp(position.x, panLimitBottomLeft.x, panLimitTopRight.x);
+        //position.x = Mathf.Clamp(position.x, panLimitBottomLeft.x, panLimitTopRight.x);
         //position.y = Mathf.Clamp(position.y, zoomMin, zoomMax);
-        position.z = Mathf.Clamp(position.z, panLimitBottomLeft.y, panLimitTopRight.y);
+        //position.z = Mathf.Clamp(position.z, panLimitBottomLeft.y, panLimitTopRight.y);
 
         transform.position = position;
     }

@@ -101,8 +101,8 @@ public class GameManager : Singleton<GameManager>
         WorldBuilder.Initialize();
 
         // Instantiate first units
-        _king = Instantiate(_kingPrefab, Vector3.zero, Quaternion.identity) as King;
-        _king.OnDied += OnKingDied;
+        //_king = Instantiate(_kingPrefab, Vector3.zero, Quaternion.identity) as King;
+        //_king.OnDied += OnKingDied;
 
         _units.Add(_king);
         _units.Add(Instantiate(_firstSoldierPrefab, Vector3.forward, Quaternion.identity));

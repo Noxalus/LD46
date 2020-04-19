@@ -38,10 +38,16 @@ public class WorldBuilder : MonoBehaviour
 
         WorldChunk newChunk = Instantiate(_worldChunk);
 
+        // First chunk
         if (_chunks.Count == 0)
         {
             newChunk.Initialize(this, null, EDirection.None);
+            var animator = newChunk.GetComponent<Animator>();
 
+            if (animator != null)
+            {
+                Destroy(animator);
+            }
         }
         else
         {
