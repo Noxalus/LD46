@@ -9,13 +9,13 @@ public class GameConfiguration : ScriptableObject
     
     public List<float> WorldChunkSpawnFrequency = new List<float>() // Seconds
     {
-        60, 80, 100, 120, 150, 200, 250, 300, 500, 550
+        50, 40, 100, 120, 150, 200, 250, 300, 500, 550
     };
 
     
     public List<int> EnemySpawnerMinOnNewChunk = new List<int>()
     {
-        0, 0, 1, 1, 2, 2, 3, 3, 4, 5
+        1, 1, 1, 1, 2, 2, 3, 3, 4, 5
     };
 
     
@@ -33,7 +33,7 @@ public class GameConfiguration : ScriptableObject
     
     public List<float> EnemySpawnerMaxSpawnFrequency = new List<float>()
     {
-        150, 120, 100, 80, 50, 40, 30, 30, 20, 10
+        90, 90, 80, 80, 50, 40, 30, 30, 20, 10
     };
 
     
@@ -260,4 +260,15 @@ public class GameConfiguration : ScriptableObject
     };
 
     // TODO: if time => enemy strength + frequency
+
+    public List<float> TimeToNextDifficulty = new List<float>() // Seconds
+    {
+        60, 120, 200, 300, 500, 1000, 1200, 1500, 3000, 5000
+    };
+
+    public List<int> ItemPlacedCountsToDifficulty = new List<int>()
+    {
+        5, 10, 15, 20, 30, 50, 70, 100, 120, 150
+    };
+
 }

@@ -24,14 +24,20 @@ public class Resource : Item
 
     public EResourceType Type => _type;
 
-    public void Initialize(int quantity)
+    public override void Initialize()
     {
         base.Initialize();
 
-        _initialQuantity = quantity;
+        _initialQuantity = 1;
         _quantity = _initialQuantity;
 
         UI.HideHPBar(true);
+    }
+
+    public void SetQuantity(int quantity)
+    {
+        _initialQuantity = quantity;
+        _quantity = _initialQuantity;
     }
 
     public void Collect(int production)

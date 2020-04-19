@@ -10,16 +10,16 @@ public class EnemySpawner : Building
 
     public void Initialize(float? spawnFrequence = null)
     {
-        base.Initialize();
-
         if (spawnFrequence.HasValue)
         {
             _actionFrequency = spawnFrequence.Value;
         }
 
+        base.Initialize();
+
         // Execute action directly
         //_actionTimer = 0;
-        ExecuteAction();
+        //ExecuteAction();
     }
 
     protected override void InternalUpdate()
@@ -36,7 +36,10 @@ public class EnemySpawner : Building
 
     private void SpawnEnemy()
     {
-        Enemy enemy = Instantiate(_enemyPrefab, _spawnPosition);
+        Enemy enemy = Instantiate(_enemyPrefab);
+        enemy.transform.position = _spawnPosition.position;
+        enemy.transform.rotation = _spawnPosition.rotation;
+
         enemy.Initialize(
             GameManager.Instance.GameConfiguration.EnemyHealth[GameManager.Instance.Difficulty]
         );

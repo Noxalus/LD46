@@ -173,7 +173,8 @@ public class WorldChunk : MonoBehaviour
                     gameConfiguration.ResourceQuantityMaxOnNewChunk[currentDifficulty] + 1
                 );
 
-                resourceInstance.Initialize(randomQuantity);
+                resourceInstance.Initialize();
+                resourceInstance.SetQuantity(randomQuantity);
 
                 resourceInstance.transform.position = new Vector3(x + randomOffset.x, 0, y + randomOffset.y);
                 resourceInstance.transform.Rotate(Vector3.up, Random.Range(0, 360));

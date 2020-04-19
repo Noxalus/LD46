@@ -52,7 +52,9 @@ MonoBehaviour:
   _animator: {fileID: 0}
   _baseHealth: 1
   Price: {fileID: 0}
+  _audioSource: {fileID: 0}
   _actionFrequency: 1
+  _dieSounds: {fileID: 0}
   Mesh: {fileID: 5807720629861878694}
   _collectFx: {fileID: 2270017470577797125}
   _minMeshScale: 0.2
@@ -69,7 +71,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.006198, y: 1.2060487, z: 2.1249223}
+  m_Size: {x: 2.346016, y: 1.2060487, z: 2.4739456}
   m_Center: {x: 0, y: 0.62802446, z: 0}
 --- !u!54 &4853575294648273181
 Rigidbody:
@@ -98,7 +100,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.014255, y: 0.9921663, z: 1.0172315}
+  m_Size: {x: 0.940104, y: 0.9921663, z: 0.973153}
   m_Center: {x: 0, y: 0.52108324, z: 0}
 --- !u!1 &5807720629861878694
 GameObject:

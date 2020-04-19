@@ -23,6 +23,9 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI _timerText;
 
     [SerializeField]
+    private TextMeshProUGUI _difficultyText;
+
+    [SerializeField]
     private Image _musicDisableImage = null;
 
     [SerializeField]
@@ -85,5 +88,10 @@ public class UIManager : MonoBehaviour
     public void ToggleMusic()
     {
         _musicDisableImage.enabled = !_musicDisableImage.enabled;
+    }
+
+    public void UpdateDifficulty(int difficulty)
+    {
+        _difficultyText.text = difficulty.ToString();
     }
 }

@@ -52,6 +52,7 @@ public class GameManager : Singleton<GameManager>
     private Quaternion _initialCameraRotation;
     private bool _isMusicEnabled = true;
     private int _difficulty = 0;
+    private int _itemPlacedCount = 0;
 
     public King King => _king;
     public int Wood => _wood;
@@ -87,9 +88,9 @@ public class GameManager : Singleton<GameManager>
         _gold = 0;
 
 #if DEBUG
-        //_wood = 99;
-        //_rock = 99;
-        //_gold = 99;
+        _wood = 99;
+        _rock = 99;
+        _gold = 99;
 #endif
 
         _timer = 0;
@@ -123,11 +124,19 @@ public class GameManager : Singleton<GameManager>
     {
         // Instantiate first units
         _king = Instantiate(_kingPrefab, Vector3.zero, Quaternion.identity) as King;
+        _king.Initialize();
         _king.OnDied += OnKingDied;
 
         _units.Add(_king);
-        _units.Add(Instantiate(_firstSoldierPrefab, Vector3.forward * 3f, Quaternion.identity));
-        _units.Add(Instantiate(_firstWorkerPrefab, Vector3.right * 3f, Quaternion.identity));
+        
+        var firstSoldier = Instantiate(_firstSoldierPrefab, Vector3.forward * 3f, Quaternion.identity);
+        firstSoldier.Initialize();
+
+        var firstWorker = Instantiate(_firstWorkerPrefab, Vector3.right * 3f, Quaternion.identity);
+        firstWorker.Initialize();
+
+        _units.Add(firstSoldier);
+        _units.Add(firstWorker);
     }
 
     private void Clear()
@@ -212,6 +221,17 @@ public class GameManager : Singleton<GameManager>
             _buildings.Add(building);
             NavMeshSurface.BuildNavMesh();
         }
+
+        _itemPlacedCount++;
+
+        // Max difficulty already?
+        if (_difficulty < GameConfiguration.ItemPlacedCountsToDifficulty.Count - 1)
+        {
+            if (GameConfiguration.ItemPlacedCountsToDifficulty[_difficulty + 1] < _itemPlacedCount)
+            {
+                _difficulty++;
+            }
+        }
     }
 
     private void OnBuildingDied(Item item)
@@ -250,6 +270,16 @@ public class GameManager : Singleton<GameManager>
 
         _timer += Time.deltaTime;
         UpdateUITimer();
+
+        if (_difficulty < GameConfiguration.TimeToNextDifficulty.Count)
+        {
+            if (GameConfiguration.TimeToNextDifficulty[_difficulty] < _timer)
+            {
+                _difficulty++;
+            }
+        }
+
+        UpdateUIDifficulty();
 
 #if DEBUG
         #region  Debug
@@ -358,6 +388,11 @@ public class GameManager : Singleton<GameManager>
     private void UpdateUITimer()
     {
         _uiManager.UpdateTimer(_timer);
+    }
+
+    private void UpdateUIDifficulty()
+    {
+        _uiManager.UpdateDifficulty(_difficulty);
     }
 
     public void AddResources(Resource resource)

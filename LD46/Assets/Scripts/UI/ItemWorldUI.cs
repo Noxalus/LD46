@@ -98,11 +98,17 @@ public class ItemWorldUI : MonoBehaviour
 
     public void Select()
     {
-        _selectionCircle.enabled = true;
+        if (_selectionCircle)
+        {
+            _selectionCircle.enabled = true;
+        }
     }
 
     public void Unselect()
     {
-        _selectionCircle.enabled = false;
+        if (_selectionCircle)
+        {
+            _selectionCircle.enabled = false;
+        }
     }
 }
