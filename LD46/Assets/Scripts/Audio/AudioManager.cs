@@ -20,7 +20,9 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic()
     {
-        // TODO
+        _source.clip = _music;
+        _source.loop = true;
+        _source.Play();
     }
 
     public void PlayPlaceItemSound()

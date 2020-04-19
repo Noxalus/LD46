@@ -99,6 +99,7 @@ public class GameManager : Singleton<GameManager>
             _worldBuilderCoroutine = null;
         }
 
+        AudioManager.PlayMusic();
         _uiManager.Initialize();
         WorldBuilder.Initialize();
 
