@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class ItemPlacer : MonoBehaviour
 {
@@ -132,6 +133,14 @@ public class ItemPlacer : MonoBehaviour
         if (navMeshAgent != null)
         {
             Destroy(navMeshAgent);
+        }
+
+        // Remove nav mesh agent
+        Canvas canvas = _ghostItemGameObject.GetComponentInChildren<Canvas>();
+
+        if (canvas)
+        {
+            Destroy(canvas.gameObject);
         }
 
         ghostItem.OnCollisionTriggerEnter += OnGhostCollisionTriggerEnter;

@@ -89,8 +89,11 @@ public class ItemWorldUI : MonoBehaviour
 
     private void Update()
     {
-        _hpBar.transform.rotation = _worldSpaceCanvas.worldCamera.transform.rotation;
-        _amount.transform.rotation = _worldSpaceCanvas.worldCamera.transform.rotation;
+        if (_hpBar)
+            _hpBar.transform.rotation = _worldSpaceCanvas.worldCamera.transform.rotation;
+
+        if (_amount)
+            _amount.transform.rotation = _worldSpaceCanvas.worldCamera.transform.rotation;
     }
 
     public void Select()

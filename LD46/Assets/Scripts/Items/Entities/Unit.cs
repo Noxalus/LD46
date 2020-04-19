@@ -29,15 +29,18 @@ public class Unit : Item
     {
         base.InternalUpdate();
 
-        if (_animator)
+        if (Agent)
         {
-            _animator.SetBool("IsMoving", Agent.velocity.magnitude > Agent.speed * 0.7f);
-        }
+            if (_animator)
+            {
+                _animator.SetBool("IsMoving", Agent.velocity.magnitude > Agent.speed * 0.7f);
+            }
 
-        // Move toward affected target
-        if (_currentLocationTarget != null)
-        {
-            Agent.SetDestination(_currentLocationTarget.transform.position);
+            // Move toward affected target
+            if (_currentLocationTarget != null)
+            {
+                Agent.SetDestination(_currentLocationTarget.transform.position);
+            }
         }
     }
 
@@ -45,8 +48,11 @@ public class Unit : Item
     {
         _currentLocationTarget = target;
 
-        // Stop movement if the unit doesn't have target
-        Agent.isStopped = target == null;
+        if (Agent)
+        {
+            // Stop movement if the unit doesn't have target
+            Agent.isStopped = target == null;
+        }
     }
 
     protected override void OnItemEnter(Item item)

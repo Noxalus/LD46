@@ -261,7 +261,7 @@ public class GameManager : Singleton<GameManager>
             StartCoroutine(GenerateChunksCoroutine());
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.H))
         {
             Retry();
         }
