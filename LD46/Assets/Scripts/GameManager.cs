@@ -230,26 +230,26 @@ public class GameManager : Singleton<GameManager>
         _timer += Time.deltaTime;
         UpdateUITimer();
 
-        // Attack enemies using mouse click
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Enemy"), QueryTriggerInteraction.Ignore))
-            {
-                Debug.Log($"Hit {hit.collider.name}");
-
-                var item = hit.collider.GetComponent<Item>();
-
-                if (item != null)
-                {
-                    item.TakeDamage(1);
-                }
-            }
-        }
-
 #if DEBUG
         #region  Debug
+
+        //// Attack enemies using mouse click
+        //if (Input.GetKeyDown(KeyCode.Mouse1))
+        //{
+        //    Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
+
+        //    if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Enemy"), QueryTriggerInteraction.Ignore))
+        //    {
+        //        Debug.Log($"Hit {hit.collider.name}");
+
+        //        var item = hit.collider.GetComponent<Item>();
+
+        //        if (item != null)
+        //        {
+        //            item.TakeDamage(1);
+        //        }
+        //    }
+        //}
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -294,10 +294,10 @@ public class GameManager : Singleton<GameManager>
                 _wood = Mathf.Clamp(_wood + production, 0, 99);
                 break;
             case EResourceType.Rock:
-                _rock += Mathf.Clamp(_rock + production, 0, 99);
+                _rock = Mathf.Clamp(_rock + production, 0, 99);
                 break;
             case EResourceType.Gold:
-                _gold += Mathf.Clamp(_gold + production, 0, 99);
+                _gold = Mathf.Clamp(_gold + production, 0, 99);
                 break;
             default:
                 Debug.LogError($"Unknown currency: {type}");
