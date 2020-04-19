@@ -132,28 +132,29 @@ public class WorldChunk : MonoBehaviour
                 if (Random.value < 0.33f)
                 {
                     resourceInstance = Instantiate(
-                        _treePrefabs[Random.Range(0, _treePrefabs.Count)], 
-                        new Vector3(x + randomOffset.x, 0, y + randomOffset.y), 
-                        Quaternion.identity
+                        _treePrefabs[Random.Range(0, _treePrefabs.Count)],
+                        transform, 
+                        true
                     );
                 }
                 else if (Random.value < 0.66f)
                 {
                     resourceInstance = Instantiate(
                         _rockPrefabs[Random.Range(0, _rockPrefabs.Count)], 
-                        new Vector3(x + randomOffset.x, 0, y + randomOffset.y), 
-                        Quaternion.identity
+                        transform,
+                        true
                     );
                 }
                 else
                 {
                     resourceInstance = Instantiate(
                         _goldPrefabs[Random.Range(0, _goldPrefabs.Count)], 
-                        new Vector3(x + randomOffset.x, 0, y + randomOffset.y), 
-                        Quaternion.identity
+                        transform,
+                        true
                     );
                 }
 
+                resourceInstance.transform.position = new Vector3(x + randomOffset.x, 0, y + randomOffset.y);
                 resourceInstance.transform.Rotate(Vector3.up, Random.Range(0, 360));
                 GameManager.Instance.AddResources(resourceInstance);
             }
@@ -178,11 +179,12 @@ public class WorldChunk : MonoBehaviour
 
             var instance = Instantiate(
                 _enemySpawnerPrefabs[Random.Range(0, _enemySpawnerPrefabs.Count)],
-                randomPosition,
-                Quaternion.identity
+                transform,
+                true
             );
 
-            //instance.transform.Rotate(Vector3.up, Random.Range(0, 360));
+            instance.transform.position = randomPosition;
+            instance.transform.Rotate(Vector3.up, Random.Range(0, 360));
 
             instance.Initialize(Random.Range(20, 150));
 
