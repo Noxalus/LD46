@@ -8354,6 +8354,9 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 2048
+  _uiLayer:
+    serializedVersion: 2
+    m_Bits: 32
   _ghostLayer:
     serializedVersion: 2
     m_Bits: 0

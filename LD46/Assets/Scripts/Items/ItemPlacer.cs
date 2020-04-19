@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ItemPlacer : MonoBehaviour
@@ -19,6 +20,9 @@ public class ItemPlacer : MonoBehaviour
 
     [SerializeField]
     private LayerMask _groundLayer = 0;
+
+    [SerializeField]
+    private LayerMask _uiLayer = 0;
 
     [SerializeField]
     private LayerMask _ghostLayer = 0;
@@ -63,9 +67,13 @@ public class ItemPlacer : MonoBehaviour
 
             if (isOnGround && _canPlace && Input.GetKeyDown(KeyCode.Mouse0))
             {
-                if (CanBuy(_currentItem))
+                if (!EventSystem.current.IsPointerOverGameObject() && CanBuy(_currentItem))
                 {
                     Buy(_currentItem);
+                }
+                else
+                {
+                    SetItem(null);
                 }
             }
 
