@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ExecuteOrderSounds
   m_EditorClassIdentifier: 
   _sounds:
-  - {fileID: 8300000, guid: 532aef88ce0689d4eba48d3682bdbb1e, type: 3}
-  - {fileID: 8300000, guid: fed24716306450447ac2d6119447d10e, type: 3}
-  - {fileID: 8300000, guid: b9bbfe6b9a46e724b86ec5ad413cf267, type: 3}
-  - {fileID: 8300000, guid: ce6905515354c5a4bb8ce899b880084d, type: 3}
+  - {fileID: 8300000, guid: 7264054339fa1fa40910b03116de0249, type: 3}
+  - {fileID: 8300000, guid: 0abfca81cd935ac42afce0fc2e7d2cb9, type: 3}
+  - {fileID: 8300000, guid: 3580dd7cade779e42b15f27730df6e51, type: 3}
+  - {fileID: 8300000, guid: 0fa0b84c16776ba4586241afb729ffc4, type: 3}

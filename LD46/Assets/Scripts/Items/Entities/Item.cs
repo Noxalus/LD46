@@ -91,7 +91,7 @@ public class Item : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Select()
+    public virtual void Select()
     {
         UI.Select();
     }

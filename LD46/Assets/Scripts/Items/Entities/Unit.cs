@@ -47,6 +47,17 @@ public class Unit : Item
         }
     }
 
+    public override void Select()
+    {
+        base.Select();
+
+        // Check it's a player's unit
+        if (tag == "Unit")
+        {
+            GameManager.Instance.AudioManager.PlaySelectUnitSound();
+        }
+    }
+
     public void SetTarget(Item target)
     {
         _currentLocationTarget = target;

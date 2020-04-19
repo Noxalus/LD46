@@ -74,6 +74,11 @@ public class ItemSelector : MonoBehaviour
                     currentSelectedUnit.Agent.SetDestination(hit.point);
                     currentSelectedUnit.Agent.isStopped = false;
                 }
+
+                if (currentSelectedUnit.tag == "Unit")
+                {
+                    GameManager.Instance.AudioManager.PlayExecuteOrderSound();
+                }
             }
         }
     }
