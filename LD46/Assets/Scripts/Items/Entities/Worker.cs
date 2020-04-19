@@ -15,6 +15,7 @@ public class Worker : Unit
         {
             _currentActiveResource.Collect(_production);
             UI.AmountChanged(_production, _currentActiveResource.Type);
+            _animator.SetTrigger("Collect");
         }
     }
 

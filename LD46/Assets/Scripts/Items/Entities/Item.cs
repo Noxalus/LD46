@@ -27,6 +27,8 @@ public class Item : MonoBehaviour
     protected int _hp;
     private int _collisionCount = 0;
 
+    public Animator Animator => _animator;
+
     private List<string> _allowedItemTags = new List<string>()
     {
         "Building", "Unit", "Enemy", "Resource", "EnemyBuilding"
@@ -103,7 +105,7 @@ public class Item : MonoBehaviour
     {
         _collisionCount++;
 
-        Debug.Log($"Enter into {other.name}");
+        //Debug.Log($"Enter into {other.name}");
 
         Item item = other.gameObject.GetComponent<Item>();
 
@@ -119,7 +121,7 @@ public class Item : MonoBehaviour
     {
         _collisionCount--;
 
-        Debug.Log($"Exit from {other.name}");
+        //Debug.Log($"Exit from {other.name}");
 
         Item item = other.gameObject.GetComponent<Item>();
 

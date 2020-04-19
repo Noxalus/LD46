@@ -209,6 +209,7 @@ public class ItemPlacer : MonoBehaviour
     {
         GameManager.Instance.BuyItem(item);
         Item itemInstance = Instantiate(item, _ghostItemGameObject.transform.position, _ghostItemGameObject.transform.rotation);
+        itemInstance.Animator.SetTrigger("Spawn");
         OnItemPlaced?.Invoke(itemInstance);
     }
 }

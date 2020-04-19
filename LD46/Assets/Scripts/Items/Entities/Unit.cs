@@ -59,7 +59,7 @@ public class Unit : Item
     {
         if (!_itemsToWatchTags.Contains(item.tag))
         {
-            Debug.LogWarning($"{gameObject.name} don't need to watch {item.name}");
+            //Debug.LogWarning($"{gameObject.name} don't need to watch {item.name}");
             return;
         }
 

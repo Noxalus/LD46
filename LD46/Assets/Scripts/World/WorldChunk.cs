@@ -127,7 +127,7 @@ public class WorldChunk : MonoBehaviour
                     randomOffset.y += factor * Random.Range(0, _spaceBetweenResources / 2f);
                 }
 
-                Debug.Log($"Place item on position: {x}, {y}");
+                //Debug.Log($"Place item on position: {x}, {y}");
 
                 Resource resourceInstance;
 
