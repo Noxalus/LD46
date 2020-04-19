@@ -11,7 +11,7 @@ public class Item : MonoBehaviour
     protected Animator _animator = null;
 
     [SerializeField]
-    private int _baseHealth = 1;
+    protected int _baseHealth = 1;
 
     public Price Price;
 

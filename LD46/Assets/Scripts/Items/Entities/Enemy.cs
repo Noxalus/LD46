@@ -1,7 +1,9 @@
 ﻿public class Enemy : Unit
 {
-    public override void Initialize()
+    public void Initialize(int health)
     {
+        _baseHealth = health;
+
         base.Initialize();
 
         FindNewTarget();

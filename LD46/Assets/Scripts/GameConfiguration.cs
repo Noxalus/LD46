@@ -254,5 +254,10 @@ public class GameConfiguration : ScriptableObject
 
     #endregion
 
+    public List<int> EnemyHealth = new List<int>()
+    {
+        1, 1, 2, 2, 3, 3, 3, 4, 4, 5
+    };
 
+    // TODO: if time => enemy strength + frequency
 }

@@ -36,8 +36,11 @@ public class EnemySpawner : Building
 
     private void SpawnEnemy()
     {
-        GameManager.Instance.AddEnemy(
-            Instantiate(_enemyPrefab, _spawnPosition)
+        Enemy enemy = Instantiate(_enemyPrefab, _spawnPosition);
+        enemy.Initialize(
+            GameManager.Instance.GameConfiguration.EnemyHealth[GameManager.Instance.Difficulty]
         );
+
+        GameManager.Instance.AddEnemy(enemy);
     }
 }
