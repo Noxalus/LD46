@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3820945134892977167}
   - component: {fileID: 1415025305265379886}
   m_Layer: 13
-  m_Name: Gold
+  m_Name: GoldTemplate
   m_TagString: Resource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,6 +83,8 @@ MonoBehaviour:
   _baseHealth: 1
   Price: {fileID: 0}
   _actionFrequency: 1
+  Mesh: {fileID: 1126623420690421830}
+  _minMeshScale: 0.2
   _minQuantity: 1
   _maxQuantity: 50
 --- !u!65 &3820945134892977164

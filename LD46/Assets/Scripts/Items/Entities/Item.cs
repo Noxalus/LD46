@@ -77,8 +77,6 @@ public class Item : MonoBehaviour
         UI.UpdateHealthBar(_hp);
         UI.AmountChanged(-amount);
 
-        // TODO: Update scale according damage for building/resources
-
         if (_hp <= 0)
         {
             Kill();

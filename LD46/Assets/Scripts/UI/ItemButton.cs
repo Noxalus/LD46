@@ -44,30 +44,36 @@ public class ItemButton : MonoBehaviour
         if (gameManager.Wood >= _itemPrefab.Price.Wood)
         {
             _woodCost.color = Color.black;
+            _woodCost.fontStyle = FontStyles.Normal;
         }
         else
         {
             _woodCost.color = Color.red;
+            _woodCost.fontStyle = FontStyles.Bold;
             canBuy = false;
         }
 
         if (gameManager.Rock >= _itemPrefab.Price.Rock)
         {
             _rockCost.color = Color.black;
+            _woodCost.fontStyle = FontStyles.Normal;
         }
         else
         {
             _rockCost.color = Color.red;
+            _woodCost.fontStyle = FontStyles.Bold;
             canBuy = false;
         }
 
         if (gameManager.Gold >= _itemPrefab.Price.Gold)
         {
             _goldCost.color = Color.black;
+            _woodCost.fontStyle = FontStyles.Normal;
         }
         else
         {
             _goldCost.color = Color.red;
+            _woodCost.fontStyle = FontStyles.Bold;
             canBuy = false;
         }
 

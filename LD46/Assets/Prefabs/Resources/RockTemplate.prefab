@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4853575294648273181}
   - component: {fileID: 7349534140063735612}
   m_Layer: 13
-  m_Name: Rock
+  m_Name: RockTemplate
   m_TagString: Resource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,6 +53,8 @@ MonoBehaviour:
   _baseHealth: 1
   Price: {fileID: 0}
   _actionFrequency: 1
+  Mesh: {fileID: 5807720629861878694}
+  _minMeshScale: 0.2
   _minQuantity: 1
   _maxQuantity: 50
 --- !u!65 &4853575294648273182

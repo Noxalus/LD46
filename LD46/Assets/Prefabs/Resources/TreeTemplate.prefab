@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5789526071865533818}
   - component: {fileID: 8574026953339564891}
   m_Layer: 13
-  m_Name: Tree
+  m_Name: TreeTemplate
   m_TagString: Resource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,6 +83,8 @@ MonoBehaviour:
   _baseHealth: 1
   Price: {fileID: 0}
   _actionFrequency: 1
+  Mesh: {fileID: 1680017152746560322}
+  _minMeshScale: 0.2
   _minQuantity: 1
   _maxQuantity: 50
 --- !u!65 &5789526071865533817
