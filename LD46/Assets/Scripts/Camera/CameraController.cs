@@ -4,14 +4,16 @@ public class CameraController : MonoBehaviour
 {
     public float maxPanSpeed = 20f;
 
+    public Camera Camera;
+
     [Range(0, 1)]
     public float panBorderThickness = 0.5f;
     public Vector2 panLimitBottomLeft = new Vector2(10, 10);
     public Vector2 panLimitTopRight = new Vector2(10, 10);
     public float scrollSpeed = 20f;
 
-    public float zoomMin = 1f;
-    public float zoomMax = 20f;
+    public float _zoomMin = 1f;
+    public float _zoomMax = 20f;
 
     public bool showPanBorder = false;
 
@@ -99,10 +101,12 @@ public class CameraController : MonoBehaviour
         //}
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        position += transform.forward * scroll * scrollSpeed * Time.deltaTime;
+        //position += transform.forward * scroll * scrollSpeed * Time.deltaTime;
+        Camera.orthographicSize -= scroll * scrollSpeed * Time.deltaTime;
+        Camera.orthographicSize = Mathf.Clamp(Camera.orthographicSize, _zoomMin, _zoomMax);
 
         position.x = Mathf.Clamp(position.x, panLimitBottomLeft.x, panLimitTopRight.x);
-        position.y = Mathf.Clamp(position.y, zoomMin, zoomMax);
+        //position.y = Mathf.Clamp(position.y, zoomMin, zoomMax);
         position.z = Mathf.Clamp(position.z, panLimitBottomLeft.y, panLimitTopRight.y);
 
         transform.position = position;
