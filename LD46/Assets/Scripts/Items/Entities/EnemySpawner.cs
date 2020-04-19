@@ -30,7 +30,7 @@ public class EnemySpawner : Building
     private void SpawnEnemy()
     {
         GameManager.Instance.AddEnemy(
-            Instantiate(_enemyPrefab, _spawnPosition, true)
+            Instantiate(_enemyPrefab, _spawnPosition)
         );
     }
 }
