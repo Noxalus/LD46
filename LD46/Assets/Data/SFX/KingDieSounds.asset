@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: KingDieSounds
   m_EditorClassIdentifier: 
   _sounds:
-  - {fileID: 8300000, guid: 3a9e9f7168480bc41aaa14265d79c29a, type: 3}
-  - {fileID: 8300000, guid: 088d0e2c4dfec4c4db7f9b9073705f48, type: 3}
+  - {fileID: 8300000, guid: f35edef6ce96b684c83dac8480d45252, type: 3}
+  - {fileID: 8300000, guid: 0d509a4a07071c646905287788bf26e6, type: 3}

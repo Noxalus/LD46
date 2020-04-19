@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: HurtSounds
   m_EditorClassIdentifier: 
   _sounds:
-  - {fileID: 8300000, guid: 90bbb6ac21eff794891f232dfe84d644, type: 3}
-  - {fileID: 8300000, guid: 5b9d0cb068a62df47926b93c0b7264a6, type: 3}
-  - {fileID: 8300000, guid: 40bb9b6af043d73478685c4b633c46ba, type: 3}
-  - {fileID: 8300000, guid: 34ebbeecb0928f84395edf362bc5e0e0, type: 3}
-  - {fileID: 8300000, guid: 5c87bd4cb9208284788cede6707f8ca8, type: 3}
-  - {fileID: 8300000, guid: 4aa3d2328d6d3a940ac39a88d990385e, type: 3}
+  - {fileID: 8300000, guid: 640ff8c1334f35348849dbf026355fbb, type: 3}
+  - {fileID: 8300000, guid: 9922df85309d8b64f8ce0123ef07b06f, type: 3}
+  - {fileID: 8300000, guid: a636880abe68f014b920f8c97ce3b349, type: 3}
+  - {fileID: 8300000, guid: 7b37f9fe517c0f445a48962f08b7a1ea, type: 3}
+  - {fileID: 8300000, guid: c3e6903881764374396ceddc687998ba, type: 3}
+  - {fileID: 8300000, guid: 6256e40d5e6192c41bfe8afff9665601, type: 3}

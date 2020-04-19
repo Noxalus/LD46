@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DieSounds
   m_EditorClassIdentifier: 
   _sounds:
-  - {fileID: 8300000, guid: 18c72e17820207a4090ca06c2463bfd4, type: 3}
-  - {fileID: 8300000, guid: ff4f126ba7f35824b9fee63cb213ef0c, type: 3}
-  - {fileID: 8300000, guid: 997c97b675bcd284f95cfc5bfe76f64c, type: 3}
+  - {fileID: 8300000, guid: 8726a8340f0e80a419132f9465aedc12, type: 3}
+  - {fileID: 8300000, guid: 4782dd9d25649464087387030adce964, type: 3}
+  - {fileID: 8300000, guid: 4da6a25612dfd9145b15b8628fc481f1, type: 3}
