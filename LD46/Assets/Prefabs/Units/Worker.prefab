@@ -91,6 +91,9 @@ MonoBehaviour:
   _actionFrequency: 1
   Agent: {fileID: 6916204293797004881}
   _hurtFx: {fileID: 8225439129305890956}
+  _hitSounds: {fileID: 11400000, guid: fddd4e0beaeb0524ca9a01795c60e364, type: 2}
+  _hurtSounds: {fileID: 11400000, guid: 254aa1116df0070418ee0a15fad16b25, type: 2}
+  _dieSounds: {fileID: 11400000, guid: 81b27c3fe80559b4a9f86ee2f5f4677f, type: 2}
   _attack: 1
   _itemsToWatchTags:
   - Resource

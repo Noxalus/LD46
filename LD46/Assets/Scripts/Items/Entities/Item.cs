@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -20,6 +21,9 @@ public class Item : MonoBehaviour
     [SerializeField]
     protected float _actionFrequency = 1f; // Seconds
 
+    [SerializeField]
+    private SFXCollection _dieSounds = null;
+
     public delegate void ItemEventHandler(Item item);
     public delegate void ItemCollisionEventHandler(Item item, int collisionCount);
 
@@ -29,6 +33,7 @@ public class Item : MonoBehaviour
 
     protected int _hp;
     private int _collisionCount = 0;
+    protected bool _isDead;
 
     public Animator Animator => _animator;
 
@@ -51,7 +56,7 @@ public class Item : MonoBehaviour
     {
         _hp = _baseHealth;
         _actionTimer = _actionFrequency;
-     
+
         UI.Initialize(GameManager.Instance.MainCamera, this);
     }
 
@@ -91,6 +96,40 @@ public class Item : MonoBehaviour
 
     public virtual void Kill()
     {
+        //_isDead = true;
+
+        //Collider[] colliders = GetComponentsInChildren<Collider>(true);
+
+        //foreach (var collider in colliders)
+        //{
+        //    Destroy(collider);
+        //}
+
+        //var audioSource = Instantiate(_audioSource);
+        //audioSource.transform.position = transform.position;
+        //audioSource.PlayOneShot(_dieSounds.GetRandomSound());
+
+        // Worst thing to do ever, but no time left...
+        var audioSourceGameObject = new GameObject("DeathSource");
+        var audioSource = audioSourceGameObject.AddComponent<AudioSource>();
+        audioSource.spatialBlend = 1f;
+        audioSource.rolloffMode = AudioRolloffMode.Linear;
+        audioSource.minDistance = 1f;
+        audioSource.maxDistance = 50f;
+        audioSource.PlayOneShot(_dieSounds.GetRandomSound());
+
+        var gameObjectVanisher = audioSourceGameObject.AddComponent<GameObjectVanisher>();
+        gameObjectVanisher.Initialize(2f);
+
+        Destroy(gameObject);
+
+        //StartCoroutine(PlayDeathAnimation());
+    }
+
+    private IEnumerator PlayDeathAnimation()
+    {
+        // TODO: Play death FX
+        yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
     }
 

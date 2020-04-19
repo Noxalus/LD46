@@ -10,6 +10,12 @@ public class Unit : Item
     private ParticleSystem _hurtFx = null;
 
     [SerializeField]
+    private SFXCollection _hitSounds = null;
+
+    [SerializeField]
+    private SFXCollection _hurtSounds = null;
+
+    [SerializeField]
     protected int _attack = 1;
 
     [SerializeField]
@@ -132,15 +138,30 @@ public class Unit : Item
         {
             _animator.SetTrigger("Attack");
         }
+
+        if (_audioSource != null && _hitSounds != null)
+        {
+            _audioSource.PlayOneShot(_hitSounds.GetRandomSound());
+        }
     }
 
     public override void TakeDamage(int amount)
     {
-        base.TakeDamage(amount);
-
         if (_hurtFx)
         {
             _hurtFx.Play();
         }
+
+        if (_audioSource != null && _hurtSounds != null)
+        {
+            _audioSource.PlayOneShot(_hurtSounds.GetRandomSound());
+        }
+
+        base.TakeDamage(amount);
+    }
+
+    public override void Kill()
+    {
+        base.Kill();
     }
 }

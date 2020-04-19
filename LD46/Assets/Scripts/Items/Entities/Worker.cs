@@ -21,8 +21,7 @@ public class Worker : Unit
             UI.AmountChanged(_production, _currentActiveResource.Type);
             _animator.SetTrigger("Collect");
 
-            _audioSource.clip = _collectSound.GetRandomSound();
-            _audioSource.Play();
+            _audioSource.PlayOneShot(_collectSound.GetRandomSound());
         }
     }
 
