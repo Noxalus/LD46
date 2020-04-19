@@ -80,7 +80,7 @@ MonoBehaviour:
   _spaceBetweenResources: 5
   _resourcesProbability: 0.1
   _treePrefabs:
-  - {fileID: 5607615938896616274, guid: db472de209b3e7f4ba926f93958bf46e, type: 3}
+  - {fileID: 8441188587012186884, guid: a570665e437a9f24f8fad59d291579fb, type: 3}
   _rockPrefabs:
   - {fileID: 5355485906850319262, guid: 996d2ba984a4c58448daa1ef72d438b2, type: 3}
   _goldPrefabs:
