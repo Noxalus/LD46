@@ -21,7 +21,13 @@ public class WorldChunk : MonoBehaviour
     private float _resourcesProbability = 0.5f;
 
     [SerializeField]
+    private float _environmentProbability = 0.5f;
+
+    [SerializeField]
     private List<Tree> _treePrefabs = new List<Tree>();
+
+    [SerializeField]
+    private List<GameObject> _environmentPrefabs = new List<GameObject>();
 
     [SerializeField]
     private List<Rock> _rockPrefabs = new List<Rock>();
@@ -72,6 +78,7 @@ public class WorldChunk : MonoBehaviour
 
         GenerateResources();
         GenerateEnemies(enemySpawnerMaxCount);
+        GenerateEnvironment();
 
         //_navMeshSurface.BuildNavMesh();
     }
@@ -191,6 +198,51 @@ public class WorldChunk : MonoBehaviour
             instance.Initialize(Random.Range(20, 150));
 
             GameManager.Instance.AddEnemyBuilding(instance);
+        }
+    }
+
+    private void GenerateEnvironment()
+    {
+        Vector4 bounds = GetBounds();
+
+        Vector2 bottomLeftBound = new Vector2(bounds.x, bounds.y);
+        Vector2 topRightBound = new Vector2(bounds.z, bounds.w);
+
+
+        for (float y = bottomLeftBound.y; y < topRightBound.y; y += _spaceBetweenResources)
+        {
+            for (float x = bottomLeftBound.x; x < topRightBound.x; x += _spaceBetweenResources)
+            {
+                if (Random.value > _environmentProbability)
+                {
+                    continue;
+                }
+
+                Vector2 randomOffset = Vector2.zero;
+
+                if (x != bottomLeftBound.x && x != topRightBound.x)
+                {
+                    int factor = Random.value > 0.5f ? 1 : -1;
+                    randomOffset.x += factor * Random.Range(0, _spaceBetweenResources / 2f);
+                }
+
+                if (y != bottomLeftBound.y && y != topRightBound.y)
+                {
+                    int factor = Random.value > 0.5f ? 1 : -1;
+                    randomOffset.y += factor * Random.Range(0, _spaceBetweenResources / 2f);
+                }
+
+                //Debug.Log($"Place item on position: {x}, {y}");
+
+                GameObject environmentInstance = Instantiate(
+                    _environmentPrefabs[Random.Range(0, _environmentPrefabs.Count)],
+                    _root,
+                    true
+                );
+
+                environmentInstance.transform.position = new Vector3(x + randomOffset.x, 0, y + randomOffset.y);
+                environmentInstance.transform.Rotate(Vector3.up, Random.Range(0, 360));
+            }
         }
     }
 

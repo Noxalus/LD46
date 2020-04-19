@@ -79,8 +79,11 @@ MonoBehaviour:
   _root: {fileID: 8286731390381800626}
   _spaceBetweenResources: 5
   _resourcesProbability: 0.1
+  _environmentProbability: 1
   _treePrefabs:
   - {fileID: 8441188587012186884, guid: a570665e437a9f24f8fad59d291579fb, type: 3}
+  _environmentPrefabs:
+  - {fileID: 8563747358421285957, guid: 2479906552e37994ba5e6efcd1c5cb26, type: 3}
   _rockPrefabs:
   - {fileID: 4145624440994338436, guid: ec845e709063d764ab1e773091576a69, type: 3}
   _goldPrefabs:
