@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 4270866333172424108}
   _animator: {fileID: 1579111991164320131}
-  _baseHealth: 50
+  _baseHealth: 5
   Price: {fileID: 0}
   _actionFrequency: 1
   Agent: {fileID: 5585593933638480627}
@@ -284,6 +284,36 @@ PrefabInstance:
     - target: {fileID: 4868064344237059051, guid: 92f70e621206b05469e2bf5461e08163,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5045799299624976869, guid: 92f70e621206b05469e2bf5461e08163,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5045799299624976869, guid: 92f70e621206b05469e2bf5461e08163,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344244416166206519, guid: 92f70e621206b05469e2bf5461e08163,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344244416166206519, guid: 92f70e621206b05469e2bf5461e08163,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344244416166206519, guid: 92f70e621206b05469e2bf5461e08163,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344244416166206519, guid: 92f70e621206b05469e2bf5461e08163,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8850835234172491357, guid: 92f70e621206b05469e2bf5461e08163,

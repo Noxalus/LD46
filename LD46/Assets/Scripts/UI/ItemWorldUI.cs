@@ -19,26 +19,22 @@ public class ItemWorldUI : MonoBehaviour
     protected Image _selectionCircle = null;
 
     [SerializeField]
-    private Image _healthBar = null;
-
-    private Quaternion _initialHealthBarRotation;
-    private Quaternion _initialAmountTextRotation;
+    private HPBar _hpBar = null;
 
     private void Start()
     {
-        _initialHealthBarRotation = _healthBar.transform.rotation;
-        _initialAmountTextRotation = _amountText.transform.rotation;
         Unselect();
     }
 
-    public void Initialize(Camera camera)
+    public void Initialize(Camera camera, Item link)
     {
         _worldSpaceCanvas.worldCamera = camera;
+        _hpBar.Initialize(link.HP);
     }
 
-    public void UpdateHealthBar(float v)
+    public void UpdateHealthBar(int v)
     {
-        _healthBar.fillAmount = v;
+        _hpBar.UpdateHP(v);
     }
 
     public void AmountChanged(int amount, bool showHealthBar = false)
@@ -61,8 +57,8 @@ public class ItemWorldUI : MonoBehaviour
 
     private void Update()
     {
-        _healthBar.transform.rotation = _initialHealthBarRotation * _worldSpaceCanvas.worldCamera.transform.rotation;
-        _amountText.transform.rotation = _initialAmountTextRotation * _worldSpaceCanvas.worldCamera.transform.rotation;
+        _hpBar.transform.rotation = _worldSpaceCanvas.worldCamera.transform.rotation;
+        _amountText.transform.rotation = _worldSpaceCanvas.worldCamera.transform.rotation;
     }
 
     public void Select()

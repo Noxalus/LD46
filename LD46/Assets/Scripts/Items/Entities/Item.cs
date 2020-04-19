@@ -24,7 +24,7 @@ public class Item : MonoBehaviour
     public event ItemCollisionEventHandler OnCollisionTriggerEnter;
     public event ItemCollisionEventHandler OnCollisionTriggerExit;
 
-    protected int _health;
+    protected int _hp;
     private int _collisionCount = 0;
 
     private List<string> _allowedItemTags = new List<string>()
@@ -35,6 +35,8 @@ public class Item : MonoBehaviour
     protected Item _currentLocationTarget;
     protected float _actionTimer = 0f;
 
+    public int HP => _hp;
+
     private void Start()
     {
         Initialize();
@@ -42,10 +44,10 @@ public class Item : MonoBehaviour
 
     public virtual void Initialize()
     {
-        _health = _baseHealth;
+        _hp = _baseHealth;
         _actionTimer = _actionFrequency;
      
-        UI.Initialize(GameManager.Instance.MainCamera);
+        UI.Initialize(GameManager.Instance.MainCamera, this);
     }
 
     private void Update()
@@ -70,12 +72,14 @@ public class Item : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        _health -= amount;
+        _hp -= amount;
 
-        UI.UpdateHealthBar((float)_health / _baseHealth);
+        UI.UpdateHealthBar(_hp);
         UI.AmountChanged(-amount);
 
-        if (_health <= 0)
+        // TODO: Update scale according damage for building/resources
+
+        if (_hp <= 0)
         {
             Kill();
             OnDied?.Invoke(this);
