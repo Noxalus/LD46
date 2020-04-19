@@ -311,19 +311,7 @@ public class GameManager : Singleton<GameManager>
 
         UIRefreshCurrencies();
     }
-
-    private void UIRefreshCurrencies()
-    {
-        _uiManager.SetWoodAmount(_wood);
-        _uiManager.SetRockAmount(_rock);
-        _uiManager.SetGoldAmount(_gold);
-    }
-
-    private void UpdateUITimer()
-    {
-        _uiManager.UpdateTimer(_timer);
-    }
-
+    
     public void BuyItem(Item item)
     {
         if (item.Price == null)
@@ -337,6 +325,21 @@ public class GameManager : Singleton<GameManager>
         _gold -= item.Price.Gold;
 
         UIRefreshCurrencies();
+    }
+
+    private void UIRefreshCurrencies()
+    {
+        _uiManager.SetWoodAmount(_wood);
+        _uiManager.SetRockAmount(_rock);
+        _uiManager.SetGoldAmount(_gold);
+
+        // Also refresh bottom bar
+        _uiManager.RefreshBottomBar();
+    }
+
+    private void UpdateUITimer()
+    {
+        _uiManager.UpdateTimer(_timer);
     }
 
     public void AddResources(Resource resource)

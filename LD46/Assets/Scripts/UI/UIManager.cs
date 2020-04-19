@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField]
+    private Canvas _canvas = null;
+
     [SerializeField]
     private TextMeshProUGUI _woodAmountText;
 
@@ -18,10 +23,18 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI _timerText;
 
     [SerializeField]
+    private List<ItemButton> _itemButtons = new List<ItemButton>();
+
+    [SerializeField]
     private GameObject _gameOverScreen = null;
 
     [SerializeField]
     private TextMeshProUGUI _gameOverDescription = null;
+
+    private void Start()
+    {
+        _itemButtons = _canvas.GetComponentsInChildren<ItemButton>().ToList();
+    }
 
     public void Initialize()
     {
@@ -49,8 +62,16 @@ public class UIManager : MonoBehaviour
         _gameOverDescription.text = $"You let your king died in {TimeSpan.FromSeconds(timer).ToString(@"mm\:ss")}";
     }
 
-    internal void UpdateTimer(float timer)
+    public void UpdateTimer(float timer)
     {
         _timerText.text = TimeSpan.FromSeconds(timer).ToString(@"mm\:ss");
+    }
+
+    public void RefreshBottomBar()
+    {
+        foreach (var itemButton in _itemButtons)
+        {
+            itemButton.CheckCurrencies();
+        }
     }
 }
