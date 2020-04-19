@@ -82,9 +82,9 @@ MonoBehaviour:
   _treePrefabs:
   - {fileID: 8441188587012186884, guid: a570665e437a9f24f8fad59d291579fb, type: 3}
   _rockPrefabs:
-  - {fileID: 5355485906850319262, guid: 996d2ba984a4c58448daa1ef72d438b2, type: 3}
+  - {fileID: 4145624440994338436, guid: ec845e709063d764ab1e773091576a69, type: 3}
   _goldPrefabs:
-  - {fileID: 2244047412099388851, guid: 0b29d332a6b960b438a97f2a51e93bf2, type: 3}
+  - {fileID: 5016496265401528432, guid: f43d598c3e04d7346abffb8fcc19ec42, type: 3}
   _enemySpawnerPrefabs:
   - {fileID: 1649794812747414110, guid: 3fcfcb82a1662884184cd058b0729e74, type: 3}
   _neighbors:
