@@ -48,6 +48,7 @@ public class GameManager : Singleton<GameManager>
 
     private Vector3 _initialCameraPosition;
     private Quaternion _initialCameraRotation;
+    private bool _isMusicEnabled = true;
 
     public King King => _king;
     public int Wood => _wood;
@@ -99,7 +100,11 @@ public class GameManager : Singleton<GameManager>
             _worldBuilderCoroutine = null;
         }
 
-        AudioManager.PlayMusic();
+        if (_isMusicEnabled)
+        {
+            AudioManager.PlayMusic();
+        }
+
         _uiManager.Initialize();
         WorldBuilder.Initialize();
 
@@ -371,5 +376,21 @@ public class GameManager : Singleton<GameManager>
 
         _enemyBuildings.Remove(item as Building);
         NavMeshSurface.BuildNavMesh();
+    }
+
+    public void ToggleMusic()
+    {
+        _uiManager.ToggleMusic();
+
+        if (_isMusicEnabled)
+        {
+            _isMusicEnabled = false;
+            AudioManager.StopMusic();
+        }
+        else
+        {
+            _isMusicEnabled = true;
+            AudioManager.PlayMusic();
+        }
     }
 }

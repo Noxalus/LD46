@@ -23,6 +23,9 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI _timerText;
 
     [SerializeField]
+    private Image _musicDisableImage = null;
+
+    [SerializeField]
     private List<ItemButton> _itemButtons = new List<ItemButton>();
 
     [SerializeField]
@@ -81,5 +84,10 @@ public class UIManager : MonoBehaviour
         {
             itemButton.Select(item == itemButton.Item);
         }
+    }
+
+    public void ToggleMusic()
+    {
+        _musicDisableImage.enabled = !_musicDisableImage.enabled;
     }
 }

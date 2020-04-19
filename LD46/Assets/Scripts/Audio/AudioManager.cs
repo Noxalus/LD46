@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -38,5 +39,10 @@ public class AudioManager : MonoBehaviour
     public void PlayExecuteOrderSound()
     {
         _source.PlayOneShot(_executeOrderSounds.GetRandomSound());
+    }
+
+    public void StopMusic()
+    {
+        _source.Stop();
     }
 }
