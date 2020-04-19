@@ -103,4 +103,14 @@ public class Unit : Item
             // Ask GameManager a new target to move at?
         }
     }
+
+    protected void Attack()
+    {
+        _currentActiveTarget.TakeDamage(_attack);
+
+        if (_animator != null)
+        {
+            _animator.SetTrigger("Attack");
+        }
+    }
 }

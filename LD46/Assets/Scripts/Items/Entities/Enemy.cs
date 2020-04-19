@@ -18,7 +18,7 @@
 
         if (_currentActiveTarget != null)
         {
-            _currentActiveTarget.TakeDamage(_attack);
+            Attack();
         }
         else
         {
