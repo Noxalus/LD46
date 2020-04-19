@@ -10,6 +10,9 @@ public class HPBar : MonoBehaviour
     [SerializeField]
     private RectTransform _heartHolder = null;
 
+    [SerializeField]
+    private CanvasGroup _canvasGroup = null;
+
     private List<Heart> _instances = new List<Heart>();
 
     private int _maxHp;
@@ -30,5 +33,10 @@ public class HPBar : MonoBehaviour
         {
             _instances[i].Empty(i >= value);
         }
+    }
+
+    public void Hide(bool hide)
+    {
+        _canvasGroup.alpha = hide ? 0f : 1f;
     }
 }

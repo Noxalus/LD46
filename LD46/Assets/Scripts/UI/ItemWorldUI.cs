@@ -32,9 +32,14 @@ public class ItemWorldUI : MonoBehaviour
         _hpBar.Initialize(link.HP);
     }
 
-    public void UpdateHealthBar(int v)
+    public void UpdateHealthBar(int hp)
     {
-        _hpBar.UpdateHP(v);
+        _hpBar.UpdateHP(hp);
+    }
+
+    public void HideHPBar(bool hide)
+    {
+        _hpBar.Hide(hide);
     }
 
     public void AmountChanged(int amount, bool showHealthBar = false)

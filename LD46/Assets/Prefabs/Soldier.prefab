@@ -129,9 +129,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI: {fileID: 3615580232656269116}
-  _baseHealth: 10
+  _animator: {fileID: 0}
+  _baseHealth: 3
   Price: {fileID: 11400000, guid: 0ad1369b3f322ab42965a70be727e5c1, type: 2}
-  _actionFrequency: 0.5
+  _actionFrequency: 1
   Agent: {fileID: 4966398688576749667}
   _attack: 1
   _itemsToWatchTags:
@@ -289,6 +290,11 @@ PrefabInstance:
     - target: {fileID: 4868064344237059051, guid: 92f70e621206b05469e2bf5461e08163,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5045799299624976869, guid: 92f70e621206b05469e2bf5461e08163,
+        type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8850835234172491357, guid: 92f70e621206b05469e2bf5461e08163,

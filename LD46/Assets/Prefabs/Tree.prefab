@@ -129,7 +129,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI: {fileID: 2089917242818589076}
+  _animator: {fileID: 0}
   _baseHealth: 1
+  Price: {fileID: 0}
+  _actionFrequency: 1
   _minQuantity: 1
   _maxQuantity: 50
 --- !u!65 &5789526071865533817
@@ -288,7 +291,7 @@ PrefabInstance:
     - target: {fileID: 2341404974144636627, guid: 92f70e621206b05469e2bf5461e08163,
         type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4294967295
+      value: 268435455
       objectReference: {fileID: 0}
     - target: {fileID: 4093231883840198318, guid: 92f70e621206b05469e2bf5461e08163,
         type: 3}
@@ -355,6 +358,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5045799299624976869, guid: 92f70e621206b05469e2bf5461e08163,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5045799299624976869, guid: 92f70e621206b05469e2bf5461e08163,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5338361540951110267, guid: 92f70e621206b05469e2bf5461e08163,
         type: 3}
       propertyPath: m_Layer
@@ -369,6 +382,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 939.8325
+      objectReference: {fileID: 0}
+    - target: {fileID: 8278505843025073402, guid: 92f70e621206b05469e2bf5461e08163,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8557374279116433043, guid: 92f70e621206b05469e2bf5461e08163,
         type: 3}

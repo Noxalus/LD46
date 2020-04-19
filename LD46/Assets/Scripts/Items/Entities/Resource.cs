@@ -20,6 +20,8 @@ public class Resource : Item
 
         _initialQuantity = UnityEngine.Random.Range(_minQuantity, _maxQuantity + 1);
         _quantity = _initialQuantity;
+
+        UI.HideHPBar(true);
     }
 
     public void Collect(int production)

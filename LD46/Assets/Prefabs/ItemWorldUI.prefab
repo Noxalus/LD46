@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 964820287120174135}
   - component: {fileID: 5702418915308573162}
   - component: {fileID: 1174426324320465625}
+  - component: {fileID: 632071867921167280}
   m_Layer: 8
   m_Name: HealthBar
   m_TagString: Untagged
@@ -378,6 +379,19 @@ MonoBehaviour:
   _heartPrefab: {fileID: 937069046592571441, guid: 70f65dfaaa2459e479ff08cef075528e,
     type: 3}
   _heartHolder: {fileID: 5045799299624976869}
+  _canvasGroup: {fileID: 632071867921167280}
+--- !u!225 &632071867921167280
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8278505843025073402}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8557374279116433043
 GameObject:
   m_ObjectHideFlags: 0
