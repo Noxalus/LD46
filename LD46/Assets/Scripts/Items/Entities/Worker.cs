@@ -14,7 +14,7 @@ public class Worker : Unit
         if (_currentActiveResource != null)
         {
             _currentActiveResource.Collect(_production);
-            UI.AmountChanged(_production);
+            UI.AmountChanged(_production, _currentActiveResource.Type);
         }
     }
 

@@ -1,8 +1,11 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
+[Serializable]
+public class ResourceSpriteDictionary : SerializableDictionary<EResourceType, Sprite> { }
 
 public class ItemWorldUI : MonoBehaviour
 {
@@ -13,13 +16,28 @@ public class ItemWorldUI : MonoBehaviour
     private Animator _animator = null;
 
     [SerializeField]
+    protected GameObject _amount = null;
+
+    [SerializeField]
     protected TextMeshProUGUI _amountText = null;
+
+    [SerializeField]
+    private Color _amountPositiveColor = Color.green;
+
+    [SerializeField]
+    private Color _amountNegativeColor = Color.red;
 
     [SerializeField]
     protected Image _selectionCircle = null;
 
     [SerializeField]
     private HPBar _hpBar = null;
+
+    [SerializeField]
+    private Image _resourceIcon = null;
+
+    [SerializeField]
+    private ResourceSpriteDictionary _resourceSprites = new ResourceSpriteDictionary();
 
     private void Start()
     {
@@ -42,28 +60,37 @@ public class ItemWorldUI : MonoBehaviour
         _hpBar.Hide(hide);
     }
 
-    public void AmountChanged(int amount, bool showHealthBar = false)
+    public void AmountChanged(int amount, EResourceType resource = EResourceType.Unknown)
     {
         string amountString = amount > 0 ? "+" : "";
         amountString += amount.ToString();
 
         _amountText.text = amountString;
-        _amountText.color = amount > 0 ? Color.green : Color.red;
+        _amountText.color = amount > 0 ? _amountPositiveColor : _amountNegativeColor;
 
-        if (showHealthBar)
+        if (resource != EResourceType.Unknown)
         {
-            _animator.SetTrigger("AmountChangedWithHealthBar");
+            _resourceIcon.sprite = _resourceSprites[resource];
         }
         else
         {
-            _animator.SetTrigger("AmountChanged");
+            _resourceIcon.sprite = null;
+        }
+
+        if (amount < 0)
+        {
+            _animator.SetTrigger("TakeDamage");
+        }
+        else
+        {
+            _animator.SetTrigger("CollectResource");
         }
     }
 
     private void Update()
     {
         _hpBar.transform.rotation = _worldSpaceCanvas.worldCamera.transform.rotation;
-        _amountText.transform.rotation = _worldSpaceCanvas.worldCamera.transform.rotation;
+        _amount.transform.rotation = _worldSpaceCanvas.worldCamera.transform.rotation;
     }
 
     public void Select()

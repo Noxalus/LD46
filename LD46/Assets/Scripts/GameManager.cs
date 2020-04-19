@@ -74,9 +74,15 @@ public class GameManager : Singleton<GameManager>
 
     private void Initialize()
     {
+        _wood = 0;
+        _rock = 0;
+        _gold = 0;
+
+#if DEBUG
         _wood = 99;
         _rock = 99;
         _gold = 99;
+#endif
 
         _timer = 0;
         _isGameOver = false;
@@ -242,6 +248,7 @@ public class GameManager : Singleton<GameManager>
             }
         }
 
+#if DEBUG
         #region  Debug
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -265,6 +272,7 @@ public class GameManager : Singleton<GameManager>
         }
 
         #endregion
+#endif
     }
 
     private IEnumerator GenerateChunksCoroutine()

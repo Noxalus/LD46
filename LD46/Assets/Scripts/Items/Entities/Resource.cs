@@ -14,6 +14,8 @@ public class Resource : Item
 
     protected EResourceType _type = EResourceType.Unknown;
 
+    public EResourceType Type => _type;
+
     public override void Initialize()
     {
         base.Initialize();
