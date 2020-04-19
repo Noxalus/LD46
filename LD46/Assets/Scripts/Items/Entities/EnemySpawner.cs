@@ -17,7 +17,14 @@ public class EnemySpawner : Building
             _actionFrequency = spawnFrequence.Value;
         }
 
-        _actionTimer = Random.Range(0, _actionTimer);
+        // Execute action directly
+        //_actionTimer = 0;
+        ExecuteAction();
+    }
+
+    protected override void InternalUpdate()
+    {
+        base.InternalUpdate();
     }
 
     protected override void ExecuteAction()

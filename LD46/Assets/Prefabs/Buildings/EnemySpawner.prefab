@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2282847372044382338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 3.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 775561096731588075}
@@ -82,7 +82,9 @@ MonoBehaviour:
   _animator: {fileID: 0}
   _baseHealth: 20
   Price: {fileID: 0}
+  _audioSource: {fileID: 0}
   _actionFrequency: 60
+  _dieSounds: {fileID: 0}
   _spawnPosition: {fileID: 3311201115991141532}
   _enemyPrefab: {fileID: 3926426773715011402, guid: e232093456e002644830d82613d6cf6f,
     type: 3}

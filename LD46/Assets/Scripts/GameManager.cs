@@ -9,6 +9,8 @@ public class GameManager : Singleton<GameManager>
     public NavMeshSurface NavMeshSurface = null;
     public WorldBuilder WorldBuilder = null;
 
+    public GameConfiguration GameConfiguration = null;
+
     public AudioManager AudioManager = null;
 
     [SerializeField]
@@ -49,11 +51,14 @@ public class GameManager : Singleton<GameManager>
     private Vector3 _initialCameraPosition;
     private Quaternion _initialCameraRotation;
     private bool _isMusicEnabled = true;
+    private int _difficulty = 0;
 
     public King King => _king;
     public int Wood => _wood;
     public int Rock => _rock;
     public int Gold => _gold;
+
+    public int Difficulty => _difficulty;
 
     public ItemPlacer ItemPlacer => _itemPlacer;
 
@@ -89,6 +94,7 @@ public class GameManager : Singleton<GameManager>
 
         _timer = 0;
         _isGameOver = false;
+        _difficulty = 0;
 
         MainCamera.transform.position = _initialCameraPosition;
         MainCamera.transform.rotation = _initialCameraRotation;
@@ -186,7 +192,7 @@ public class GameManager : Singleton<GameManager>
     {
         while (true)
         {
-            yield return new WaitForSeconds(60);
+            yield return new WaitForSeconds(GameConfiguration.WorldChunkSpawnFrequency[_difficulty]);
             WorldBuilder.GenerateNewChunk();
         }
     }

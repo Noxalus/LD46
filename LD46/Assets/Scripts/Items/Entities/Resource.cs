@@ -24,11 +24,11 @@ public class Resource : Item
 
     public EResourceType Type => _type;
 
-    public override void Initialize()
+    public void Initialize(int quantity)
     {
         base.Initialize();
 
-        _initialQuantity = UnityEngine.Random.Range(_minQuantity, _maxQuantity + 1);
+        _initialQuantity = quantity;
         _quantity = _initialQuantity;
 
         UI.HideHPBar(true);

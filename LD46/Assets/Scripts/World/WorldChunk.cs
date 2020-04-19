@@ -18,9 +18,6 @@ public class WorldChunk : MonoBehaviour
     private float _spaceBetweenResources = 5f;
 
     [SerializeField]
-    private float _resourcesProbability = 0.5f;
-
-    [SerializeField]
     private float _environmentProbability = 0.5f;
 
     [SerializeField]
@@ -46,8 +43,7 @@ public class WorldChunk : MonoBehaviour
     public void Initialize(
         WorldBuilder worldBuilder, 
         WorldChunk parent, 
-        EDirection parentDirection,
-        int enemySpawnerMaxCount = 0)
+        EDirection parentDirection)
     {
         _worldBuilder = worldBuilder;
 
@@ -77,7 +73,13 @@ public class WorldChunk : MonoBehaviour
         transform.position = newChunkPosition;
 
         GenerateResources();
-        GenerateEnemies(enemySpawnerMaxCount);
+
+        // Don't generate enemies for the first chunk
+        if (parent != null)
+        {
+            GenerateEnemies();
+        }
+
         GenerateEnvironment();
 
         //_navMeshSurface.BuildNavMesh();
@@ -105,17 +107,20 @@ public class WorldChunk : MonoBehaviour
 
     private void GenerateResources()
     {
+        var gameManager = GameManager.Instance;
+        var currentDifficulty = gameManager.Difficulty;
+        var gameConfiguration = gameManager.GameConfiguration;
+
         Vector4 bounds = GetBounds();
 
         Vector2 bottomLeftBound = new Vector2(bounds.x, bounds.y);
         Vector2 topRightBound = new Vector2(bounds.z, bounds.w);
 
-
         for (float y = bottomLeftBound.y; y < topRightBound.y; y += _spaceBetweenResources)
         {
             for (float x = bottomLeftBound.x; x < topRightBound.x; x += _spaceBetweenResources)
             {
-                if (Random.value > _resourcesProbability)
+                if (Random.value > gameConfiguration.ResourcePercentageOnNewChunk[currentDifficulty])
                 {
                     continue;
                 }
@@ -163,6 +168,13 @@ public class WorldChunk : MonoBehaviour
                     );
                 }
 
+                var randomQuantity = Random.Range(
+                    gameConfiguration.ResourceQuantityMinOnNewChunk[currentDifficulty],
+                    gameConfiguration.ResourceQuantityMaxOnNewChunk[currentDifficulty] + 1
+                );
+
+                resourceInstance.Initialize(randomQuantity);
+
                 resourceInstance.transform.position = new Vector3(x + randomOffset.x, 0, y + randomOffset.y);
                 resourceInstance.transform.Rotate(Vector3.up, Random.Range(0, 360));
                 GameManager.Instance.AddResources(resourceInstance);
@@ -170,10 +182,17 @@ public class WorldChunk : MonoBehaviour
         }
     }
 
-    private void GenerateEnemies(int maxCount)
+    private void GenerateEnemies()
     {
-        int count = Random.Range(0, maxCount + 1);
+        var gameInstance = GameManager.Instance;
+
+        int count = Random.Range(
+            gameInstance.GameConfiguration.EnemySpawnerMinOnNewChunk[gameInstance.Difficulty],
+            gameInstance.GameConfiguration.EnemySpawnerMaxOnNewChunk[gameInstance.Difficulty] + 1
+        );
+
         // To make sure spawner are not on the edge of a chunk
+
         float boundsOffset = 5f;
 
         for (int i = 0; i < count; i++)
@@ -195,7 +214,12 @@ public class WorldChunk : MonoBehaviour
             instance.transform.position = randomPosition;
             instance.transform.Rotate(Vector3.up, Random.Range(0, 360));
 
-            instance.Initialize(Random.Range(20, 150));
+            instance.Initialize(
+                Random.Range(
+                  gameInstance.GameConfiguration.EnemySpawnerMinSpawnFrequency[gameInstance.Difficulty],
+                  gameInstance.GameConfiguration.EnemySpawnerMaxSpawnFrequency[gameInstance.Difficulty]
+                )
+            );
 
             GameManager.Instance.AddEnemyBuilding(instance);
         }

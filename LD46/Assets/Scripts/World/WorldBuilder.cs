@@ -69,8 +69,7 @@ public class WorldBuilder : MonoBehaviour
             int randomDirectionIndex = Random.Range(0, emptyNeighbors.Count);
             EDirection randomDirection = emptyNeighbors[randomDirectionIndex];
 
-            int enemySpawnerCount = Random.Range(1, 3);
-            newChunk.Initialize(this, randomExpandableChunk, GetInverseDirection(randomDirection), enemySpawnerCount);
+            newChunk.Initialize(this, randomExpandableChunk, GetInverseDirection(randomDirection));
         }
 
         _chunks.Add(newChunk);
@@ -79,6 +78,7 @@ public class WorldBuilder : MonoBehaviour
         Debug.Log($"Time to generate a new chunk: {time.ElapsedMilliseconds}ms");
 
         time.Restart();
+        // Really time consuming => find a solution to build local chunk?
         GameManager.Instance.NavMeshSurface.BuildNavMesh();
         time.Stop();
 
