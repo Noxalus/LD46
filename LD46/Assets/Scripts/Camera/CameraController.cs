@@ -88,8 +88,9 @@ public class CameraController : MonoBehaviour
         if (_panOriginPosition != Vector2.zero)
         {
             // Move the camera according the offset (move value)
-            position.x += (_panOriginPosition.x - Input.mousePosition.x) * (maxPanSpeed / 100f) * Time.deltaTime;
-            position.y += (_panOriginPosition.y - Input.mousePosition.y) * (maxPanSpeed / 100f) * Time.deltaTime;
+            float zoomFactor = (Camera.orthographicSize / 10f);
+            position.x += (_panOriginPosition.x - Input.mousePosition.x) * (maxPanSpeed / 100f) * zoomFactor * Time.deltaTime;
+            position.y += (_panOriginPosition.y - Input.mousePosition.y) * (maxPanSpeed / 100f) * zoomFactor * Time.deltaTime;
 
             _panOriginPosition = Vector2.Lerp(_panOriginPosition, Input.mousePosition, 0.5f);
         }
