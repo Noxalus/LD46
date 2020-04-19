@@ -100,7 +100,7 @@ public class GameManager : Singleton<GameManager>
         _uiManager.Initialize();
         WorldBuilder.Initialize();
 
-        SpawnBaseUnits();
+        //SpawnBaseUnits();
 
         _worldBuilderCoroutine = StartCoroutine(WorldBuilderCoroutine());
     }
