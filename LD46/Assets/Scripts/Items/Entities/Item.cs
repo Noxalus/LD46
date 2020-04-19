@@ -15,6 +15,9 @@ public class Item : MonoBehaviour
     public Price Price;
 
     [SerializeField]
+    protected AudioSource _audioSource = null;
+
+    [SerializeField]
     protected float _actionFrequency = 1f; // Seconds
 
     public delegate void ItemEventHandler(Item item);
