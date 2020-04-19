@@ -110,17 +110,20 @@ public class Item : MonoBehaviour
         //audioSource.PlayOneShot(_dieSounds.GetRandomSound());
 
         // Worst thing to do ever, but no time left...
-        var audioSourceGameObject = new GameObject("DeathSource");
-        var audioSource = audioSourceGameObject.AddComponent<AudioSource>();
-        audioSource.spatialBlend = 1f;
-        audioSource.rolloffMode = AudioRolloffMode.Linear;
-        audioSource.minDistance = 1f;
-        audioSource.maxDistance = 50f;
-        audioSource.PlayOneShot(_dieSounds.GetRandomSound());
 
-        var gameObjectVanisher = audioSourceGameObject.AddComponent<GameObjectVanisher>();
-        gameObjectVanisher.Initialize(2f);
+        if (_dieSounds)
+        {
+            var audioSourceGameObject = new GameObject("DeathSource");
+            var audioSource = audioSourceGameObject.AddComponent<AudioSource>();
+            audioSource.spatialBlend = 1f;
+            audioSource.rolloffMode = AudioRolloffMode.Linear;
+            audioSource.minDistance = 1f;
+            audioSource.maxDistance = 50f;
+            audioSource.PlayOneShot(_dieSounds.GetRandomSound());
 
+            var gameObjectVanisher = audioSourceGameObject.AddComponent<GameObjectVanisher>();
+            gameObjectVanisher.Initialize(2f);
+        }
         Destroy(gameObject);
 
         //StartCoroutine(PlayDeathAnimation());

@@ -34,14 +34,10 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _gameOverDescription = null;
 
-    private void Start()
-    {
-        _itemButtons = _canvas.GetComponentsInChildren<ItemButton>().ToList();
-    }
-
     public void Initialize()
     {
         _gameOverScreen.SetActive(false);
+        _itemButtons = _canvas.GetComponentsInChildren<ItemButton>().ToList();
     }
 
     public void SetWoodAmount(int value)

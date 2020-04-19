@@ -82,14 +82,13 @@ public class GameManager : Singleton<GameManager>
         _gold = 0;
 
 #if DEBUG
-        _wood = 99;
-        _rock = 99;
-        _gold = 99;
+        //_wood = 99;
+        //_rock = 99;
+        //_gold = 99;
 #endif
 
         _timer = 0;
         _isGameOver = false;
-        UIRefreshCurrencies();
 
         MainCamera.transform.position = _initialCameraPosition;
         MainCamera.transform.rotation = _initialCameraRotation;
@@ -107,8 +106,9 @@ public class GameManager : Singleton<GameManager>
 
         _uiManager.Initialize();
         WorldBuilder.Initialize();
+        UIRefreshCurrencies();
 
-        //SpawnBaseUnits();
+        SpawnBaseUnits();
 
         _worldBuilderCoroutine = StartCoroutine(WorldBuilderCoroutine());
     }
@@ -186,7 +186,7 @@ public class GameManager : Singleton<GameManager>
     {
         while (true)
         {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(60);
             WorldBuilder.GenerateNewChunk();
         }
     }

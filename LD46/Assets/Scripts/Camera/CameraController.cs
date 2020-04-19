@@ -66,8 +66,8 @@ public class CameraController : MonoBehaviour
         //}
 
         float ratio;
-        Vector3 position = transform.position;
-        position = Vector3.zero;
+        Vector3 direction = transform.position;
+        direction = Vector3.zero;
 
         float mouseX = Mathf.Clamp(Input.mousePosition.x, 0, Screen.width);
         float mouseY = Mathf.Clamp(Input.mousePosition.y, 0, Screen.height);
@@ -77,8 +77,8 @@ public class CameraController : MonoBehaviour
 
         //maxPanSpeed *= Camera.orthographicSize / 10f;
 
-        position.x += maxPanSpeed * horizontal * Time.deltaTime;
-        position.y += maxPanSpeed * vertical * Time.deltaTime;
+        direction.x += maxPanSpeed * horizontal * Time.deltaTime;
+        direction.y += maxPanSpeed * vertical * Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.Mouse2))
         {
@@ -89,8 +89,8 @@ public class CameraController : MonoBehaviour
         {
             // Move the camera according the offset (move value)
             float zoomFactor = (Camera.orthographicSize / 10f);
-            position.x += (_panOriginPosition.x - Input.mousePosition.x) * (maxPanSpeed / 100f) * zoomFactor * Time.deltaTime;
-            position.y += (_panOriginPosition.y - Input.mousePosition.y) * (maxPanSpeed / 100f) * zoomFactor * Time.deltaTime;
+            direction.x += (_panOriginPosition.x - Input.mousePosition.x) * (maxPanSpeed / 100f) * zoomFactor * Time.deltaTime;
+            direction.y += (_panOriginPosition.y - Input.mousePosition.y) * (maxPanSpeed / 100f) * zoomFactor * Time.deltaTime;
 
             _panOriginPosition = Vector2.Lerp(_panOriginPosition, Input.mousePosition, 0.5f);
         }
@@ -130,13 +130,15 @@ public class CameraController : MonoBehaviour
         Camera.orthographicSize -= scroll * scrollSpeed * Time.deltaTime;
         Camera.orthographicSize = Mathf.Clamp(Camera.orthographicSize, _zoomMin, _zoomMax);
 
-        position = Camera.transform.TransformDirection(position);
+        direction = Camera.transform.TransformDirection(direction);
 
         //position.x = Mathf.Clamp(position.x, panLimitBottomLeft.x, panLimitTopRight.x);
         //position.y = Mathf.Clamp(position.y, zoomMin, zoomMax);
         //position.z = Mathf.Clamp(position.z, panLimitBottomLeft.y, panLimitTopRight.y);
 
-        transform.position += position;
+        float previousY = transform.position.y;
+        transform.position += direction;
+        transform.position = new Vector3(transform.position.x, previousY, transform.position.z);
     }
 
     private void CheckResolution()
