@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6215476629742569593
+--- !u!1001 &6394091984313531548
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -62,10 +62,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2677529773820271483, guid: 79a6d24be39971742b5d3b833a0a65b7,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8498803
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677529773820271483, guid: 79a6d24be39971742b5d3b833a0a65b7,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.9716981
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677529773820271483, guid: 79a6d24be39971742b5d3b833a0a65b7,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.068752214
+      objectReference: {fileID: 0}
     - target: {fileID: 2677529773820271485, guid: 79a6d24be39971742b5d3b833a0a65b7,
         type: 3}
       propertyPath: m_Name
-      value: PixelFX
+      value: CollectGoldFX
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79a6d24be39971742b5d3b833a0a65b7, type: 3}

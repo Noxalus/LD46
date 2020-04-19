@@ -6,6 +6,9 @@ public class Resource : Item
     private GameObject Mesh = null;
 
     [SerializeField]
+    private ParticleSystem _collectFx = null;
+
+    [SerializeField]
     private float _minMeshScale = 0.2f;
 
     [SerializeField]
@@ -49,6 +52,8 @@ public class Resource : Item
 
         Mesh.transform.localScale = meshScale;
         GameManager.Instance.IncreaseCurrency(_type, production);
+
+        _collectFx.Play();
 
         if (_quantity <= 0)
         {
