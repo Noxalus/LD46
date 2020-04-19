@@ -8,6 +8,9 @@ public class ItemButton : MonoBehaviour
     [SerializeField]
     private Item _itemPrefab = null;
 
+    [SerializeField]
+    private Image _selectionBorder = null;
+
     //[SerializeField]
     //private Price _itemPrice = null;
 
@@ -23,11 +26,20 @@ public class ItemButton : MonoBehaviour
     [SerializeField]
     private Image _itemIcon = null;
 
+    public Item Item => _itemPrefab;
+
     public void Start()
     {
         _woodCost.text = _itemPrefab.Price.Wood.ToString();
         _rockCost.text = _itemPrefab.Price.Rock.ToString();
         _goldCost.text = _itemPrefab.Price.Gold.ToString();
+
+        _selectionBorder.enabled = false;
+    }
+
+    public void Select(bool select)
+    {
+        _selectionBorder.enabled = select;
     }
 
     public void ChangeItem()

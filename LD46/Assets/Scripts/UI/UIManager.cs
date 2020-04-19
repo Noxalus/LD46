@@ -74,4 +74,12 @@ public class UIManager : MonoBehaviour
             itemButton.CheckCurrencies();
         }
     }
+
+    public void SelectItem(Item item)
+    {
+        foreach (var itemButton in _itemButtons)
+        {
+            itemButton.Select(item == itemButton.Item);
+        }
+    }
 }

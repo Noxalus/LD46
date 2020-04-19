@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 865fe7917ddc20842bd8b452d4af4ee5, type: 3}
+  m_Name: CollectSounds
+  m_EditorClassIdentifier: 
+  _sounds:
+  - {fileID: 8300000, guid: d0df6dfab846e0e4685c9a82a719c013, type: 3}
+  - {fileID: 8300000, guid: 947ecc83d72d4704dbb176128673459c, type: 3}
+  - {fileID: 8300000, guid: e53e599c5e7ef56428635faf597edfd0, type: 3}
+  - {fileID: 8300000, guid: 2ab87e6de15856d4b9779cdcca8404d0, type: 3}

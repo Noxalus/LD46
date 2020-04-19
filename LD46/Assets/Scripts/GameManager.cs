@@ -9,6 +9,8 @@ public class GameManager : Singleton<GameManager>
     public NavMeshSurface NavMeshSurface = null;
     public WorldBuilder WorldBuilder = null;
 
+    public AudioManager AudioManager = null;
+
     [SerializeField]
     private UIManager _uiManager = null;
 
@@ -219,6 +221,8 @@ public class GameManager : Singleton<GameManager>
 
         _itemPlacer.Enable(!itemPlacerClosed);
         _itemSelector.Enable(itemPlacerClosed);
+
+        _uiManager.SelectItem(item);
     }
 
     private void OnItemSelected(Item item)
@@ -325,6 +329,8 @@ public class GameManager : Singleton<GameManager>
         _gold -= item.Price.Gold;
 
         UIRefreshCurrencies();
+
+        AudioManager.PlayPlaceItemSound();
     }
 
     private void UIRefreshCurrencies()
