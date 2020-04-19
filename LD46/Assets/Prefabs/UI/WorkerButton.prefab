@@ -152,6 +152,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4890866959251634505, guid: e6cfb005bb1ab2b44a213fae94cab6ee,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -42
+      objectReference: {fileID: 0}
     - target: {fileID: 4915080071740657058, guid: e6cfb005bb1ab2b44a213fae94cab6ee,
         type: 3}
       propertyPath: m_ChildScaleWidth
@@ -172,6 +177,12 @@ PrefabInstance:
       propertyPath: _itemPrefab
       value: 
       objectReference: {fileID: 1365203308711361979, guid: d9209c0c09d8ffd4fa72d666fc334273,
+        type: 3}
+    - target: {fileID: 7742193744537372966, guid: e6cfb005bb1ab2b44a213fae94cab6ee,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d3bc08e7a058ebf41bfa27470d82853e,
         type: 3}
     - target: {fileID: 7991612654967250525, guid: e6cfb005bb1ab2b44a213fae94cab6ee,
         type: 3}

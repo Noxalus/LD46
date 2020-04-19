@@ -100,15 +100,20 @@ public class GameManager : Singleton<GameManager>
         _uiManager.Initialize();
         WorldBuilder.Initialize();
 
+        SpawnBaseUnits();
+
+        _worldBuilderCoroutine = StartCoroutine(WorldBuilderCoroutine());
+    }
+
+    private void SpawnBaseUnits()
+    {
         // Instantiate first units
         _king = Instantiate(_kingPrefab, Vector3.zero, Quaternion.identity) as King;
         _king.OnDied += OnKingDied;
 
         _units.Add(_king);
-        _units.Add(Instantiate(_firstSoldierPrefab, Vector3.forward, Quaternion.identity));
-        _units.Add(Instantiate(_firstWorkerPrefab, Vector3.right, Quaternion.identity));
-
-        _worldBuilderCoroutine = StartCoroutine(WorldBuilderCoroutine());
+        _units.Add(Instantiate(_firstSoldierPrefab, Vector3.forward * 3f, Quaternion.identity));
+        _units.Add(Instantiate(_firstWorkerPrefab, Vector3.right * 3f, Quaternion.identity));
     }
 
     private void Clear()
