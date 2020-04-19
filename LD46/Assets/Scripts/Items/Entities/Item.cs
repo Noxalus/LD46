@@ -72,7 +72,7 @@ public class Item : MonoBehaviour
     {
     }
 
-    public void TakeDamage(int amount)
+    public virtual void TakeDamage(int amount)
     {
         _hp -= amount;
 

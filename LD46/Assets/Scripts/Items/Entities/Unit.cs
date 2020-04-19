@@ -7,6 +7,9 @@ public class Unit : Item
     public NavMeshAgent Agent = null;
 
     [SerializeField]
+    private ParticleSystem _hurtFx = null;
+
+    [SerializeField]
     protected int _attack = 1;
 
     [SerializeField]
@@ -117,6 +120,16 @@ public class Unit : Item
         if (_animator != null)
         {
             _animator.SetTrigger("Attack");
+        }
+    }
+
+    public override void TakeDamage(int amount)
+    {
+        base.TakeDamage(amount);
+
+        if (_hurtFx)
+        {
+            _hurtFx.Play();
         }
     }
 }
