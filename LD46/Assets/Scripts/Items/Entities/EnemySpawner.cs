@@ -37,9 +37,7 @@ public class EnemySpawner : Building
 
     private void SpawnEnemy()
     {
-        Enemy enemy = Instantiate(_enemyPrefab);
-        enemy.transform.position = _spawnPosition.position;
-        enemy.transform.rotation = _spawnPosition.rotation;
+        Enemy enemy = Instantiate(_enemyPrefab, _spawnPosition.position, _spawnPosition.rotation);
 
         enemy.Initialize(
             GameManager.Instance.GameConfiguration.EnemyHealth[GameManager.Instance.Difficulty]
