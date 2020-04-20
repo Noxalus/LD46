@@ -14,6 +14,9 @@ public class GameManager : Singleton<GameManager>
     public AudioManager AudioManager = null;
 
     [SerializeField]
+    private GameObject _menuScreen = null;
+
+    [SerializeField]
     private UIManager _uiManager = null;
 
     [SerializeField]
@@ -71,8 +74,6 @@ public class GameManager : Singleton<GameManager>
 
         _initialCameraPosition = MainCamera.transform.position;
         _initialCameraRotation = MainCamera.transform.rotation;
-
-        Initialize();
     }
 
     public void Retry()
@@ -81,17 +82,13 @@ public class GameManager : Singleton<GameManager>
         Initialize();
     }
 
-    private void Initialize()
+    public void Initialize()
     {
+        _menuScreen.SetActive(false);
+
         _wood = 0;
         _rock = 0;
         _gold = 0;
-
-#if DEBUG
-        _wood = 99;
-        _rock = 99;
-        _gold = 99;
-#endif
 
         _timer = 0;
         _isGameOver = false;
@@ -208,7 +205,7 @@ public class GameManager : Singleton<GameManager>
 
     private void OnItemPlaced(Item item)
     {
-        Debug.Log($"Placed an item: {item.name}");
+        //Debug.Log($"Placed an item: {item.name}");
 
         if (item is Unit unit)
         {
@@ -320,6 +317,15 @@ public class GameManager : Singleton<GameManager>
         if (Input.GetKeyDown(KeyCode.G))
         {
             GameOver();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            _wood = 99;
+            _rock = 99;
+            _gold = 99;
+
+            UIRefreshCurrencies();
         }
 
         #endregion

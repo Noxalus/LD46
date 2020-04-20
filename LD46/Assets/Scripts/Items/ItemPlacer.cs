@@ -65,15 +65,29 @@ public class ItemPlacer : MonoBehaviour
 
             _ghostItemGameObject.SetActive(isOnGround);
 
-            if (isOnGround && _canPlace && Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                if (!EventSystem.current.IsPointerOverGameObject() && CanBuy(_currentItem))
+                if (isOnGround)
                 {
-                    Buy(_currentItem);
+                    if (_canPlace)
+                    {
+                        if (!EventSystem.current.IsPointerOverGameObject() && CanBuy(_currentItem))
+                        {
+                            Buy(_currentItem);
+                        }
+                        else
+                        {
+                            SetItem(null);
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("Can't place item (it collides with another one)");
+                    }
                 }
                 else
                 {
-                    SetItem(null);
+                    Debug.Log("Can't place item (it's not on the ground)");
                 }
             }
 

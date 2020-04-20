@@ -20,6 +20,7 @@ public class EnemySpawner : Building
         // Execute action directly
         //_actionTimer = 0;
         //ExecuteAction();
+        SpawnEnemy();
     }
 
     protected override void InternalUpdate()
