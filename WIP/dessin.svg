@@ -908,7 +908,10 @@ rkJggg==
        width="317.5" />
     <g
        id="g931"
-       transform="translate(260.93296,9.2807891)">
+       transform="translate(260.93296,9.2807891)"
+       inkscape:export-filename="E:\Projects\LD46\LD46\Assets\Sprites\MusicIcon.png"
+       inkscape:export-xdpi="15.744397"
+       inkscape:export-ydpi="15.744397">
       <path
          d="m 743.55262,771.21259 a 24.112984,24.112984 0 0 1 -24.11077,24.11298 24.112984,24.112984 0 0 1 -24.1152,-24.10857 24.112984,24.112984 0 0 1 24.10636,-24.1174 24.112984,24.112984 0 0 1 24.11961,24.10415"
          sodipodi:open="true"
@@ -959,11 +962,17 @@ rkJggg==
        style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:20;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 949.54456,817.45744 1131.2756,635.72642"
        id="path933"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="E:\Projects\LD46\LD46\Assets\Sprites\DisableIcon.png"
+       inkscape:export-xdpi="15.744397"
+       inkscape:export-ydpi="15.744397" />
     <path
        inkscape:connector-curvature="0"
        id="path937"
        d="M 949.54456,817.45744 1131.2756,635.72642"
-       style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:20;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:20;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="E:\Projects\LD46\LD46\Assets\Sprites\DisableIcon.png"
+       inkscape:export-xdpi="15.744397"
+       inkscape:export-ydpi="15.744397" />
   </g>
 </svg>
