@@ -57,11 +57,12 @@ MonoBehaviour:
   Price: {fileID: 0}
   _audioSource: {fileID: 792153721043528278}
   _actionFrequency: 1.5
+  _dieSounds: {fileID: 11400000, guid: b0d7e0ab96ad1ad47bd66cd7ab6ed918, type: 2}
+  _initializeOnStart: 0
   Agent: {fileID: 6531763168958651338}
   _hurtFx: {fileID: 5363947766726747756}
   _hitSounds: {fileID: 11400000, guid: fddd4e0beaeb0524ca9a01795c60e364, type: 2}
   _hurtSounds: {fileID: 11400000, guid: 254aa1116df0070418ee0a15fad16b25, type: 2}
-  _dieSounds: {fileID: 11400000, guid: b0d7e0ab96ad1ad47bd66cd7ab6ed918, type: 2}
   _attack: 1
   _itemsToWatchTags:
   - Unit
@@ -131,8 +132,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &7845881658005384245
 Animator:
   serializedVersion: 3
@@ -172,7 +173,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 2.0149057
   MaxDistance: 50
   Pan2D: 0
   rolloffMode: 1

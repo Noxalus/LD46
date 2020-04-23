@@ -21,7 +21,7 @@
 
         if (item.tag == "Enemy")
         {
-            _currentActiveTarget = item;
+            SetActiveTarget(item);
         }
     }
 }

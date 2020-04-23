@@ -89,11 +89,12 @@ MonoBehaviour:
   Price: {fileID: 0}
   _audioSource: {fileID: 1570542650234815960}
   _actionFrequency: 1
+  _dieSounds: {fileID: 11400000, guid: 81b27c3fe80559b4a9f86ee2f5f4677f, type: 2}
+  _initializeOnStart: 0
   Agent: {fileID: 5585593933638480627}
   _hurtFx: {fileID: 5017362194395866455}
   _hitSounds: {fileID: 11400000, guid: fddd4e0beaeb0524ca9a01795c60e364, type: 2}
   _hurtSounds: {fileID: 11400000, guid: 254aa1116df0070418ee0a15fad16b25, type: 2}
-  _dieSounds: {fileID: 11400000, guid: 81b27c3fe80559b4a9f86ee2f5f4677f, type: 2}
   _attack: 1
   _itemsToWatchTags: []
   _currentActiveTarget: {fileID: 0}
@@ -148,7 +149,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &7983681451762014101
 CapsuleCollider:
   m_ObjectHideFlags: 0

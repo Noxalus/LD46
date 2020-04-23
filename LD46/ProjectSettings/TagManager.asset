@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - Resource
   - EnemyBuilding
+  - Ghost
+  - Ground
   layers:
   - Default
   - TransparentFX

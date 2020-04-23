@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 7148308215795640221}
   - component: {fileID: 4966398688576749667}
   - component: {fileID: 1358985868051401790}
-  - component: {fileID: 8162898767417675270}
   - component: {fileID: 7467969453606184197}
   - component: {fileID: 1243906966861941984}
   - component: {fileID: 7033958305947336597}
+  - component: {fileID: 6818163816213730695}
   m_Layer: 8
   m_Name: Soldier
   m_TagString: Unit
@@ -57,11 +57,12 @@ MonoBehaviour:
   Price: {fileID: 11400000, guid: 0ad1369b3f322ab42965a70be727e5c1, type: 2}
   _audioSource: {fileID: 7033958305947336597}
   _actionFrequency: 1
+  _dieSounds: {fileID: 11400000, guid: b0d7e0ab96ad1ad47bd66cd7ab6ed918, type: 2}
+  _initializeOnStart: 0
   Agent: {fileID: 4966398688576749667}
   _hurtFx: {fileID: 3391806099585385588}
   _hitSounds: {fileID: 11400000, guid: fddd4e0beaeb0524ca9a01795c60e364, type: 2}
   _hurtSounds: {fileID: 11400000, guid: 254aa1116df0070418ee0a15fad16b25, type: 2}
-  _dieSounds: {fileID: 11400000, guid: b0d7e0ab96ad1ad47bd66cd7ab6ed918, type: 2}
   _attack: 1
   _itemsToWatchTags:
   - Enemy
@@ -106,19 +107,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!135 &8162898767417675270
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4507031965461824409}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!136 &7467969453606184197
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -172,7 +160,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.9284716
   MaxDistance: 50
   Pan2D: 0
   rolloffMode: 1
@@ -248,6 +236,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &6818163816213730695
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4507031965461824409}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4940706481387555443
 GameObject:
   m_ObjectHideFlags: 0

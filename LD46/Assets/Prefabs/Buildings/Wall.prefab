@@ -53,7 +53,9 @@ MonoBehaviour:
   _animator: {fileID: 4366809780378359011}
   _baseHealth: 5
   Price: {fileID: 11400000, guid: 7b00232b2c9b1c848b98419409faf8a3, type: 2}
+  _audioSource: {fileID: 0}
   _actionFrequency: 1
+  _dieSounds: {fileID: 0}
 --- !u!65 &5249842998944501203
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -79,7 +81,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0

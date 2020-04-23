@@ -17,7 +17,6 @@ public class Worker : Unit
 
         if (_currentActiveResource != null)
         {
-            transform.LookAt(_currentActiveResource.transform);
             _currentActiveResource.Collect(_production);
             UI.AmountChanged(_production, _currentActiveResource.Type);
             _animator.SetTrigger("Collect");

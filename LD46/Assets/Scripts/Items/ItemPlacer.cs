@@ -118,8 +118,10 @@ public class ItemPlacer : MonoBehaviour
     private void CreateGhost(Item item)
     {
         var ghostItem = Instantiate(item);
+        ghostItem.CanInteract(false);
         _ghostItemGameObject = ghostItem.gameObject;
         _ghostItemGameObject.name = "Ghost";
+        _ghostItemGameObject.tag = "Ghost";
         //_ghostItemGameObject.gameObject.layer = _ghostLayer;
 
         // Set ghost material on all meshes
@@ -131,23 +133,23 @@ public class ItemPlacer : MonoBehaviour
         }
 
         // Remove all colliders (not triggers)
-        Collider[] colliders = _ghostItemGameObject.GetComponentsInChildren<Collider>();
+        //Collider[] colliders = _ghostItemGameObject.GetComponentsInChildren<Collider>();
 
-        foreach (var collider in colliders)
-        {
-            if (!collider.isTrigger)
-            {
-                Destroy(collider);
-            }
-        }
+        //foreach (var collider in colliders)
+        //{
+        //    if (!collider.isTrigger)
+        //    {
+        //        Destroy(collider);
+        //    }
+        //}
 
-        // Remove rigid body
-        Rigidbody rigidBody = _ghostItemGameObject.GetComponent<Rigidbody>();
+        //// Remove rigid body
+        //Rigidbody rigidBody = _ghostItemGameObject.GetComponent<Rigidbody>();
 
-        if (rigidBody != null)
-        {
-            Destroy(rigidBody);
-        }
+        //if (rigidBody != null)
+        //{
+        //    Destroy(rigidBody);
+        //}
 
         // Remove nav mesh agent
         NavMeshAgent navMeshAgent = _ghostItemGameObject.GetComponent<NavMeshAgent>();
@@ -173,30 +175,27 @@ public class ItemPlacer : MonoBehaviour
 
     private void OnGhostCollisionTriggerEnter(Item item, int collisionCount)
     {
-        if (_canPlace && collisionCount > 0)
-        {
-            foreach (var meshRenderer in _ghostMeshRenderers)
-            {
-                meshRenderer.material = _ghostMaterialDisabled;
-            }
-        }
-
-        _canPlace = false;
+        UpdateGhostMaterial(collisionCount == 0);
     }
 
     private void OnGhostCollisionTriggerExit(Item item, int collisionCount)
     {
-        bool canPlace = collisionCount == 0;
+        UpdateGhostMaterial(collisionCount == 0);
+    }
 
-        if (!_canPlace && canPlace)
+    private void UpdateGhostMaterial(bool canPlace)
+    {
+        if (_canPlace != canPlace)
         {
+            Material material = canPlace ? _ghostMaterial : _ghostMaterialDisabled;
+
             foreach (var meshRenderer in _ghostMeshRenderers)
             {
-                meshRenderer.material = _ghostMaterial;
+                meshRenderer.material = material;
             }
-        }
 
-        _canPlace = canPlace;
+            _canPlace = canPlace;
+        }
     }
 
     private bool CanBuy(Item item)

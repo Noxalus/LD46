@@ -48,7 +48,10 @@ public class Unit : Item
             // Move toward affected target
             if (_currentLocationTarget != null)
             {
-                Agent.SetDestination(_currentLocationTarget.transform.position);
+                if (Agent != null)
+                {
+                    Agent.SetDestination(_currentLocationTarget.transform.position);
+                }
 
                 if (_surroundingTargets.Contains(_currentLocationTarget))
                 {
@@ -84,6 +87,11 @@ public class Unit : Item
     public virtual void SetActiveTarget(Item target)
     {
         _currentActiveTarget = target;
+
+        if (target != null)
+        {
+            transform.LookAt(_currentActiveTarget.transform);
+        }
     }
 
     protected override void OnItemEnter(Item item)

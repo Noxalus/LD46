@@ -24,6 +24,11 @@ public class Item : MonoBehaviour
     [SerializeField]
     private SFXCollection _dieSounds = null;
 
+    [Header("Debug")]
+
+    [SerializeField]
+    private bool _initializeOnStart = false;
+
     public delegate void ItemEventHandler(Item item);
     public delegate void ItemCollisionEventHandler(Item item, int collisionCount);
 
@@ -34,6 +39,7 @@ public class Item : MonoBehaviour
     protected int _hp;
     private int _collisionCount = 0;
     protected bool _isDead;
+    protected bool _canInteract;
 
     public Animator Animator => _animator;
 
@@ -47,21 +53,35 @@ public class Item : MonoBehaviour
 
     public int HP => _hp;
 
-    //private void Start()
-    //{
-    //    Initialize();
-    //}
+    private void Start()
+    {
+        if (_initializeOnStart)
+        {
+            Initialize();
+        }
+    }
+
+    public void CanInteract(bool value)
+    {
+        _canInteract = value;
+    }
 
     public virtual void Initialize()
     {
         _hp = _baseHealth;
         _actionTimer = _actionFrequency;
+        _canInteract = true;
 
         UI.Initialize(GameManager.Instance.MainCamera, this);
     }
 
     private void Update()
     {
+        if (!_canInteract)
+        {
+            return;
+        }
+
         InternalUpdate();
     }
 
@@ -148,34 +168,41 @@ public class Item : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        _collisionCount++;
 
-        //Debug.Log($"Enter into {other.name}");
+        Debug.Log($"Enter into {other.name}");
+
+        if (other.tag != "Ground")
+        {
+            _collisionCount++;
+            Debug.Log($"Collision count: {_collisionCount}");
+            OnCollisionTriggerEnter?.Invoke(this, _collisionCount);
+        }
 
         Item item = other.gameObject.GetComponent<Item>();
 
-        if (item != null && _allowedItemTags.Contains(item.tag))
+        if (_canInteract && item != null && _allowedItemTags.Contains(item.tag))
         {
             OnItemEnter(item);
         }
-
-        OnCollisionTriggerEnter?.Invoke(this, _collisionCount);
     }
 
     public void OnTriggerExit(Collider other)
     {
-        _collisionCount--;
+        Debug.Log($"Exit from {other.name}");
 
-        //Debug.Log($"Exit from {other.name}");
+        if (other.tag != "Ground")
+        {
+            _collisionCount--;
+            Debug.Log($"Collision count: {_collisionCount}");
+            OnCollisionTriggerExit?.Invoke(this, _collisionCount);
+        }
 
         Item item = other.gameObject.GetComponent<Item>();
 
-        if (item != null)
+        if (_canInteract && item != null)
         {
             OnItemExit(item);
         }
-
-        OnCollisionTriggerExit?.Invoke(this, _collisionCount);
     }
 
     protected virtual void OnItemEnter(Item item)

@@ -53,6 +53,7 @@ MonoBehaviour:
   _audioSource: {fileID: 0}
   _actionFrequency: 1
   _dieSounds: {fileID: 0}
+  _initializeOnStart: 0
   Mesh: {fileID: 5807720629861878694}
   _collectFx: {fileID: 2270017470577797125}
   _minMeshScale: 0.2

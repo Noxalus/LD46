@@ -78,7 +78,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _root: {fileID: 8286731390381800626}
   _spaceBetweenResources: 5
-  _resourcesProbability: 0.1
   _environmentProbability: 0.5
   _treePrefabs:
   - {fileID: 8441188587012186884, guid: a570665e437a9f24f8fad59d291579fb, type: 3}
@@ -127,7 +126,7 @@ GameObject:
   - component: {fileID: 4672989282494667270}
   m_Layer: 11
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

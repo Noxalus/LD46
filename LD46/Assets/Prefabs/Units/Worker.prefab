@@ -44,10 +44,10 @@ GameObject:
   - component: {fileID: 1365203308711361979}
   - component: {fileID: 6916204293797004881}
   - component: {fileID: 705776583924959756}
-  - component: {fileID: 7664857512008452148}
   - component: {fileID: 8986076282314957623}
   - component: {fileID: 1661380933019087732}
   - component: {fileID: 1070161630211482126}
+  - component: {fileID: 1516290851270109893}
   m_Layer: 8
   m_Name: Worker
   m_TagString: Unit
@@ -89,11 +89,12 @@ MonoBehaviour:
   Price: {fileID: 11400000, guid: d1829d6bd9a29014bafd27aa3a5636ad, type: 2}
   _audioSource: {fileID: 1070161630211482126}
   _actionFrequency: 1
+  _dieSounds: {fileID: 11400000, guid: 81b27c3fe80559b4a9f86ee2f5f4677f, type: 2}
+  _initializeOnStart: 0
   Agent: {fileID: 6916204293797004881}
   _hurtFx: {fileID: 8225439129305890956}
   _hitSounds: {fileID: 11400000, guid: fddd4e0beaeb0524ca9a01795c60e364, type: 2}
   _hurtSounds: {fileID: 11400000, guid: 254aa1116df0070418ee0a15fad16b25, type: 2}
-  _dieSounds: {fileID: 11400000, guid: 81b27c3fe80559b4a9f86ee2f5f4677f, type: 2}
   _attack: 1
   _itemsToWatchTags:
   - Resource
@@ -139,19 +140,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!135 &7664857512008452148
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2709842972231779755}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!136 &8986076282314957623
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -281,6 +269,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &1516290851270109893
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709842972231779755}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.15
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &94313333862880142
 PrefabInstance:
   m_ObjectHideFlags: 0
