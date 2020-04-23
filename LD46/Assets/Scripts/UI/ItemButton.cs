@@ -28,6 +28,8 @@ public class ItemButton : MonoBehaviour
 
     public Item Item => _itemPrefab;
 
+    private bool _canBuy = false;
+
     public void Start()
     {
         _woodCost.text = _itemPrefab.Price.Wood.ToString();
@@ -44,12 +46,15 @@ public class ItemButton : MonoBehaviour
 
     public void ChangeItem()
     {
-        GameManager.Instance.ItemPlacer.SetItem(_itemPrefab);
+        if (_canBuy)
+        {
+            GameManager.Instance.ItemPlacer.SetItem(_itemPrefab);
+        }
     }
 
     public void CheckCurrencies()
     {
-        bool canBuy = true;
+        _canBuy = true;
 
         var gameManager = GameManager.Instance;
 
@@ -62,7 +67,7 @@ public class ItemButton : MonoBehaviour
         {
             _woodCost.color = Color.red;
             _woodCost.fontStyle = FontStyles.Bold;
-            canBuy = false;
+            _canBuy = false;
         }
 
         if (gameManager.Rock >= _itemPrefab.Price.Rock)
@@ -74,7 +79,7 @@ public class ItemButton : MonoBehaviour
         {
             _rockCost.color = Color.red;
             _woodCost.fontStyle = FontStyles.Bold;
-            canBuy = false;
+            _canBuy = false;
         }
 
         if (gameManager.Gold >= _itemPrefab.Price.Gold)
@@ -86,9 +91,9 @@ public class ItemButton : MonoBehaviour
         {
             _goldCost.color = Color.red;
             _woodCost.fontStyle = FontStyles.Bold;
-            canBuy = false;
+            _canBuy = false;
         }
 
-        _itemIcon.color = canBuy ? Color.white : Color.red;
+        _itemIcon.color = _canBuy ? Color.white : Color.red;
     }
 }
