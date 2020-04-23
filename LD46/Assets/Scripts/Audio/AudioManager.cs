@@ -22,6 +22,7 @@ public class AudioManager : MonoBehaviour
     public void PlayMusic()
     {
         _source.clip = _music;
+        _source.volume = 0.5f;
         _source.loop = true;
         _source.Play();
     }
