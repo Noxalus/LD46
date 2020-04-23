@@ -65,20 +65,21 @@ public class CameraController : MonoBehaviour
         //    return;
         //}
 
-        float ratio;
+        float screenRatio = Screen.width / Screen.height;
         Vector3 direction = transform.position;
         direction = Vector3.zero;
 
         float mouseX = Mathf.Clamp(Input.mousePosition.x, 0, Screen.width);
         float mouseY = Mathf.Clamp(Input.mousePosition.y, 0, Screen.height);
+        float zoomFactor = (Camera.orthographicSize / 10f);
 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
         //maxPanSpeed *= Camera.orthographicSize / 10f;
 
-        direction.x += maxPanSpeed * horizontal * Time.deltaTime;
-        direction.y += maxPanSpeed * vertical * Time.deltaTime;
+        direction.x += maxPanSpeed * horizontal * Time.deltaTime * zoomFactor;
+        direction.y += maxPanSpeed * vertical * Time.deltaTime * zoomFactor;
 
         if (Input.GetKeyDown(KeyCode.Mouse2))
         {
@@ -88,9 +89,8 @@ public class CameraController : MonoBehaviour
         if (_panOriginPosition != Vector2.zero)
         {
             // Move the camera according the offset (move value)
-            float zoomFactor = (Camera.orthographicSize / 10f);
-            direction.x += (_panOriginPosition.x - Input.mousePosition.x) * (maxPanSpeed / 100f) * zoomFactor * Time.deltaTime;
-            direction.y += (_panOriginPosition.y - Input.mousePosition.y) * (maxPanSpeed / 100f) * zoomFactor * Time.deltaTime;
+            direction.x += (_panOriginPosition.x - Input.mousePosition.x) * screenRatio * (maxPanSpeed / 50f) * zoomFactor * Time.deltaTime;
+            direction.y += (_panOriginPosition.y - Input.mousePosition.y) * screenRatio * (maxPanSpeed / 50f) * zoomFactor * Time.deltaTime;
 
             _panOriginPosition = Vector2.Lerp(_panOriginPosition, Input.mousePosition, 0.5f);
         }

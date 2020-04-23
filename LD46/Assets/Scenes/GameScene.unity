@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e0be3c904c24744a203abc8bd6b72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPanSpeed: 100
+  maxPanSpeed: 20
   Camera: {fileID: 6080288}
   panBorderThickness: 0.5
   panLimitBottomLeft: {x: -500, y: -500}
