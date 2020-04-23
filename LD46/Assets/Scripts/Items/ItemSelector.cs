@@ -53,7 +53,7 @@ public class ItemSelector : MonoBehaviour
 
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, -1, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, -1, QueryTriggerInteraction.Collide))
             {
                 NavMeshPath path = new NavMeshPath();
                 currentSelectedUnit.Agent.CalculatePath(hit.point, path);

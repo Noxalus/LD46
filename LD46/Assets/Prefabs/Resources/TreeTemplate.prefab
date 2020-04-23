@@ -41,8 +41,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5789526071865533809}
   - component: {fileID: 5607615938896616274}
-  - component: {fileID: 5789526071865533817}
-  - component: {fileID: 5789526071865533818}
   - component: {fileID: 8574026953339564891}
   m_Layer: 13
   m_Name: TreeTemplate
@@ -83,41 +81,14 @@ MonoBehaviour:
   _animator: {fileID: 0}
   _baseHealth: 1
   Price: {fileID: 0}
+  _audioSource: {fileID: 0}
   _actionFrequency: 1
+  _dieSounds: {fileID: 0}
   Mesh: {fileID: 1680017152746560322}
   _collectFx: {fileID: 22991241414103896}
   _minMeshScale: 0.2
   _minQuantity: 1
   _maxQuantity: 50
---- !u!65 &5789526071865533817
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5789526071865533771}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.4172328, y: 3.042926, z: 1.4446193}
-  m_Center: {x: 0, y: 1.5464631, z: 0}
---- !u!54 &5789526071865533818
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5789526071865533771}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!65 &8574026953339564891
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -129,8 +100,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7943003, y: 3.042926, z: 1.6716497}
-  m_Center: {x: 0, y: 1.5464631, z: 0}
+  m_Size: {x: 2.7159657, y: 3.3441546, z: 2.4482327}
+  m_Center: {x: 0, y: 1.6970774, z: 0}
 --- !u!1001 &6280455082535070906
 PrefabInstance:
   m_ObjectHideFlags: 0
