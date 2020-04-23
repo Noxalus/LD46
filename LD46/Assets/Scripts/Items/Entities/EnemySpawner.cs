@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class EnemySpawner : Building
 {
@@ -20,7 +21,8 @@ public class EnemySpawner : Building
         // Execute action directly
         //_actionTimer = 0;
         //ExecuteAction();
-        SpawnEnemy();
+        // Wait for the world chunk animation
+        StartCoroutine(InitialSpawnCoroutine());
     }
 
     protected override void InternalUpdate()
@@ -32,6 +34,12 @@ public class EnemySpawner : Building
     {
         base.ExecuteAction();
 
+        SpawnEnemy();
+    }
+
+    private IEnumerator InitialSpawnCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
         SpawnEnemy();
     }
 
