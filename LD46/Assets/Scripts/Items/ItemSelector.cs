@@ -66,11 +66,11 @@ public class ItemSelector : MonoBehaviour
 
                 if (targetItem != null)
                 {
-                    currentSelectedUnit.SetTarget(targetItem);
+                    currentSelectedUnit.SetLocationTarget(targetItem);
                 }
                 else
                 {
-                    currentSelectedUnit.SetTarget(null);
+                    currentSelectedUnit.SetLocationTarget(null);
                     currentSelectedUnit.Agent.SetDestination(hit.point);
                     currentSelectedUnit.Agent.isStopped = false;
                 }

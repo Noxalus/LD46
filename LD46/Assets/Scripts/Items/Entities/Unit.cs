@@ -49,6 +49,12 @@ public class Unit : Item
             if (_currentLocationTarget != null)
             {
                 Agent.SetDestination(_currentLocationTarget.transform.position);
+
+                if (_surroundingTargets.Contains(_currentLocationTarget))
+                {
+                    SetActiveTarget(_currentLocationTarget);
+                    SetLocationTarget(null);
+                }
             }
         }
     }
@@ -64,7 +70,7 @@ public class Unit : Item
         }
     }
 
-    public void SetTarget(Item target)
+    public void SetLocationTarget(Item target)
     {
         _currentLocationTarget = target;
 
@@ -73,6 +79,11 @@ public class Unit : Item
             // Stop movement if the unit doesn't have target
             Agent.isStopped = target == null;
         }
+    }
+
+    public virtual void SetActiveTarget(Item target)
+    {
+        _currentActiveTarget = target;
     }
 
     protected override void OnItemEnter(Item item)
@@ -86,7 +97,7 @@ public class Unit : Item
         // We reached the target!
         if (_currentLocationTarget == item)
         {
-            _currentActiveTarget = item;
+            SetActiveTarget(item);
         }
 
         if (!_surroundingTargets.Contains(item))
@@ -106,7 +117,7 @@ public class Unit : Item
 
         if (item == _currentActiveTarget)
         {
-            _currentActiveTarget = null;
+            SetActiveTarget(null);
             FindNewTarget();
         }
     }
@@ -117,7 +128,7 @@ public class Unit : Item
         {
             if (target != null)
             {
-                _currentActiveTarget = target;
+                SetActiveTarget(_currentActiveTarget);
             }
         }
 

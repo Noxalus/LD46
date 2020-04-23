@@ -25,14 +25,26 @@ public class Worker : Unit
         }
     }
 
+    public override void SetActiveTarget(Item target)
+    {
+        base.SetActiveTarget(target);
+
+        CheckResourceTarget();
+    }
+
     protected override void OnItemEnter(Item item)
     {
         base.OnItemEnter(item);
 
+        CheckResourceTarget();
+    }
+
+    private void CheckResourceTarget()
+    {
         if (_currentActiveTarget != null && _currentActiveTarget is Resource resource)
         {
             _currentActiveResource = resource;
-            SetTarget(null);
+            SetLocationTarget(null);
         }
     }
 

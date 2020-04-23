@@ -74,6 +74,13 @@ public class GameManager : Singleton<GameManager>
 
         _initialCameraPosition = MainCamera.transform.position;
         _initialCameraRotation = MainCamera.transform.rotation;
+
+#if DEBUG
+        Initialize();
+#else
+        _menuScreen.SetActive(true);
+
+#endif
     }
 
     public void Retry()

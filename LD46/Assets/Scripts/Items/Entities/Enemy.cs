@@ -39,7 +39,7 @@
             if (item is Unit)
             {
                 _currentActiveTarget = item;
-                SetTarget(_currentActiveTarget);
+                SetLocationTarget(_currentActiveTarget);
             }
         }
     }
@@ -50,7 +50,7 @@
 
         if (_currentActiveTarget == null)
         {
-            SetTarget(GameManager.Instance.King);
+            SetLocationTarget(GameManager.Instance.King);
         }
     }
 }
