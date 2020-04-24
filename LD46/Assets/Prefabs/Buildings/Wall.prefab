@@ -51,11 +51,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 5573318755326497986}
   _animator: {fileID: 4366809780378359011}
-  _baseHealth: 5
+  _baseHealth: 10
   Price: {fileID: 11400000, guid: 7b00232b2c9b1c848b98419409faf8a3, type: 2}
   _audioSource: {fileID: 0}
   _actionFrequency: 1
   _dieSounds: {fileID: 0}
+  _initializeOnStart: 0
 --- !u!65 &5249842998944501203
 BoxCollider:
   m_ObjectHideFlags: 0

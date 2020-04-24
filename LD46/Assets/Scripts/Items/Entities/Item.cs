@@ -168,13 +168,12 @@ public class Item : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-
-        Debug.Log($"Enter into {other.name}");
+        //Debug.Log($"Enter into {other.name}");
 
         if (other.tag != "Ground")
         {
             _collisionCount++;
-            Debug.Log($"Collision count: {_collisionCount}");
+            //Debug.Log($"Collision count: {_collisionCount}");
             OnCollisionTriggerEnter?.Invoke(this, _collisionCount);
         }
 
@@ -188,12 +187,12 @@ public class Item : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        Debug.Log($"Exit from {other.name}");
+        //Debug.Log($"Exit from {other.name}");
 
         if (other.tag != "Ground")
         {
             _collisionCount--;
-            Debug.Log($"Collision count: {_collisionCount}");
+            //Debug.Log($"Collision count: {_collisionCount}");
             OnCollisionTriggerExit?.Invoke(this, _collisionCount);
         }
 

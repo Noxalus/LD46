@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08cd45a494026eb43ae0db00fbc6411c, type: 3}
   m_Name: WorkerPrice
   m_EditorClassIdentifier: 
-  _wood: 3
-  _rock: 3
-  _gold: 1
+  _wood: 2
+  _rock: 2
+  _gold: 3

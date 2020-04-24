@@ -85,6 +85,7 @@ MonoBehaviour:
   _audioSource: {fileID: 0}
   _actionFrequency: 60
   _dieSounds: {fileID: 0}
+  _initializeOnStart: 0
   _spawnPosition: {fileID: 3311201115991141532}
   _enemyPrefab: {fileID: 3926426773715011402, guid: e232093456e002644830d82613d6cf6f,
     type: 3}
@@ -99,8 +100,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.520578, y: 3.2755132, z: 7.6472855}
-  m_Center: {x: 0.11617422, y: 1.6627567, z: 0}
+  m_Size: {x: 5.993421, y: 3.2755132, z: 6.4154854}
+  m_Center: {x: -0.040193796, y: 1.6000001, z: -0.18757105}
 --- !u!54 &3836609005180680305
 Rigidbody:
   m_ObjectHideFlags: 0

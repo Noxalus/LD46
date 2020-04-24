@@ -48,9 +48,20 @@ public class Unit : Item
             // Move toward affected target
             if (_currentLocationTarget != null)
             {
-                if (Agent != null)
+                // Moving target?
+                if (_currentLocationTarget is Unit)
                 {
-                    Agent.SetDestination(_currentLocationTarget.transform.position);
+                    // Reached destination?
+                    if (Vector3.Distance(_currentLocationTarget.transform.position, transform.position) < 1f)
+                    {
+                        Agent.isStopped = true;
+                        SetLocationTarget(null);
+                    }
+                    else
+                    {
+                        Agent.isStopped = false;
+                        Agent.SetDestination(_currentLocationTarget.transform.position);
+                    }
                 }
 
                 if (_surroundingTargets.Contains(_currentLocationTarget))
@@ -79,8 +90,16 @@ public class Unit : Item
 
         if (Agent)
         {
-            // Stop movement if the unit doesn't have target
-            Agent.isStopped = target == null;
+            if (target)
+            {
+                Agent.SetDestination(target.transform.position);
+                Agent.isStopped = false;
+            }
+            else
+            {
+                // Stop movement if the unit doesn't have target
+                Agent.isStopped = true;
+            }
         }
     }
 
@@ -92,6 +111,11 @@ public class Unit : Item
         {
             transform.LookAt(_currentActiveTarget.transform);
         }
+    }
+
+    protected bool IsInterestingForMe(Item item)
+    {
+        return _itemsToWatchTags.Contains(item.tag);
     }
 
     protected override void OnItemEnter(Item item)
@@ -114,11 +138,6 @@ public class Unit : Item
         }
     }
 
-    protected bool IsInterestingForMe(Item item)
-    {
-        return _itemsToWatchTags.Contains(item.tag);
-    }
-
     protected override void OnItemExit(Item item)
     {
         _surroundingTargets.Remove(item);
@@ -136,17 +155,17 @@ public class Unit : Item
         {
             if (target != null)
             {
-                SetActiveTarget(_currentActiveTarget);
+                SetActiveTarget(target);
             }
         }
 
         // Still no target?
-        if (_currentActiveTarget == null)
-        {
-            _surroundingTargets.Clear();
+        //if (_currentActiveTarget == null)
+        //{
+        //    _surroundingTargets.Clear();
 
-            // Ask GameManager a new target to move at?
-        }
+        //    // Ask GameManager a new target to move at?
+        //}
     }
 
     protected void Attack()

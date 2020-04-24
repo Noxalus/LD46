@@ -34,6 +34,11 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private ItemSelector _itemSelector = null;
 
+    [Header("Debug")]
+
+    [SerializeField]
+    private Enemy _enemyPrefab = null;
+
     private List<Building> _buildings = new List<Building>();
     private List<Unit> _units = new List<Unit>();
     private List<Unit> _enemies = new List<Unit>();
@@ -132,7 +137,7 @@ public class GameManager : Singleton<GameManager>
         _king.OnDied += OnKingDied;
 
         _units.Add(_king);
-        
+
         var firstSoldier = Instantiate(_firstSoldierPrefab, Vector3.forward * 3f, Quaternion.identity);
         firstSoldier.Initialize();
 
@@ -241,8 +246,15 @@ public class GameManager : Singleton<GameManager>
     private void OnBuildingDied(Item item)
     {
         item.OnDied -= OnBuildingDied;
-        NavMeshSurface.BuildNavMesh();
+
+        StartCoroutine(BuildNavMeshCoroutine());
         _buildings.Remove(item as Building);
+    }
+
+    private IEnumerator BuildNavMeshCoroutine()
+    {
+        yield return new WaitForEndOfFrame();
+        NavMeshSurface.BuildNavMesh();
     }
 
     private void OnUnitDied(Item item)
@@ -288,7 +300,7 @@ public class GameManager : Singleton<GameManager>
 #if DEBUG
         #region  Debug
 
-        //// Attack enemies using mouse click
+        // Attack enemies using mouse click
         //if (Input.GetKeyDown(KeyCode.Mouse1))
         //{
         //    Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
@@ -305,6 +317,20 @@ public class GameManager : Singleton<GameManager>
         //        }
         //    }
         //}
+
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Ground"), QueryTriggerInteraction.Ignore))
+            {
+                var enemy = Instantiate(_enemyPrefab, hit.point, Quaternion.identity);
+                enemy.Initialize();
+
+                _enemies.Add(enemy);
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

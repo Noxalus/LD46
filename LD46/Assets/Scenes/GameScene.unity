@@ -256,7 +256,7 @@ MonoBehaviour:
   panBorderThickness: 0.5
   panLimitBottomLeft: {x: -500, y: -500}
   panLimitTopRight: {x: 500, y: 500}
-  scrollSpeed: 1000
+  scrollSpeed: 2000
   _zoomMin: 4
   _zoomMax: 30
   showPanBorder: 0
@@ -3218,7 +3218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1684217264
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3625,6 +3625,8 @@ MonoBehaviour:
     type: 3}
   _itemPlacer: {fileID: 1896540856}
   _itemSelector: {fileID: 1896540857}
+  _enemyPrefab: {fileID: 3926426773715011402, guid: e232093456e002644830d82613d6cf6f,
+    type: 3}
 --- !u!114 &1896540855
 MonoBehaviour:
   m_ObjectHideFlags: 0

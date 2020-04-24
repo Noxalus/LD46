@@ -175,11 +175,13 @@ public class ItemPlacer : MonoBehaviour
 
     private void OnGhostCollisionTriggerEnter(Item item, int collisionCount)
     {
+        Debug.Log($"OnGhostCollisionTriggerEnter: {collisionCount}");
         UpdateGhostMaterial(collisionCount == 0);
     }
 
     private void OnGhostCollisionTriggerExit(Item item, int collisionCount)
     {
+        Debug.Log($"OnGhostCollisionTriggerExit: {collisionCount}");
         UpdateGhostMaterial(collisionCount == 0);
     }
 
@@ -193,9 +195,9 @@ public class ItemPlacer : MonoBehaviour
             {
                 meshRenderer.material = material;
             }
-
-            _canPlace = canPlace;
         }
+
+        _canPlace = canPlace;
     }
 
     private bool CanBuy(Item item)

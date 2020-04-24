@@ -1,4 +1,6 @@
-﻿public class Enemy : Unit
+﻿using UnityEngine;
+
+public class Enemy : Unit
 {
     public void Initialize(int health)
     {
@@ -11,6 +13,13 @@
 
     protected override void InternalUpdate()
     {
+        if (_currentActiveTarget == null && (_currentLocationTarget == null ||
+            (_surroundingTargets.Count > 0 && Agent && Agent.velocity.magnitude < 1f)))
+        {
+            // Search for new target
+            FindNewTarget();
+        }
+
         base.InternalUpdate();
     }
 
@@ -21,11 +30,6 @@
         if (_currentActiveTarget != null)
         {
             Attack();
-        }
-        else
-        {
-            // Search for new target
-            FindNewTarget();
         }
     }
 
@@ -42,6 +46,8 @@
                 SetLocationTarget(_currentActiveTarget);
             }
         }
+
+        Debug.Log($"Found a {item.name}, surrounding targets: {_surroundingTargets.Count}");
     }
 
     protected override void FindNewTarget()
