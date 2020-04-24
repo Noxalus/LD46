@@ -171,6 +171,7 @@ public class ItemPlacer : MonoBehaviour
         ghostItem.OnCollisionTriggerExit += OnGhostCollisionTriggerExit;
 
         _ghostItemGameObject.SetActive(false);
+        _canPlace = true;
     }
 
     private void OnGhostCollisionTriggerEnter(Item item, int collisionCount)
