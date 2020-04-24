@@ -4,6 +4,7 @@ using System.Diagnostics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Debug = UnityEngine.Debug;
+using System.Collections;
 
 public enum EDirection
 {
@@ -77,12 +78,20 @@ public class WorldBuilder : MonoBehaviour
         time.Stop();
         Debug.Log($"Time to generate a new chunk: {time.ElapsedMilliseconds}ms");
 
-        time.Restart();
-        // Really time consuming => find a solution to build local chunk?
-        GameManager.Instance.NavMeshSurface.BuildNavMesh();
-        time.Stop();
+        //time.Restart();
+        //// Really time consuming => find a solution to build local chunk?
+        ////GameManager.Instance.NavMeshSurface.BuildNavMesh();
+        //time.Stop();
 
-        Debug.Log($"Time to build navmesh: {time.ElapsedMilliseconds}ms");
+        //Debug.Log($"Time to build navmesh: {time.ElapsedMilliseconds}ms");
+
+        StartCoroutine(RefreshNavMesh());
+    }
+
+    private IEnumerator RefreshNavMesh()
+    {
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.NavMeshSurface.BuildNavMesh();
     }
 
     public Dictionary<EDirection, WorldChunk> CheckSurroundingNeighbors(Vector3 chunkPosition, EDirection except = EDirection.None)
