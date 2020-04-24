@@ -455,7 +455,7 @@ public class GameManager : Singleton<GameManager>
         item.OnDied -= OnEnemyBuildingDied;
 
         _enemyBuildings.Remove(item as Building);
-        NavMeshSurface.BuildNavMesh();
+        StartCoroutine(BuildNavMeshCoroutine());
     }
 
     public void ToggleMusic()
