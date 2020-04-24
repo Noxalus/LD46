@@ -5,6 +5,9 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField]
+    private AudioSource _musicSource = null;
+
+    [SerializeField]
     private AudioSource _source = null;
 
     [SerializeField]
@@ -21,10 +24,10 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic()
     {
-        _source.clip = _music;
-        _source.volume = 0.5f;
-        _source.loop = true;
-        _source.Play();
+        _musicSource.clip = _music;
+        _musicSource.volume = 0.35f;
+        _musicSource.loop = true;
+        _musicSource.Play();
     }
 
     public void PlayPlaceItemSound()
