@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -51,16 +52,27 @@ public class Unit : Item
                 // Moving target?
                 if (_currentLocationTarget is Unit)
                 {
-                    // Reached destination?
-                    if (Vector3.Distance(_currentLocationTarget.transform.position, transform.position) < 1f)
+                    NavMeshPath navMeshPath = new NavMeshPath();
+                    Agent.CalculatePath(_currentLocationTarget.transform.position, navMeshPath);
+
+                    // If can't reach position => reach the nearest accessible location
+                    if (navMeshPath.status == NavMeshPathStatus.PathPartial)
                     {
-                        Agent.isStopped = true;
-                        SetLocationTarget(null);
+                        Agent.SetDestination(navMeshPath.corners.Last());
                     }
                     else
                     {
-                        Agent.isStopped = false;
-                        Agent.SetDestination(_currentLocationTarget.transform.position);
+                        // Reached destination?
+                        if (Vector3.Distance(_currentLocationTarget.transform.position, transform.position) < 1f)
+                        {
+                            Agent.isStopped = true;
+                            SetLocationTarget(null);
+                        }
+                        else
+                        {
+                            Agent.isStopped = false;
+                            Agent.SetDestination(_currentLocationTarget.transform.position);
+                        }
                     }
                 }
 

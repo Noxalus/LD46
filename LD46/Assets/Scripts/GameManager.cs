@@ -124,9 +124,9 @@ public class GameManager : Singleton<GameManager>
         WorldBuilder.Initialize();
         UIRefreshCurrencies();
 
-        SpawnBaseUnits();
-
         _worldBuilderCoroutine = StartCoroutine(WorldBuilderCoroutine());
+
+        SpawnBaseUnits();
     }
 
     private void SpawnBaseUnits()

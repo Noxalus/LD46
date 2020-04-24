@@ -46,8 +46,6 @@ public class Enemy : Unit
                 SetLocationTarget(_currentActiveTarget);
             }
         }
-
-        Debug.Log($"Found a {item.name}, surrounding targets: {_surroundingTargets.Count}");
     }
 
     protected override void FindNewTarget()

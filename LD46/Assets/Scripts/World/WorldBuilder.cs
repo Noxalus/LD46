@@ -29,10 +29,10 @@ public class WorldBuilder : MonoBehaviour
 
     public void Initialize()
     {
-        GenerateNewChunk();
+        GenerateNewChunk(true);
     }
 
-    public void GenerateNewChunk()
+    public void GenerateNewChunk(bool instantNavMeshRefresh = false)
     {
         Stopwatch time = new Stopwatch();
         time.Start();
@@ -85,7 +85,14 @@ public class WorldBuilder : MonoBehaviour
 
         //Debug.Log($"Time to build navmesh: {time.ElapsedMilliseconds}ms");
 
-        StartCoroutine(RefreshNavMesh());
+        if (instantNavMeshRefresh)
+        {
+            GameManager.Instance.NavMeshSurface.BuildNavMesh();
+        }
+        else
+        {
+            StartCoroutine(RefreshNavMesh());
+        }
     }
 
     private IEnumerator RefreshNavMesh()
